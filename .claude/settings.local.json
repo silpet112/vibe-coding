@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(@\\('python','py','node'\\) | ForEach-Object { $c = Get-Command $_ -ErrorAction SilentlyContinue; if \\($c\\) { \"[OK] $_ -> $\\($c.Source\\)\" } else { \"[--] $_ nie je k dispozicii\" } })"
+    ]
+  }
+}
