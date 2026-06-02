@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Jadro kurzu (Moduly A–C) hotové. Ďalej Modul D (pokročilé) alebo inštalácia nástrojov.
-**Posledná lekcia:** C12 — Git a verzie, koncepty (2026-06-02) · praktický commit odložený (git nie je nainštalovaný)
-**Ďalší krok:** **D13** (Modul D – pokročilé) — alebo praktické **inštalačné sedenie** (Git + Python → prvý reálny commit). Referencia: [CLAUDE-CODE-MAPA.md](CLAUDE-CODE-MAPA.md)
+**Aktuálna téma:** Claude Code — Modul D: Prispôsobenie a rozšírenie 🟣
+**Posledná lekcia:** D15 — Subagenty (Agent) (2026-06-02)
+**Ďalší krok:** **D16** — MCP servery (externé nástroje). Referencia: [CLAUDE-CODE-MAPA.md](CLAUDE-CODE-MAPA.md)
 
 > Pozn.: Teraz ideme po **Claude Code ceste** (osnova nižšie). Pôvodná osnova programovania
 > je zaparkovaná — ostáva nedotknutá v sekcii „Moja osnova" a vrátime sa k nej neskôr.
@@ -52,21 +52,53 @@
   označím), @-odkazy s riadkami (`@subor#5-10`), skratky (Ctrl+Esc, Alt+K, Shift+Enter, Ctrl+G).
 - **Git (základ)**: systém histórie verzií; *commit* = uložená verzia s popisom; *repo*, *diff*,
   *vetva*; Claude vie commitovať/vetviť; `/review` a `/code-review` kontrolujú zmeny.
+  *Git nainštalovaný (winget, v2.54), repo založené, prvý commit hotový: `git init` → `git add -A` → `git commit -m`.*
+- **settings.json**: súbor za `/config`; `permissions` (allow/deny/ask), `defaultMode`, model, env;
+  3 miesta (user `~/.claude/`, projekt `.claude/`, local `.claude/settings.local.json`).
+  Allow-rule = vopred povolená akcia (môže mať wildcard `*`, napr. `Bash(git *)`).
+- **Skills (vlastné príkazy)**: postup v `.claude/skills/názov/SKILL.md` (frontmatter `name`+`description`
+  + telo s inštrukciami); vyvolá sa `/názov`; načíta sa až keď treba. Mám vytvorený vlastný `/pokracuj`.
+- **Subagenty**: samostatný Claude na vedľajšiu úlohu vo vlastnej pamäti (vráti len zhrnutie, šetrí
+  kontext); typy Explore/Plan/general-purpose; vlastné v `.claude/agents/`; dajú sa púšťať paralelne.
 
 ---
 
 ## Na zopakovanie
 *(Veci, ktoré som už videl, ale ešte mi celkom nesadli — vrátime sa k nim.)*
 
-- **Nainštalovať Python** — teraz na PC nie je (zistené v B8); doinštalujeme v programovacej
-  časti, nech vieme písať aj v Pythone (zatiaľ používame PowerShell).
-- **Nainštalovať Git** — teraz na PC nie je (zistené v C12); po inštalácii spravíme **prvý reálny
-  commit** (`faktorial.ps1` + `POKROK.md`) a vyskúšame `/review`.
+- ~~Nainštalovať Python~~ — ✅ HOTOVO (2026-06-02, winget, Python 3.13.13). Funguje `python` aj `py`.
+- ~~Nainštalovať Git~~ — ✅ HOTOVO (2026-06-02, winget v2.54); repo založené, prvý commit `554c82a`.
 
 ---
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Lekcia D14 — Skills a vlastné slash príkazy — 2026-06-02
+**Čo sme prebrali:**
+- Čo je skill (vlastný príkaz), kde žije (`.claude/skills/názov/SKILL.md`), frontmatter + telo, load-on-demand. Už použité skilly: `/init`, `/update-config`.
+
+**Čo som pochopil:**
+- Vytvorili sme vlastný skill `/pokracuj`, ktorý prečíta POKROK.md a pokračuje v kurze. ✅
+
+**Praktická úloha:**
+- Vyrobiť vlastný skill + skontrolovať, či sa objaví v zozname (`/`). (Nový skill sa občas objaví až po reštarte.)
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej D15 (Subagenty).
+
+### Lekcia D13 — settings.json a povolenia — 2026-06-02
+**Čo sme prebrali:**
+- `settings.json` za `/config`; permissions allow/deny/ask, defaultMode, model, env; 3 umiestnenia (user/projekt/local); wildcardy v allow-rule.
+
+**Čo som pochopil:**
+- Pozreli sme môj reálny `.claude/settings.local.json` — má allow-rule s presným príkazom, ktorý som predtým schválil „always allow". ✅
+
+**Praktická úloha:**
+- Prečítať a pochopiť vlastný `settings.local.json` — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej D14 (Skills a vlastné slash príkazy).
 
 ### Lekcia C12 — Git a verzie — 2026-06-02  ✅ Modul C (jadro)
 **Čo sme prebrali:**
@@ -76,10 +108,10 @@
 - Rozumiem, načo je git a commit. Explore ukázal, že git nie je nainštalovaný → praktický commit odložený. ✅ (koncepty)
 
 **Praktická úloha:**
-- Mal vzniknúť prvý commit — odložené, kým doinštalujeme git (pozri „Na zopakovanie").
+- Doinštalovali sme Git (winget, v2.54) a spravili **prvý reálny commit** (`554c82a`, 5 súborov, 926 riadkov) — hotové! ✅
 
 **Kde sme skončili / ďalší krok:**
-- Hotové jadro kurzu (Moduly A–C). Ďalej Modul D (pokročilé) alebo inštalačné sedenie (Git+Python).
+- Hotové jadro kurzu (A–C) + prvý commit. Repo je založené. Ďalej Modul D (pokročilé) — alebo doinštalovať Python.
 
 ### Lekcia C11 — Claude Code vo VS Code — 2026-06-02
 **Čo sme prebrali:**
@@ -283,11 +315,11 @@ vyššie. Detailná referencia ku každej lekcii je v [CLAUDE-CODE-MAPA.md](CLAU
 
 **MODUL C — VS Code + Git** 🔵
 - [x] C11. Claude Code vo VS Code (panel, diffy, @-odkazy, skratky)
-- [x] C12. Git základ a ako ho Claude používa (`/review`, `/code-review`) — koncepty ✅, reálny commit po inštalácii gitu
+- [x] C12. Git základ a ako ho Claude používa (`/review`, `/code-review`) — koncepty ✅ + Git nainštalovaný a prvý commit hotový ✅
 
 **MODUL D — Prispôsobenie a rozšírenie** 🟣
-- [ ] D13. settings.json a povolenia do hĺbky
-- [ ] D14. Skills a vlastné slash príkazy
+- [x] D13. settings.json a povolenia do hĺbky
+- [x] D14. Skills a vlastné slash príkazy
 - [ ] D15. Subagenty (Agent)
 - [ ] D16. MCP servery (externé nástroje)
 - [ ] D17. Hooks (automatizácia pravidiel)
