@@ -1,3 +1,4 @@
 ulohy.json
 *.db
 .env
+__pycache__/
