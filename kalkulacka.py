@@ -63,9 +63,13 @@ def main():
                 pridaj_cislo(cisla, hodnota)
                 print(f"Pridane: {uprav_vystup(hodnota)}")
         elif volba == "2":
-            print(f"Sucet = {uprav_vystup(scitaj(cisla))}")
+            vysledok = scitaj(cisla)
+            print(f"Sucet = {uprav_vystup(vysledok)}")
+            cisla = [vysledok]  # vysledok sa stava novym zakladom pre dalsie operacie
         elif volba == "3":
-            print(f"Rozdiel = {uprav_vystup(odcitaj(cisla))}")
+            vysledok = odcitaj(cisla)
+            print(f"Rozdiel = {uprav_vystup(vysledok)}")
+            cisla = [vysledok]  # vysledok sa stava novym zakladom pre dalsie operacie
         elif volba == "4":
             print("Dovidenia!")
             break
