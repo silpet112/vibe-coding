@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🛠️ Projekt 5 — Rozšírenie webovej appky (mazanie, úprava, filtrovanie výdavkov)
-**Posledná lekcia:** Etapa 3 — **filtrovanie podľa kategórie** na webe (query string `?kategoria=...`), commit `b502f63` (2026-06-03) ✅
-**Ďalší krok:** Etapa 4 — **testy** nových funkcií (mazať/upraviť/filter) + **uzavrieť Projekt 5**. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Aktuálna téma:** ✅ Projekt 5 — Rozšírenie webovej appky **DOKONČENÝ** (mazanie · úprava · filter · testy)
+**Posledná lekcia:** Etapa 4 — **testy** nových funkcií (`test_vydavky.py`, 19/19 PASS); Projekt 5 uzavretý, commit `82d4b23` (2026-06-03) ✅
+**Ďalší krok:** Vybrať **Projekt 6** (väčšia výzva) — alebo pauza. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -138,6 +138,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 5 · Rozšírenie webovej appky — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-03
+**Čo sme prebrali:**
+- Ku každej novej funkcii pridať test. Rozšírený `test_vydavky.py` o testy mazania (`DELETE`), úpravy (`UPDATE`, `vydavok_podla_id`) a filtra (`vydavky_v_kategorii`) — na dočasnej DB v pamäti.
+- Spolu **19/19 testov PASS**.
+
+**Čo som dokázal:**
+- Commit `82d4b23`. **Projekt 5 dokončený** — kompletný CRUD na webe, filter a testy. 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 5 uzavretý. Ďalej: vybrať Projekt 6 (väčšia výzva) alebo pauza.
 
 ### Projekt 5 · Rozšírenie webovej appky — Etapa 3 (filtrovanie) — 2026-06-03
 **Čo sme prebrali:**
@@ -820,4 +831,5 @@ hotový projekt bez prepisovania od nuly.)*
 - [x] **Etapa 1** — Mazanie výdavku (SQL `DELETE`, tlačidlo s potvrdením). Commit `987dd01`
 - [x] **Etapa 2** — Úprava výdavku (predvyplnený edit formulár, SQL `UPDATE`; kompletný CRUD). Commit `70ce688`
 - [x] **Etapa 3** — Filtrovanie podľa kategórie (query string `?kategoria=...`). Commit `b502f63`
-- [ ] **Etapa 4** — Testy nových funkcií + uzavrieť projekt
+- [x] **Etapa 4** — Testy nových funkcií (`test_vydavky.py`, 19/19 PASS). Commit `82d4b23`
+- [x] **Projekt 5 UZAVRETÝ** 🏁 — kompletný CRUD na webe · filter · testy
