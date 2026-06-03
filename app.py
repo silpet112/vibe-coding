@@ -19,9 +19,18 @@ def domov():
     conn = databaza.pripoj()
     databaza.vytvor_tabulku(conn)
     vydavky = databaza.vsetky_vydavky(conn)
+    # Prehlady - znova pouzite funkcie z Projektu 3 (databaza.py).
+    spolu = databaza.sucet_vsetkych(conn)
+    podla_kategorie = databaza.sucet_podla_kategorie(conn)
     conn.close()
     # render_template dosadi data do HTML sablony templates/vydavky.html
-    return render_template("vydavky.html", vydavky=vydavky, mena=konfig.MENA)
+    return render_template(
+        "vydavky.html",
+        vydavky=vydavky,
+        spolu=spolu,
+        podla_kategorie=podla_kategorie,
+        mena=konfig.MENA,
+    )
 
 
 @app.route("/pridaj", methods=["POST"])

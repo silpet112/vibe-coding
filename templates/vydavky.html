@@ -35,6 +35,14 @@
         </tr>
         {% endfor %}
     </table>
+
+    <h2>📊 Prehľad</h2>
+    <p><strong>Spolu: {{ "%.2f"|format(spolu) }} {{ mena }}</strong></p>
+    <ul>
+        {% for kategoria, sucet in podla_kategorie %}
+        <li>{{ kategoria }}: {{ "%.2f"|format(sucet) }} {{ mena }}</li>
+        {% endfor %}
+    </ul>
     {% else %}
     <p>Zatiaľ žiadne výdavky.</p>
     {% endif %}
