@@ -139,6 +139,18 @@
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
 
+### Bonus · Skill /app + povolenia + vypínacie tlačidlo — 2026-06-03
+**Čo sme prebrali:**
+- Vlastný skill **`/app`** (spustí Flask server na pozadí + otvorí prehliadač).
+- **Allow-pravidlá** v `.claude/settings.local.json` (`Bash(python app.py)`, `PowerShell(Start-Process*)`), aby `/app` nepýtal povolenie — vopred povolené akcie.
+- **Vypínacie tlačidlo 🛑** na webe (route `/vypni`, `os._exit` po odoslaní odpovede). Vysvetlené, prečo „auto-vypnutie pri zatvorení karty" nejde spoľahlivo (F5 vyzerá ako zatvorenie).
+
+**Čo som dokázal:**
+- Cez `/app` spúšťam a cez tlačidlo vypínam appku; commity `6838cc0`, `1c55ee9`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Projekty 1–5 hotové. Ďalej: Projekt 6 (väčšia výzva) alebo pauza.
+
 ### Projekt 5 · Rozšírenie webovej appky — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-03
 **Čo sme prebrali:**
 - Ku každej novej funkcii pridať test. Rozšírený `test_vydavky.py` o testy mazania (`DELETE`), úpravy (`UPDATE`, `vydavok_podla_id`) a filtra (`vydavky_v_kategorii`) — na dočasnej DB v pamäti.
