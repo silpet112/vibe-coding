@@ -24,6 +24,29 @@ def odcitaj(cisla):
     return vysledok
 
 
+def nasob(cisla):
+    """Vynasobi vsetky cisla. Napr. [5, 8] -> 40."""
+    if not cisla:
+        return 0
+    vysledok = 1
+    for c in cisla:
+        vysledok *= c
+    return vysledok
+
+
+def vydel(cisla):
+    """Prve cislo postupne vydeli ostatnymi. Napr. [8, 2] -> 4.
+    Pri deleni nulou vrati None (chyba)."""
+    if not cisla:
+        return 0
+    vysledok = cisla[0]
+    for c in cisla[1:]:
+        if c == 0:
+            return None
+        vysledok /= c
+    return vysledok
+
+
 # --- Pomocne funkcie ---
 
 def parsuj_cislo(text):
@@ -53,8 +76,10 @@ def main():
         print("1) Pridat cislo")
         print("2) Scitat")
         print("3) Odcitat")
-        print("4) Koniec")
-        volba = input("Vyber (1-4): ").strip()
+        print("4) Nasobit")
+        print("5) Delit")
+        print("6) Koniec")
+        volba = input("Vyber (1-6): ").strip()
         if volba == "1":
             hodnota = parsuj_cislo(input("Zadaj cislo: "))
             if hodnota is None:
@@ -65,16 +90,27 @@ def main():
         elif volba == "2":
             vysledok = scitaj(cisla)
             print(f"Sucet = {uprav_vystup(vysledok)}")
-            cisla = [vysledok]  # vysledok sa stava novym zakladom pre dalsie operacie
+            cisla = [vysledok]  # vysledok = novy zaklad pre dalsiu operaciu
         elif volba == "3":
             vysledok = odcitaj(cisla)
             print(f"Rozdiel = {uprav_vystup(vysledok)}")
-            cisla = [vysledok]  # vysledok sa stava novym zakladom pre dalsie operacie
+            cisla = [vysledok]
         elif volba == "4":
+            vysledok = nasob(cisla)
+            print(f"Sucin = {uprav_vystup(vysledok)}")
+            cisla = [vysledok]
+        elif volba == "5":
+            vysledok = vydel(cisla)
+            if vysledok is None:
+                print("Chyba: delenie nulou nie je mozne.")
+            else:
+                print(f"Podiel = {uprav_vystup(vysledok)}")
+                cisla = [vysledok]
+        elif volba == "6":
             print("Dovidenia!")
             break
         else:
-            print("Neplatna volba, skus 1-4.")
+            print("Neplatna volba, skus 1-6.")
 
 
 if __name__ == "__main__":
