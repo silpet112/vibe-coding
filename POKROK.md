@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🛠️ Projekt 5 — Rozšírenie webovej appky (mazanie, úprava, filtrovanie výdavkov)
-**Posledná lekcia:** Etapa 1 — **mazanie výdavku** na webe (SQL `DELETE`, tlačidlo s potvrdením), commit `987dd01` (2026-06-03) ✅
-**Ďalší krok:** Etapa 2 — **úprava výdavku** (edit formulár, SQL `UPDATE`). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa 2 — **úprava výdavku** na webe (SQL `UPDATE`, predvyplnený edit formulár; kompletný CRUD), commit `70ce688` (2026-06-03) ✅
+**Ďalší krok:** Etapa 3 — **filtrovanie** podľa kategórie (parametre v adrese / query string). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -118,6 +118,9 @@
 - **CRUD a SQL `DELETE`**: štyri základné operácie s dátami — Create (`INSERT`), Read (`SELECT`),
   Update (`UPDATE`), Delete (`DELETE`). `DELETE FROM ... WHERE id = ?` vymaže riadok. Route môže mať
   v adrese parameter (`/zmaz/<int:id>`); mazanie istím potvrdením v prehliadači (`confirm(...)`).
+- **SQL `UPDATE` a úprava (edit)**: `UPDATE ... SET ... WHERE id = ?` prepíše záznam. Úprava má 2 kroky:
+  GET ukáže formulár **predvyplnený** (`value="{{ ... }}"`), POST uloží. Tá istá route zvládne GET aj
+  POST (`methods=["GET","POST"]`, vetvenie cez `request.method`). Tým mám kompletný CRUD na webe.
 
 ---
 
@@ -131,6 +134,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 5 · Rozšírenie webovej appky — Etapa 2 (úprava) — 2026-06-03
+**Čo sme prebrali:**
+- SQL **`UPDATE ... WHERE id = ?`** prepíše existujúci záznam. Tým máme **kompletný CRUD** (pridať/čítať/upraviť/zmazať).
+- Úprava má 2 kroky: GET ukáže **predvyplnený** formulár (`templates/uprav.html`), POST uloží zmenu. Route `/uprav/<int:id>` slúži pre GET aj POST; `databaza.vydavok_podla_id` + `uprav_vydavok`.
+
+**Čo som dokázal:**
+- Upravil som výdavok z webu, formulár bol predvyplnený, zmena sa uložila. Commit `70ce688`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — filtrovanie zoznamu podľa kategórie (parametre v adrese / query string).
 
 ### Projekt 5 · Rozšírenie webovej appky — Etapa 1 (mazanie) — 2026-06-03
 **Čo sme prebrali:**
@@ -788,6 +802,6 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 hotový projekt bez prepisovania od nuly.)*
 
 - [x] **Etapa 1** — Mazanie výdavku (SQL `DELETE`, tlačidlo s potvrdením). Commit `987dd01`
-- [ ] **Etapa 2** — Úprava výdavku (edit formulár, SQL `UPDATE`)
+- [x] **Etapa 2** — Úprava výdavku (predvyplnený edit formulár, SQL `UPDATE`; kompletný CRUD). Commit `70ce688`
 - [ ] **Etapa 3** — Filtrovanie podľa kategórie (parametre v adrese)
 - [ ] **Etapa 4** — Testy nových funkcií + uzavrieť projekt
