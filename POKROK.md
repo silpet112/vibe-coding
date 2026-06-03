@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🌐 Projekt 4 — Výdavky na webe (Flask; znova použijem vrstvy `databaza`/`logika` z Projektu 3)
-**Posledná lekcia:** Etapa 4 — **prehľady na webe** (súčet spolu + podľa kategórie; znova použité `databaza.py`), commit `25e7930` (2026-06-03) ✅
-**Ďalší krok:** Etapa 5 — **vyladenie vzhľadu** (trocha CSS) + **uzavrieť Projekt 4**. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Aktuálna téma:** ✅ Projekt 4 — Výdavky na webe **DOKONČENÝ** (Flask: stránka · šablóna · formulár · prehľady · CSS)
+**Posledná lekcia:** Etapa 5 — **vyladenie vzhľadu** (CSS v šablóne); web appka dokončená, commit `7d78966` (2026-06-03) ✅
+**Ďalší krok:** Vybrať **Projekt 5** (väčšia výzva) — alebo pauza. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -113,6 +113,8 @@
 - **Formulár / GET vs POST**: **GET** = vyžiadať stránku (čítanie), **POST** = poslať serveru dáta
   (`<form method="post">` + `<input name="...">`). Route s `methods=["POST"]` číta `request.form`,
   uloží a vráti `redirect(url_for(...))` (presmerovanie po odoslaní, aby F5 neodoslalo formulár znova).
+- **CSS (vzhľad)**: HTML = *čo* je na stránke (obsah), CSS = *ako* to vyzerá (písmo, farby, rámčeky,
+  odsadenie). Jednoduché štýly viem dať do `<style>` v hlavičke šablóny. Oddelenie obsahu od vzhľadu.
 
 ---
 
@@ -126,6 +128,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 4 · Výdavky na webe — Etapa 5 (vzhľad) + UZAVRETÝ 🏁 — 2026-06-03
+**Čo sme prebrali:**
+- Pojem **CSS**: HTML = *čo* je na stránke (obsah), CSS = *ako* to vyzerá (písmo, farby, rámčeky, odsadenie). Štýly pridané do `<head>` šablóny.
+- Vyladený vzhľad: zelený nadpis, formulár v kartičke, prúžkovaná tabuľka, tlačidlo s efektom pri prejdení myšou.
+
+**Čo som dokázal:**
+- Appka funguje rovnako, ale vyzerá pekne. Commit `7d78966`. **Projekt 4 dokončený** — celá appka v prehliadači (stránka, šablóna, formulár, prehľady, CSS). 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 4 uzavretý. Ďalej: vybrať Projekt 5 (väčšia výzva) alebo pauza.
 
 ### Projekt 4 · Výdavky na webe — Etapa 4 (prehľady na webe) — 2026-06-03
 **Čo sme prebrali:**
@@ -751,4 +764,5 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 - [x] **Etapa 2** — Zobraziť zoznam výdavkov z databázy na stránke (HTML šablóna). Commit `a580c45`
 - [x] **Etapa 3** — Formulár na pridanie výdavku (POST + presmerovanie). Commit `d04a2ff`
 - [x] **Etapa 4** — Prehľady na webe (súčet spolu + podľa kategórie; znova použité `databaza.py`). Commit `25e7930`
-- [ ] **Etapa 5** — Vyladenie vzhľadu + uzavrieť projekt
+- [x] **Etapa 5** — Vyladenie vzhľadu (CSS v šablóne). Commit `7d78966`
+- [x] **Projekt 4 UZAVRETÝ** 🏁 — Flask web: stránka · šablóna · formulár (POST) · prehľady · CSS
