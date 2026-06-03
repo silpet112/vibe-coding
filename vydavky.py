@@ -2,10 +2,16 @@
 # Jeden vydavok = suma + kategoria + datum + poznamka. Data sa ukladaju do suboru vydavky.db.
 # SQLite je databaza vstavana priamo v Pythone - netreba nic instalovat.
 
+import os
 import sqlite3
 from datetime import date
 
-SUBOR_DB = "vydavky.db"  # cela databaza je v tomto jednom subore
+from dotenv import load_dotenv
+
+# Nacitanie nastaveni zo suboru .env (mimo kodu). Ak .env chyba, pouziju sa zalozne hodnoty.
+load_dotenv()
+SUBOR_DB = os.getenv("DB_SUBOR", "vydavky.db")  # nazov suboru s databazou
+MENA = os.getenv("MENA", "EUR")                 # mena pre vypis (napr. EUR, CZK)
 
 
 # --- Praca s databazou ---
@@ -84,7 +90,7 @@ def zobraz(conn):
     for r in riadky:
         id_, suma, kategoria, datum, poznamka = r
         pozn = f" - {poznamka}" if poznamka else ""
-        print(f"#{id_}  {datum}  {suma:>8.2f}  [{kategoria}]{pozn}")
+        print(f"#{id_}  {datum}  {suma:>8.2f} {MENA}  [{kategoria}]{pozn}")
 
 
 def main():
