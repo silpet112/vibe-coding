@@ -54,6 +54,37 @@ skontroluj("doprava spolu = 12.0", podla_kat["doprava"] == 12.0)
 skontroluj("za 2026-06 = 22.0 (vsetky)", databaza.sucet_za_mesiac(conn2, "2026-06") == 22.0)
 skontroluj("za 2026-05 = 0 (nic)", databaza.sucet_za_mesiac(conn2, "2026-05") == 0)
 
+# --- Test 6: mazanie (DELETE) ---
+conn3 = nova_db()
+databaza.pridaj_vydavok(conn3, 4.0, "jedlo", "2026-06-01", "")
+databaza.pridaj_vydavok(conn3, 12.0, "doprava", "2026-06-02", "")
+id_prveho = databaza.vsetky_vydavky(conn3)[0][0]
+databaza.zmaz_vydavok(conn3, id_prveho)
+zostatok = databaza.vsetky_vydavky(conn3)
+skontroluj("po zmazani zostal 1 vydavok", len(zostatok) == 1)
+skontroluj("zmazany spravny (zostala doprava)", zostatok[0][2] == "doprava")
+
+# --- Test 7: vydavok podla id + uprava (UPDATE) ---
+conn4 = nova_db()
+databaza.pridaj_vydavok(conn4, 4.0, "jedlo", "2026-06-01", "obed")
+id_v = databaza.vsetky_vydavky(conn4)[0][0]
+najdeny = databaza.vydavok_podla_id(conn4, id_v)
+skontroluj("vydavok_podla_id najde spravny zaznam", najdeny[2] == "jedlo")
+skontroluj("vydavok_podla_id pre neexistujuce id vrati None", databaza.vydavok_podla_id(conn4, 999) is None)
+databaza.uprav_vydavok(conn4, id_v, 9.99, "kava", "2026-06-05", "zmenene")
+po_uprave = databaza.vydavok_podla_id(conn4, id_v)
+skontroluj("uprava zmenila sumu na 9.99", po_uprave[1] == 9.99)
+skontroluj("uprava zmenila kategoriu na kava", po_uprave[2] == "kava")
+
+# --- Test 8: filter podla kategorie (WHERE kategoria) ---
+conn5 = nova_db()
+databaza.pridaj_vydavok(conn5, 4.0, "jedlo", "2026-06-01", "")
+databaza.pridaj_vydavok(conn5, 6.0, "jedlo", "2026-06-02", "")
+databaza.pridaj_vydavok(conn5, 12.0, "doprava", "2026-06-03", "")
+len_jedlo = databaza.vydavky_v_kategorii(conn5, "jedlo")
+skontroluj("filter 'jedlo' vrati 2 zaznamy", len(len_jedlo) == 2)
+skontroluj("filter vrati len kategoriu jedlo", all(r[2] == "jedlo" for r in len_jedlo))
+
 
 # --- Suhrn ---
 print("-" * 40)
