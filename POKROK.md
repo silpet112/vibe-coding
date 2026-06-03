@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 💰 Projekt 3 — Správca výdavkov (učím sa architektúru, .env a databázu — postupne po etapách A–E)
-**Posledná lekcia:** Etapa B — **.env** (nastavenia mimo kódu cez `python-dotenv`: `DB_SUBOR`, `MENA`; `.env.example` v gite, `.env` ignorovaný), commit `ef12072` (2026-06-03) ✅
-**Ďalší krok:** Etapa C — **architektúra**: rozdeliť `vydavky.py` na vrstvy (`databaza.py` / `logika.py` / `konfig.py` / `vydavky.py`). Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa C — **architektúra**: rozdelenie na vrstvy `konfig.py` / `databaza.py` / `logika.py` / `vydavky.py` (appka funguje rovnako), commit `d03ba67` (2026-06-03) ✅
+**Ďalší krok:** Etapa D — **prehľady cez dotazy**: súčet spolu, podľa kategórie, za mesiac (SQL `SUM`/`GROUP BY`). Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -95,6 +95,9 @@
   do gitu ide len vzor `.env.example`. Mením správanie appky bez zásahu do kódu.
 - **pip install**: doinštalovanie hotového balíčka od niekoho iného: `python -m pip install názov`
   (napr. `python-dotenv`). Potom ho v kóde použijem cez `import`.
+- **Architektúra (vrstvy)**: appku rozdelím na súbory, každý s jednou zodpovednosťou — `konfig.py`
+  (nastavenia), `databaza.py` (SQL/úložisko), `logika.py` (čisté výpočty), `vydavky.py` (menu/obsluha).
+  Súbory sa prepájajú cez `import`. Výhoda: prehľadnosť, ľahšie hľadanie chýb, testovateľné vrstvy.
 
 ---
 
@@ -108,6 +111,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 3 · Správca výdavkov — Etapa C (architektúra) — 2026-06-03
+**Čo sme prebrali:**
+- Pojem **architektúra** = rozdelenie appky na **vrstvy**, každá s jednou zodpovednosťou (prirovnanie reštaurácia: sklad/kuchyňa/čašník/pravidlá).
+- Refaktor `vydavky.py` na 4 súbory: `konfig.py` (nastavenia/.env), `databaza.py` (SQL), `logika.py` (čisté výpočty), `vydavky.py` (menu/obsluha).
+- Appka robí **to isté**, ale je prehľadná a vrstvy `databaza`/`logika` sa dajú samostatne testovať (využijeme v Etape E).
+
+**Čo som dokázal:**
+- Overil som, že appka po rozdelení funguje rovnako (pridať/zobraziť, dáta prežijú). Commit `d03ba67`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa D — **prehľady cez dotazy**: súčet všetkých výdavkov, súčet podľa kategórie, za mesiac (SQL `SUM`/`GROUP BY`).
 
 ### Projekt 3 · Správca výdavkov — Etapa B (.env) — 2026-06-03
 **Čo sme prebrali:**
@@ -639,6 +654,6 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 
 - [x] **Etapa A** — Vízia → MVP s databázou (SQLite): pridať/zobraziť výdavok, dáta v `vydavky.db`. Commit `d2f3f97`
 - [x] **Etapa B** — `.env` (nastavenia mimo kódu: `DB_SUBOR`, `MENA`; `.env.example` + gitignore; `pip install python-dotenv`). Commit `ef12072`
-- [ ] **Etapa C** — Architektúra (rozdelenie na vrstvy: `databaza.py` / `logika.py` / `vydavky.py` / `konfig.py`)
+- [x] **Etapa C** — Architektúra (rozdelenie na vrstvy: `konfig.py` / `databaza.py` / `logika.py` / `vydavky.py`). Commit `d03ba67`
 - [ ] **Etapa D** — Prehľady cez dotazy (súčet spolu, podľa kategórie, za mesiac)
 - [ ] **Etapa E** — Automatické testy + uzavrieť projekt
