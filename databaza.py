@@ -46,6 +46,12 @@ def vsetky_vydavky(conn):
     return kurzor.fetchall()
 
 
+def zmaz_vydavok(conn, id_vydavku):
+    """Zmaze vydavok s danym id. SQL prikaz: DELETE."""
+    conn.execute("DELETE FROM vydavky WHERE id = ?", (id_vydavku,))
+    conn.commit()
+
+
 # --- Prehlady (databaza pocita za nas: SUM, GROUP BY) ---
 
 def sucet_vsetkych(conn):

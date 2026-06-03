@@ -50,5 +50,14 @@ def pridaj():
     return redirect(url_for("domov"))
 
 
+@app.route("/zmaz/<int:id_vydavku>", methods=["POST"])
+def zmaz(id_vydavku):
+    # <int:id_vydavku> = cislo z adresy (napr. /zmaz/3) sa odovzda funkcii.
+    conn = databaza.pripoj()
+    databaza.zmaz_vydavok(conn, id_vydavku)
+    conn.close()
+    return redirect(url_for("domov"))
+
+
 if __name__ == "__main__":
     app.run(debug=True)
