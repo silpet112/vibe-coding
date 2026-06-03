@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <title>Moje výdavky</title>
+</head>
+<body>
+    <h1>💰 Moje výdavky</h1>
+
+    {% if vydavky %}
+    <table border="1" cellpadding="6">
+        <tr>
+            <th>#</th>
+            <th>Dátum</th>
+            <th>Suma</th>
+            <th>Kategória</th>
+            <th>Poznámka</th>
+        </tr>
+        {% for v in vydavky %}
+        <tr>
+            <td>{{ v[0] }}</td>
+            <td>{{ v[3] }}</td>
+            <td>{{ "%.2f"|format(v[1]) }} {{ mena }}</td>
+            <td>{{ v[2] }}</td>
+            <td>{{ v[4] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>Zatiaľ žiadne výdavky.</p>
+    {% endif %}
+</body>
+</html>
