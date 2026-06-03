@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 3 — Správca výdavkov **DOKONČENÝ** (databáza · .env · architektúra · prehľady · testy)
-**Posledná lekcia:** Etapa E — **automatické testy** `test_vydavky.py` (11 testov, dočasná DB v pamäti), commit `afe3fe2` (2026-06-03) ✅
-**Ďalší krok:** Vybrať **Projekt 4** (väčšia výzva podľa chuti) — alebo pauza. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Aktuálna téma:** 🌐 Projekt 4 — Výdavky na webe (Flask; znova použijem vrstvy `databaza`/`logika` z Projektu 3)
+**Posledná lekcia:** Etapa 1 — prvá **webová stránka** cez Flask (`app.py`, route `/`, beží na `http://127.0.0.1:5000`), commit `4b51a02` (2026-06-03) ✅
+**Ďalší krok:** Etapa 2 — zobraziť **zoznam výdavkov z databázy** na webovej stránke (HTML šablóna). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -104,6 +104,9 @@
 - **Testy s dočasnou databázou**: testy bežia na DB v pamäti (`sqlite3` `':memory:'`), aby sa
   nedotkli reálnych dát; po teste zmizne. Možné vďaka tomu, že `pripoj()` prijíma názov DB (výhoda
   vrstvenej architektúry). Test môže odhaliť aj zlý predpoklad v samotnom teste, nielen v kóde.
+- **Web (Flask základ)**: appka v prehliadači. **Server** beží na mojom počítači
+  (`http://127.0.0.1:5000`), prehliadač mu posiela požiadavky; **route** (`@app.route("/")`) priradí
+  funkciu k adrese a vráti stránku. Spustím `python app.py`, zastavím `Ctrl+C`. Inštalácia: `pip install flask`.
 
 ---
 
@@ -117,6 +120,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 4 · Výdavky na webe — Etapa 1 (prvá webová stránka) — 2026-06-03
+**Čo sme prebrali:**
+- Spustili sme Projekt 4 (cieľ: appka v prehliadači cez **Flask**; znova použijem vrstvy `databaza`/`logika`).
+- Pojem **web server / route**: prehliadač pošle požiadavku na adresu (`http://127.0.0.1:5000`), server vráti stránku; `@app.route("/")` priradí funkciu k adrese.
+- Nainštalovaný **Flask** (`pip install flask`), vytvorený `app.py` s jednou stránkou.
+
+**Čo som dokázal:**
+- Spustil som `python app.py` a videl vlastnú stránku v prehliadači. Server zastavím `Ctrl+C`. Commit `4b51a02`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — zobraziť zoznam výdavkov z databázy priamo na webovej stránke (HTML šablóna).
 
 ### Projekt 3 · Správca výdavkov — Etapa E (testy) + UZAVRETÝ 🏁 — 2026-06-03
 **Čo sme prebrali:**
@@ -686,3 +701,15 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 - [x] **Etapa D** — Prehľady cez dotazy (súčet spolu, podľa kategórie, za mesiac; SQL `SUM`/`GROUP BY`). Commit `eddd002`
 - [x] **Etapa E** — Automatické testy (`test_vydavky.py`, 11 testov, DB v pamäti). Commit `afe3fe2`
 - [x] **Projekt 3 UZAVRETÝ** 🏁 — databáza · .env · architektúra · prehľady · testy
+
+---
+
+## Stavanie s AI — Projekt 4: Výdavky na webe 🌐
+*(Cieľ: vykročiť z terminálu do prehliadača cez **Flask**; znova použiť vrstvy `databaza.py` a
+`logika.py` z Projektu 3 — len obsluhu vymeníme za web. Ukáže silu vrstvenej architektúry.)*
+
+- [x] **Etapa 1** — Prvá webová stránka (Flask, route `/`, `python app.py` → `http://127.0.0.1:5000`). Commit `4b51a02`
+- [ ] **Etapa 2** — Zobraziť zoznam výdavkov z databázy na stránke (HTML šablóna)
+- [ ] **Etapa 3** — Formulár na pridanie výdavku (POST)
+- [ ] **Etapa 4** — Prehľady na webe (súčty; znova použiť `logika`/`databaza`)
+- [ ] **Etapa 5** — Vyladenie vzhľadu + uzavrieť projekt
