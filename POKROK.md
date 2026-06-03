@@ -15,12 +15,12 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** Claude Code — Modul D: Prispôsobenie a rozšírenie 🟣
-**Posledná lekcia:** D15 — Subagenty (Agent) (2026-06-02)
-**Ďalší krok:** **D16** — MCP servery (externé nástroje). Referencia: [CLAUDE-CODE-MAPA.md](CLAUDE-CODE-MAPA.md)
+**Aktuálna téma:** 🧮 Projekt 2 — Kalkulačka (4 operácie +,−,×,÷ s priebežným výsledkom; viedol som sám)
+**Posledná lekcia:** Kalkulačka — automatický test `test_kalkulacka.py` (14 testov, všetky PASS), commit `e9b6f9e` (2026-06-03) ✅
+**Ďalší krok:** Ďalšie vylepšenie kalkulačky, alebo Projekt 2 uzavrieť. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
-> Pozn.: Teraz ideme po **Claude Code ceste** (osnova nižšie). Pôvodná osnova programovania
-> je zaparkovaná — ostáva nedotknutá v sekcii „Moja osnova" a vrátime sa k nej neskôr.
+> Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
+> stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
 
 ---
 
@@ -60,6 +60,33 @@
   + telo s inštrukciami); vyvolá sa `/názov`; načíta sa až keď treba. Mám vytvorený vlastný `/pokracuj`.
 - **Subagenty**: samostatný Claude na vedľajšiu úlohu vo vlastnej pamäti (vráti len zhrnutie, šetrí
   kontext); typy Explore/Plan/general-purpose; vlastné v `.claude/agents/`; dajú sa púšťať paralelne.
+- **MCP servery**: „zásuvka" na pripojenie externých nástrojov (Gmail, Kalendár, Drive, Notion,
+  ClickUp…); Claude s nimi vie reálne pracovať; pridanie `claude mcp add` / konektory. Mám viaceré pripojené.
+- **Vlastné skilly v praxi**: vytvoril som si `/pod` a `/pokracuj` (po reštarte fungujú).
+- **Hooks**: príkaz, ktorý sa spustí automaticky a deterministicky pri udalosti (napr. po úprave
+  súboru); na rozdiel od CLAUDE.md (odporúčanie) ho program vykoná **vždy**; nastavuje sa v `settings.json`.
+- **Workflowy**: Claude riadi veľa agentov naraz podľa skriptu — na veľké úlohy (migrácie,
+  audity, dôkladný research); spustí sa slovami, sleduje cez `/workflows`. (Subagent = 1, workflow = tím.)
+- **Plánovanie v čase**: `/loop` (opakuj úlohu počas sedenia), naplánované úlohy/routines (bežia
+  „v oblaku" aj bez teba/PC), pripomienky (jednorazovo neskôr).
+- **Najlepšie návyky**: (1) spravuj kontext (`/clear`), (2) vždy over, (3) najprv plán, (4) buď
+  konkrétny + príklad, (5) oprav skoro; bonus writer/reviewer (kontrola v čistom rozhovore).
+- **Stavanie s AI — scoping**: zadefinovať víziu (1 veta) a **MVP** (najmenšia užitočná verzia);
+  pre prvú verziu radšej menej funkcií, zvyšok doplniť iteráciami.
+- **Stavanie s AI — postav → spusti → over → commit**: necháš Claude postaviť MVP, **sám spustíš
+  a overíš**, fungujúcu verziu uložíš commitom; verzionuj kód (`todo.py`), nie dáta (`ulohy.json` v `.gitignore`).
+- **Stavanie s AI — iterácia**: appku používaš, **konkrétne zadáš jedno vylepšenie naraz**, overíš
+  a commitneš; takto appka rastie podľa teba (napr. pridané mazanie úloh s potvrdením).
+- **Stavanie s AI — debugging**: chybu nemusím opraviť sám — **jasne ju opíšem** (čo čakám / čo sa
+  deje / ako zopakovať), Claude opraví, ja overím; záchranné siete = commit + `/rewind`.
+- **Kontext — compact**: `/compact` zhrnie rozhovor a uvoľní pamäť (pri ~100% sa to deje aj samo,
+  nespadne to); detaily zo začiatku sa môžu stratiť → dôležité držím v súboroch (POKROK.md, git).
+- **Stavanie s AI — vyladenie + „kedy je hotovo"**: pridať čerešničku (napr. priorita = farebný text
+  v termináli cez ANSI), ale vedieť projekt **včas uzavrieť** (vyhnúť sa feature-creep).
+- **Režisérsky recept (na akýkoľvek projekt)** ⭐: Vízia → MVP → Plán → Postav → Spusti & over →
+  Commit → Iteruj → uzavri. Viem ho zopakovať sám (overené na projekte Správca úloh).
+- **Automatické testy**: samostatný program (`test_todo.py`), čo sám overí logiku appky a hlási
+  PASS/FAIL; chytí chyby za mňa pred zmenami. Podmienka: oddeliť čistú logiku od obsluhy (input/výpis).
 
 ---
 
@@ -73,6 +100,219 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 2 · Kalkulačka — automatické testy — 2026-06-03
+**Čo sme prebrali:**
+- Pridaný „testovací robot" `test_kalkulacka.py` — 14 testov pre všetky funkcie (sčítať, odčítať, násobiť, deliť, delenie nulou, parsovanie čísla, chaining). Spustenie: `python test_kalkulacka.py`.
+- Robot sa dá spustiť po **každej úprave** kódu a hneď povie PASS/FAIL — strážca, že sa nič nepokazilo.
+
+**Čo som dokázal:**
+- Mám automatickú kontrolu pri oboch projektoch (todo aj kalkulačka). Commit `e9b6f9e`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Kalkulačka je hotová a otestovaná. Ďalej: ďalšie vylepšenie alebo uzavrieť Projekt 2.
+
+### Projekt 2 · Kalkulačka — iterácie — 2026-06-03
+**Čo sme prebrali:**
+- Dve iterácie (viedol som sám): (1) výsledok operácie sa stáva základom pre ďalšiu (chaining), (2) pridané násobenie a delenie + ošetrené delenie nulou. Overené na príkladoch (5×8=40, 8÷2=4); commity `cc24b95`, `ab427b5`.
+
+**Čo som dokázal:**
+- Zadal som vylepšenia, overil výsledky a commitol — režisérsky cyklus v praxi. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Kalkulačka má 4 operácie + chaining. Ďalej: testy / ďalšie vylepšenie / uzavrieť Projekt 2.
+
+### Projekt 2 · Kalkulačka — MVP (viedol som sám) — 2026-06-03
+**Čo sme prebrali:**
+- Samostatne som aplikoval recept: vízia + MVP (sčítanie/odčítanie) + plán (menu pridať/sčítať/odčítať/koniec) + príklady. Claude postavil `kalkulacka.py` (oddelená logika), overené na príkladoch (2+7=9, 8−6=2), commit `1fb7e7c`.
+
+**Čo som dokázal:**
+- Viedol som projekt takmer sám — zadanie, kontrola výsledku, commit. ✅
+
+**Praktická úloha:**
+- Navrhnúť MVP a doviesť kalkulačku k fungujúcej overenej verzii — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Iterovať (násobenie/delenie…) alebo uzavrieť Projekt 2.
+
+### Bonus — Automatické testy — 2026-06-03
+**Čo sme prebrali:**
+- Čo je automatický test (samostatný program, čo sám overí logiku appky). Refaktor `todo.py` (oddelená čistá logika od obsluhy) → `test_todo.py` s 9 testami; spustenie `python test_todo.py`.
+
+**Čo som dokázal:**
+- 9/9 testov PASS; chápem, že testy chytia chybu (napr. tú z Etapy 5) automaticky. Commit `75f59fb`. ✅
+
+**Praktická úloha:**
+- Nechať si vytvoriť a spustiť automatické testy — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Nový projekt / ďalšie vylepšenie todo / iná téma.
+
+### Stavanie s AI · Etapa 7 — Zhrnutie (recept) — 2026-06-03  🎉 PROJEKT 1 HOTOVÝ
+**Čo sme prebrali:**
+- Zhrnutie režisérskeho cyklu (Vízia → MVP → Plán → Postav → Over → Commit → Iteruj → uzavri) ako opakovateľný recept; prešli sme, ako som ho použil na Správcovi úloh.
+
+**Čo som dokázal:**
+- Postavil som s AI celý prvý projekt (Správca úloh, 5 commitov) a viem recept zopakovať. ✅
+
+**Praktická úloha:**
+- Pochopiť a vedieť zopakovať režisérsky cyklus — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Cesta „Stavanie s AI" (Etapy 1–7) dokončená. Ďalej: nový projekt podľa receptu, alebo iná téma.
+
+### Stavanie s AI · Etapa 6 — Vyladenie (priorita) — 2026-06-03
+**Čo sme prebrali:**
+- Pridané vyladenie: priorita úlohy + bledozelený text v termináli (ANSI farby, `os.system("")` na Windows, `*` ako poistka). Disciplína „kedy je hotovo" (vyhnúť sa feature-creep).
+
+**Čo som dokázal:**
+- Zadal som rozšírenie (priorita + farba), overil a commitol `3039e39`. Projekt vyhlásený za hotový. ✅
+
+**Praktická úloha:**
+- Pridať jedno vyladenie a uzavrieť projekt — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej Etapa 7 — zhrnutie, recept na ďalší projekt.
+
+### Stavanie s AI · Etapa 5 — Riadený debugging — 2026-06-03
+**Čo sme prebrali:**
+- Chyby sú normálne; dobrý popis = čo som čakal / čo sa stalo / ako zopakovať; záchranné siete = commit + `/rewind`. Bonus otázka: čo je `/compact` a čo pri ~100% kontextu.
+
+**Čo som dokázal:**
+- Našiel som chybu pri používaní (hotová úloha sa nezaškrtla), jasne ju opísal, Claude opravil, ja overil. ✅ (Chyba bola nácviková; reálne zastaví overovanie + neskôr testy.)
+
+**Praktická úloha:**
+- Nájsť, opísať a dať opraviť chybu — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej Etapa 6 — vyladenie + „kedy je hotovo". (Možná budúca téma: automatické testy.)
+
+### Stavanie s AI · Etapa 4 — Iterácia (mazanie úloh) — 2026-06-03
+**Čo sme prebrali:**
+- Iteračný cyklus: použiť → všimnúť si → konkrétne zadať → postaviť → overiť → commit. Pridaná funkcia mazania úloh s potvrdením (a/n) pred zmazaním.
+
+**Čo som dokázal (ako režisér):**
+- Konkrétne som zadal vylepšenie (mazanie + potvrdenie), overil obe cesty (n nezmaže, a zmaže) a uložil commit `0615bab`. ✅
+
+**Praktická úloha:**
+- Vybrať a doriadiť jednu iteráciu — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej Etapa 5 — riadený debugging (keď sa niečo pokazí).
+
+### Stavanie s AI · Etapa 3 — Postav MVP + over + commit — 2026-06-03
+**Čo sme prebrali:**
+- Claude postavil MVP (`todo.py`); ja som appku **sám spustil a overil** (funguje); pridali sme poistku (bezpečné načítanie súboru); commit.
+
+**Čo som dokázal:**
+- Prvá appka postavená s AI **funguje**! Uložená commitom `974cdda`. Bonus: rozlíšil som test-artefakt (PowerShell pomotal nasimulovaný vstup) od skutočnej chyby kódu. ✅
+
+**Praktická úloha:**
+- Spustiť a overiť appku + uložiť commit — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej Etapa 4 — iterácia (vylepšenia podľa používania).
+
+### Stavanie s AI · Etapa 2 — Plán pred stavbou — 2026-06-03
+**Čo sme prebrali:**
+- Plán stavby pred kódením (`todo.py`, menu 1–4, ukladanie do súboru); schválil som ho ako režisér.
+
+**Praktická úloha:**
+- Schváliť plán stavby — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — postaviť MVP.
+
+### Stavanie s AI · Etapa 1 — Vízia → MVP — 2026-06-03
+**Čo sme prebrali:**
+- Režisérska rola (ja vediem, Claude stavia); vízia (1 veta) vs. MVP (najmenšia užitočná verzia); prečo začať v malom.
+
+**Čo som rozhodol (ako režisér):**
+- MVP Správcu úloh = pridať / zobraziť / označiť hotovú / uložiť. Rozšírenia až neskôr. ✅
+
+**Praktická úloha:**
+- Schváliť rozsah MVP — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej Etapa 2 — plán, ako MVP postaviť.
+
+### Lekcia E20 — Súhrn najlepších návykov — 2026-06-02  🎓 CELÝ KURZ DOKONČENÝ!
+**Čo sme prebrali:**
+- 5 návykov: spravuj kontext, vždy over, najprv plán, buď konkrétny, oprav skoro; bonus writer/reviewer.
+
+**Čo som pochopil:**
+- Najviac mi sadol návyk č. 2 — vždy si dať overenie (rozdiel medzi „vyzerá hotovo" a „je hotovo"). ✅
+
+**Praktická úloha:**
+- Reflexia: vybrať návyk s najväčším zmyslom — zvládnuté (overovanie).
+
+**Kde sme skončili / ďalší krok:**
+- 🎉 Dokončený CELÝ kurz Claude Code (A1–E20). Ďalej: prax, faktoriál v Pythone, alebo programovacia osnova.
+
+### Lekcia E19 — Plánovanie a automatizácia — 2026-06-02
+**Čo sme prebrali:**
+- `/loop` (opakovanie počas sedenia), naplánované úlohy/routines (cloud, bežia aj bez PC), pripomienky.
+
+**Čo som pochopil:**
+- Na úlohu „každé ráno aj pri vypnutom PC" = routine (beží sama na serveri); `/loop` potrebuje otvorené sedenie. ✅
+
+**Praktická úloha:**
+- Vybrať správny nástroj (routine vs. `/loop`) — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej E20 — posledná lekcia, súhrn najlepších návykov.
+
+### Lekcia E18 — Workflowy a multi-agent orchestrácia — 2026-06-02
+**Čo sme prebrali:**
+- Workflow = riadenie veľa agentov podľa skriptu; na veľké úlohy (migrácie, audity, research); spustenie slovami + `/workflows`. Rozdiel subagent (1) vs. workflow (tím).
+
+**Čo som pochopil:**
+- Workflow sa hodí na veľké/opakované úlohy (napr. 200 súborov), nie na drobnosť ako jeden preklep. ✅
+
+**Praktická úloha:**
+- Rozpoznať, kedy použiť workflow (b: 200 súborov) — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej E19 (Plánovanie a automatizácia).
+
+### Lekcia D17 — Hooks — 2026-06-02  ✅ Modul D dokončený
+**Čo sme prebrali:**
+- Hook = príkaz spustený automaticky/deterministicky pri udalosti (PostToolUse, SessionStart…); rozdiel oproti CLAUDE.md (odporúčanie vs. istota); nastavenie v `settings.json`.
+
+**Čo som pochopil:**
+- CLAUDE.md = odporúčania; hook = vynútené pravidlo, ktoré program spustí vždy (nezávisí od „rozhodnutia" Claude). ✅
+
+**Praktická úloha:**
+- Vysvetliť rozdiel CLAUDE.md vs. hook — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Hotový celý Modul D. Ďalej Modul E, Lekcia E18 (Workflowy).
+
+### Lekcia D16 — MCP servery — 2026-06-02
+**Čo sme prebrali:**
+- MCP = pripojenie externých služieb (Gmail, Kalendár, Drive, Notion, ClickUp…); Claude s nimi vie pracovať; pridanie cez `claude mcp add` / konektory.
+
+**Čo som pochopil:**
+- Mám viacero MCP nástrojov pripojených; Claude do osobných dát siaha len na požiadanie. ✅ (Bonus: skilly `/pod`, `/pokracuj` po reštarte fungujú.)
+
+**Praktická úloha:**
+- Pochopiť princíp MCP + že mám reálne pripojené nástroje — zvládnuté (živú ukážku sme nechali na neskôr).
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej D17 (Hooks) — posledná lekcia Modulu D.
+
+### Lekcia D15 — Subagenty — 2026-06-02
+**Čo sme prebrali:**
+- Subagent = delegovaný Claude vo vlastnej pamäti (vráti zhrnutie); typy Explore/Plan/general-purpose; vlastné v `.claude/agents/`; paralelný beh.
+
+**Čo som pochopil:**
+- Naživo: Explore agent prečítal 544-riadkovú MAPU a vrátil len krátke zhrnutie modulov — môj kontext ostal čistý. ✅ (Pozn.: aj agent sa môže drobne pomýliť — preto výsledky prečítaj.)
+
+**Praktická úloha:**
+- Sledovať subagenta pri reálnej úlohe — zvládnuté.
+
+**Kde sme skončili / ďalší krok:**
+- Ďalej D16 (MCP servery).
 
 ### Lekcia D14 — Skills a vlastné slash príkazy — 2026-06-02
 **Čo sme prebrali:**
@@ -320,11 +560,38 @@ vyššie. Detailná referencia ku každej lekcii je v [CLAUDE-CODE-MAPA.md](CLAU
 **MODUL D — Prispôsobenie a rozšírenie** 🟣
 - [x] D13. settings.json a povolenia do hĺbky
 - [x] D14. Skills a vlastné slash príkazy
-- [ ] D15. Subagenty (Agent)
-- [ ] D16. MCP servery (externé nástroje)
-- [ ] D17. Hooks (automatizácia pravidiel)
+- [x] D15. Subagenty (Agent)
+- [x] D16. MCP servery (externé nástroje)
+- [x] D17. Hooks (automatizácia pravidiel)
 
 **MODUL E — Automatizácia a škálovanie** 🟣
-- [ ] E18. Workflowy a multi-agent orchestrácia
-- [ ] E19. Plánovanie a automatizácia (`/loop`, routines)
-- [ ] E20. Súhrn najlepších návykov
+- [x] E18. Workflowy a multi-agent orchestrácia
+- [x] E19. Plánovanie a automatizácia (`/loop`, routines)
+- [x] E20. Súhrn najlepších návykov  🎓
+
+---
+
+## Stavanie s AI — Projekt 1: Správca úloh (to-do) 🏗️
+*(Deň 2+. Cieľ: naučiť sa stavať projekty s AI — ja režisér, Claude staviteľ. Playbook:
+[STAVANIE-S-AI.md](STAVANIE-S-AI.md). Formát: krátke sedenia, hands-on, logované sem.)*
+
+**Režisérsky cyklus:** Vízia → MVP → Plán → Postav → Spusti & over → Commit → Iteruj.
+
+- [x] Etapa 1 — Vízia → MVP (zadefinovať, čo appka robí; najmenšia užitočná verzia)
+- [x] Etapa 2 — Plán pred stavbou (Claude navrhne, ja schválim)
+- [x] Etapa 3 — Postav MVP + spusti + over + commit
+- [x] Etapa 4 — Iterácia podľa používania (spätná väzba, vylepšenia)
+- [x] Etapa 5 — Keď sa niečo pokazí (riadený debugging)
+- [x] Etapa 6 — Vyladenie + „kedy je hotovo"
+- [x] Etapa 7 — Zhrnutie (recept na ďalší projekt)  🎉
+
+---
+
+## Stavanie s AI — Projekt 2: Kalkulačka 🧮
+*(Deň 2+. Cieľ: upevniť recept, používateľ vedie viac sám. Recept: Vízia → MVP → Plán →
+Postav → Over → Commit → Iteruj → uzavri.)*
+
+- [x] Vízia → MVP (definuje používateľ) — sčítanie + odčítanie
+- [x] Plán + postaviť MVP + spustiť & overiť + commit — `kalkulacka.py`, commit `1fb7e7c`
+- [x] Iterácie — chaining výsledku + násobenie/delenie (commit `ab427b5`); testy voliteľné
+- [ ] Uzavrieť projekt
