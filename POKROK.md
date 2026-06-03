@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 4 — Výdavky na webe **DOKONČENÝ** (Flask: stránka · šablóna · formulár · prehľady · CSS)
-**Posledná lekcia:** Etapa 5 — **vyladenie vzhľadu** (CSS v šablóne); web appka dokončená, commit `7d78966` (2026-06-03) ✅
-**Ďalší krok:** Vybrať **Projekt 5** (väčšia výzva) — alebo pauza. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Aktuálna téma:** 🛠️ Projekt 5 — Rozšírenie webovej appky (mazanie, úprava, filtrovanie výdavkov)
+**Posledná lekcia:** Etapa 1 — **mazanie výdavku** na webe (SQL `DELETE`, tlačidlo s potvrdením), commit `987dd01` (2026-06-03) ✅
+**Ďalší krok:** Etapa 2 — **úprava výdavku** (edit formulár, SQL `UPDATE`). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -115,6 +115,9 @@
   uloží a vráti `redirect(url_for(...))` (presmerovanie po odoslaní, aby F5 neodoslalo formulár znova).
 - **CSS (vzhľad)**: HTML = *čo* je na stránke (obsah), CSS = *ako* to vyzerá (písmo, farby, rámčeky,
   odsadenie). Jednoduché štýly viem dať do `<style>` v hlavičke šablóny. Oddelenie obsahu od vzhľadu.
+- **CRUD a SQL `DELETE`**: štyri základné operácie s dátami — Create (`INSERT`), Read (`SELECT`),
+  Update (`UPDATE`), Delete (`DELETE`). `DELETE FROM ... WHERE id = ?` vymaže riadok. Route môže mať
+  v adrese parameter (`/zmaz/<int:id>`); mazanie istím potvrdením v prehliadači (`confirm(...)`).
 
 ---
 
@@ -128,6 +131,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 5 · Rozšírenie webovej appky — Etapa 1 (mazanie) — 2026-06-03
+**Čo sme prebrali:**
+- Štvrtá databázová operácia **`DELETE`** (vymazať riadok); spolu so `INSERT`/`SELECT`/`UPDATE` tvoria **CRUD** (Create, Read, Update, Delete).
+- `databaza.zmaz_vydavok(conn, id)`, route `/zmaz/<int:id_vydavku>` (POST), v tabuľke tlačidlo 🗑️ s potvrdením (`onsubmit="return confirm(...)"`).
+
+**Čo som dokázal:**
+- Zmazal som výdavok z webu, potvrdenie funguje, súčty sa prepočítali. Commit `987dd01`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — úprava výdavku (predvyplnený edit formulár, SQL `UPDATE`).
 
 ### Projekt 4 · Výdavky na webe — Etapa 5 (vzhľad) + UZAVRETÝ 🏁 — 2026-06-03
 **Čo sme prebrali:**
@@ -766,3 +780,14 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 - [x] **Etapa 4** — Prehľady na webe (súčet spolu + podľa kategórie; znova použité `databaza.py`). Commit `25e7930`
 - [x] **Etapa 5** — Vyladenie vzhľadu (CSS v šablóne). Commit `7d78966`
 - [x] **Projekt 4 UZAVRETÝ** 🏁 — Flask web: stránka · šablóna · formulár (POST) · prehľady · CSS
+
+---
+
+## Stavanie s AI — Projekt 5: Rozšírenie webovej appky 🛠️
+*(Cieľ: stavať na existujúcej appke — pridať CRUD operácie, ktoré chýbali. Učím sa rozširovať
+hotový projekt bez prepisovania od nuly.)*
+
+- [x] **Etapa 1** — Mazanie výdavku (SQL `DELETE`, tlačidlo s potvrdením). Commit `987dd01`
+- [ ] **Etapa 2** — Úprava výdavku (edit formulár, SQL `UPDATE`)
+- [ ] **Etapa 3** — Filtrovanie podľa kategórie (parametre v adrese)
+- [ ] **Etapa 4** — Testy nových funkcií + uzavrieť projekt
