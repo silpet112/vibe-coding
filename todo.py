@@ -6,6 +6,10 @@ import os
 
 SUBOR = "ulohy.json"  # sem sa ukladaju ulohy, aby ostali aj po zatvoreni
 
+# Farby pre terminal (ANSI). Prioritne ulohy budu bledo zelene.
+ZELENA = "\033[92m"
+RESET = "\033[0m"
+
 
 def nacitaj_ulohy():
     """Nacita ulohy zo suboru. Ak subor neexistuje alebo je poskodeny,
@@ -29,7 +33,7 @@ def uloz_ulohy(ulohy):
 def pridaj(ulohy):
     text = input("Nazov ulohy: ").strip()
     if text:
-        ulohy.append({"text": text, "hotovo": False})
+        ulohy.append({"text": text, "hotovo": False, "priorita": False})
         uloz_ulohy(ulohy)
         print(f"Pridane: {text}")
     else:
@@ -43,7 +47,10 @@ def zobraz(ulohy):
     print("--- Tvoje ulohy ---")
     for i, u in enumerate(ulohy, start=1):
         znacka = "[x]" if u["hotovo"] else "[ ]"
-        print(f"{i}. {znacka} {u['text']}")
+        text = u["text"]
+        if u.get("priorita", False):
+            text = ZELENA + "* " + text + RESET  # prioritna uloha = bledo zeleny text
+        print(f"{i}. {znacka} {text}")
 
 
 def oznac_hotovu(ulohy):
@@ -79,7 +86,22 @@ def zmazat(ulohy):
         print("Neplatne cislo.")
 
 
+def nastav_prioritu(ulohy):
+    zobraz(ulohy)
+    if not ulohy:
+        return
+    volba = input("Cislo ulohy pre prioritu (prepnut): ").strip()
+    if volba.isdigit() and 1 <= int(volba) <= len(ulohy):
+        u = ulohy[int(volba) - 1]
+        u["priorita"] = not u.get("priorita", False)
+        uloz_ulohy(ulohy)
+        print("Uloha je teraz prioritna." if u["priorita"] else "Priorita zrusena.")
+    else:
+        print("Neplatne cislo.")
+
+
 def main():
+    os.system("")  # zapne farebny (ANSI) vystup v termini na Windows
     ulohy = nacitaj_ulohy()
     while True:
         print("\n=== SPRAVCA ULOH ===")
@@ -87,8 +109,9 @@ def main():
         print("2) Zobrazit zoznam")
         print("3) Oznacit ulohu ako hotovu")
         print("4) Zmazat ulohu")
-        print("5) Koniec")
-        volba = input("Vyber (1-5): ").strip()
+        print("5) Nastavit prioritu (zvyrazni zelenou)")
+        print("6) Koniec")
+        volba = input("Vyber (1-6): ").strip()
         if volba == "1":
             pridaj(ulohy)
         elif volba == "2":
@@ -98,10 +121,12 @@ def main():
         elif volba == "4":
             zmazat(ulohy)
         elif volba == "5":
+            nastav_prioritu(ulohy)
+        elif volba == "6":
             print("Dovidenia!")
             break
         else:
-            print("Neplatna volba, skus 1-5.")
+            print("Neplatna volba, skus 1-6.")
 
 
 if __name__ == "__main__":
