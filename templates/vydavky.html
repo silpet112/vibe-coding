@@ -3,6 +3,45 @@
 <head>
     <meta charset="utf-8">
     <title>Moje výdavky</title>
+    <style>
+        /* CSS = pravidla, ako ma stranka vyzerat */
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 16px;
+            color: #222;
+            background: #f7f7f9;
+        }
+        h1 { color: #2e7d32; }
+        h2 { margin-top: 28px; }
+        form {
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        form label { display: block; margin-bottom: 8px; }
+        form input { padding: 4px 6px; margin-left: 6px; }
+        button {
+            margin-top: 8px;
+            padding: 8px 16px;
+            background: #2e7d32;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover { background: #256528; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+        }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background: #2e7d32; color: #fff; }
+        tr:nth-child(even) td { background: #f2f7f2; }
+    </style>
 </head>
 <body>
     <h1>💰 Moje výdavky</h1>
@@ -17,7 +56,7 @@
     </form>
 
     {% if vydavky %}
-    <table border="1" cellpadding="6">
+    <table>
         <tr>
             <th>#</th>
             <th>Dátum</th>
