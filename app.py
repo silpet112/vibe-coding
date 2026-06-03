@@ -95,7 +95,7 @@ def vypni():
     # Naplanuje vypnutie servera tesne po odoslani odpovede (aby sa stranka stihla zobrazit).
     # os._exit ukonci proces (aj s Flask reloaderom).
     threading.Timer(0.5, lambda: os._exit(0)).start()
-    return "<h1>Server je vypnuty 🛑</h1><p>Tuto kartu mozes zatvorit. Znova ho spustis cez /app.</p>"
+    return "<h1>Server je vypnutý 🛑</h1><p>Túto kartu môžeš zatvoriť. Znova ho spustíš cez /app.</p>"
 
 
 if __name__ == "__main__":
