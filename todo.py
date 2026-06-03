@@ -30,10 +30,36 @@ def uloz_ulohy(ulohy):
         json.dump(ulohy, f, ensure_ascii=False, indent=2)
 
 
+# --- Cista logika (testovatelna: ziadny input, print ani subor) ---
+
+def pridaj_ulohu(ulohy, text):
+    """Prida novu ulohu do zoznamu."""
+    ulohy.append({"text": text, "hotovo": False, "priorita": False})
+
+
+def oznac_ako_hotovu(ulohy, index):
+    """Oznaci ulohu na danom indexe ako hotovu."""
+    ulohy[index]["hotovo"] = True
+
+
+def zmaz_ulohu(ulohy, index):
+    """Odstrani ulohu na danom indexe."""
+    ulohy.pop(index)
+
+
+def prepni_prioritu(ulohy, index):
+    """Prepne prioritu ulohy a vrati jej novy stav (True/False)."""
+    ulohy[index]["priorita"] = not ulohy[index].get("priorita", False)
+    return ulohy[index]["priorita"]
+
+
+# --- Obsluha (input / vypis / ukladanie) ---
+
+
 def pridaj(ulohy):
     text = input("Nazov ulohy: ").strip()
     if text:
-        ulohy.append({"text": text, "hotovo": False, "priorita": False})
+        pridaj_ulohu(ulohy, text)
         uloz_ulohy(ulohy)
         print(f"Pridane: {text}")
     else:
@@ -59,7 +85,7 @@ def oznac_hotovu(ulohy):
         return
     volba = input("Cislo ulohy na oznacenie ako hotovej: ").strip()
     if volba.isdigit() and 1 <= int(volba) <= len(ulohy):
-        ulohy[int(volba) - 1]["hotovo"] = True
+        oznac_ako_hotovu(ulohy, int(volba) - 1)
         uloz_ulohy(ulohy)
         print("Oznacene ako hotove.")
     else:
@@ -77,7 +103,7 @@ def zmazat(ulohy):
         # Potvrdenie pred zmazanim (bezpecnostna otazka)
         potvrd = input(f"Naozaj zmazat '{nazov}'? (a/n): ").strip().lower()
         if potvrd in ("a", "ano", "y", "yes"):
-            ulohy.pop(index)
+            zmaz_ulohu(ulohy, index)
             uloz_ulohy(ulohy)
             print("Zmazane.")
         else:
@@ -92,10 +118,10 @@ def nastav_prioritu(ulohy):
         return
     volba = input("Cislo ulohy pre prioritu (prepnut): ").strip()
     if volba.isdigit() and 1 <= int(volba) <= len(ulohy):
-        u = ulohy[int(volba) - 1]
-        u["priorita"] = not u.get("priorita", False)
+        index = int(volba) - 1
+        je_prioritna = prepni_prioritu(ulohy, index)
         uloz_ulohy(ulohy)
-        print("Uloha je teraz prioritna." if u["priorita"] else "Priorita zrusena.")
+        print("Uloha je teraz prioritna." if je_prioritna else "Priorita zrusena.")
     else:
         print("Neplatne cislo.")
 
