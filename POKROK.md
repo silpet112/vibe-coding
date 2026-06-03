@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌐 Projekt 4 — Výdavky na webe (Flask; znova použijem vrstvy `databaza`/`logika` z Projektu 3)
-**Posledná lekcia:** Etapa 1 — prvá **webová stránka** cez Flask (`app.py`, route `/`, beží na `http://127.0.0.1:5000`), commit `4b51a02` (2026-06-03) ✅
-**Ďalší krok:** Etapa 2 — zobraziť **zoznam výdavkov z databázy** na webovej stránke (HTML šablóna). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa 2 — **zoznam výdavkov z DB na webe** (HTML šablóna `templates/vydavky.html`, znova použitá `databaza.py`), commit `a580c45` (2026-06-03) ✅
+**Ďalší krok:** Etapa 3 — **formulár** na pridanie výdavku priamo na webe (odoslanie dát, POST). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -107,6 +107,9 @@
 - **Web (Flask základ)**: appka v prehliadači. **Server** beží na mojom počítači
   (`http://127.0.0.1:5000`), prehliadač mu posiela požiadavky; **route** (`@app.route("/")`) priradí
   funkciu k adrese a vráti stránku. Spustím `python app.py`, zastavím `Ctrl+C`. Inštalácia: `pip install flask`.
+- **HTML šablóna (Jinja2)**: HTML súbor v `templates/`, do ktorého Flask dosadí dáta cez
+  `render_template("subor.html", data=...)`. Značky: `{{ hodnota }}` vloží hodnotu, `{% for %}…{% endfor %}`
+  opakuje (napr. riadky tabuľky). Web aj terminál čítajú z tej istej vrstvy `databaza.py` (sila architektúry).
 
 ---
 
@@ -120,6 +123,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 4 · Výdavky na webe — Etapa 2 (zoznam z DB na webe) — 2026-06-03
+**Čo sme prebrali:**
+- Pojem **HTML šablóna** (Jinja2): `{{ hodnota }}` vloží hodnotu, `{% for %}` opakuje (riadky tabuľky). Šablóny sú v priečinku `templates/`.
+- `app.py` načíta výdavky cez `databaza.vsetky_vydavky()` a pošle ich do `templates/vydavky.html` cez `render_template`.
+
+**Čo som dokázal:**
+- Videl som svoje výdavky ako tabuľku v prehliadači — cez **tú istú `databaza.py`** ako terminál. Commit `a580c45`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — formulár na pridanie výdavku priamo na webe (odoslanie dát metódou POST).
 
 ### Projekt 4 · Výdavky na webe — Etapa 1 (prvá webová stránka) — 2026-06-03
 **Čo sme prebrali:**
@@ -709,7 +723,7 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 `logika.py` z Projektu 3 — len obsluhu vymeníme za web. Ukáže silu vrstvenej architektúry.)*
 
 - [x] **Etapa 1** — Prvá webová stránka (Flask, route `/`, `python app.py` → `http://127.0.0.1:5000`). Commit `4b51a02`
-- [ ] **Etapa 2** — Zobraziť zoznam výdavkov z databázy na stránke (HTML šablóna)
+- [x] **Etapa 2** — Zobraziť zoznam výdavkov z databázy na stránke (HTML šablóna). Commit `a580c45`
 - [ ] **Etapa 3** — Formulár na pridanie výdavku (POST)
 - [ ] **Etapa 4** — Prehľady na webe (súčty; znova použiť `logika`/`databaza`)
 - [ ] **Etapa 5** — Vyladenie vzhľadu + uzavrieť projekt
