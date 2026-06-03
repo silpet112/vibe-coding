@@ -59,6 +59,26 @@ def oznac_hotovu(ulohy):
         print("Neplatne cislo.")
 
 
+def zmazat(ulohy):
+    zobraz(ulohy)
+    if not ulohy:
+        return
+    volba = input("Cislo ulohy na zmazanie: ").strip()
+    if volba.isdigit() and 1 <= int(volba) <= len(ulohy):
+        index = int(volba) - 1
+        nazov = ulohy[index]["text"]
+        # Potvrdenie pred zmazanim (bezpecnostna otazka)
+        potvrd = input(f"Naozaj zmazat '{nazov}'? (a/n): ").strip().lower()
+        if potvrd in ("a", "ano", "y", "yes"):
+            ulohy.pop(index)
+            uloz_ulohy(ulohy)
+            print("Zmazane.")
+        else:
+            print("Zrusene - nic som nezmazal.")
+    else:
+        print("Neplatne cislo.")
+
+
 def main():
     ulohy = nacitaj_ulohy()
     while True:
@@ -66,8 +86,9 @@ def main():
         print("1) Pridat ulohu")
         print("2) Zobrazit zoznam")
         print("3) Oznacit ulohu ako hotovu")
-        print("4) Koniec")
-        volba = input("Vyber (1-4): ").strip()
+        print("4) Zmazat ulohu")
+        print("5) Koniec")
+        volba = input("Vyber (1-5): ").strip()
         if volba == "1":
             pridaj(ulohy)
         elif volba == "2":
@@ -75,10 +96,12 @@ def main():
         elif volba == "3":
             oznac_hotovu(ulohy)
         elif volba == "4":
+            zmazat(ulohy)
+        elif volba == "5":
             print("Dovidenia!")
             break
         else:
-            print("Neplatna volba, skus 1-4.")
+            print("Neplatna volba, skus 1-5.")
 
 
 if __name__ == "__main__":
