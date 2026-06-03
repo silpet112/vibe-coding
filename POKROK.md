@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 💰 Projekt 3 — Správca výdavkov (učím sa architektúru, .env a databázu — postupne po etapách A–E)
-**Posledná lekcia:** Etapa D — **prehľady cez dotazy** (SQL `SUM` spolu, `GROUP BY` podľa kategórie, `WHERE ... LIKE` za mesiac), commit `eddd002` (2026-06-03) ✅
-**Ďalší krok:** Etapa E — **automatické testy** pre logiku/databázu (na dočasnej DB) + **uzavrieť Projekt 3**. Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Aktuálna téma:** ✅ Projekt 3 — Správca výdavkov **DOKONČENÝ** (databáza · .env · architektúra · prehľady · testy)
+**Posledná lekcia:** Etapa E — **automatické testy** `test_vydavky.py` (11 testov, dočasná DB v pamäti), commit `afe3fe2` (2026-06-03) ✅
+**Ďalší krok:** Vybrať **Projekt 4** (väčšia výzva podľa chuti) — alebo pauza. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -101,6 +101,9 @@
 - **SQL prehľady (agregácia)**: databáza počíta za mňa — `SUM(stĺpec)` (súčet), `GROUP BY` (zoskup
   a spočítaj po skupinách), `WHERE ... LIKE 'RRRR-MM%'` (filter, napr. za mesiac). Toto je hlavná
   výhoda databázy oproti zoznamu: rýchle súčty/filtre aj nad množstvom dát.
+- **Testy s dočasnou databázou**: testy bežia na DB v pamäti (`sqlite3` `':memory:'`), aby sa
+  nedotkli reálnych dát; po teste zmizne. Možné vďaka tomu, že `pripoj()` prijíma názov DB (výhoda
+  vrstvenej architektúry). Test môže odhaliť aj zlý predpoklad v samotnom teste, nielen v kóde.
 
 ---
 
@@ -114,6 +117,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 3 · Správca výdavkov — Etapa E (testy) + UZAVRETÝ 🏁 — 2026-06-03
+**Čo sme prebrali:**
+- Testovací robot `test_vydavky.py` (11 testov) pre vrstvy `logika` a `databaza`; beží na **dočasnej DB v pamäti** (`:memory:`), takže sa nedotkne reálnych dát.
+- Test najprv odhalil **zlý predpoklad v samotnom teste** (poradie je podľa dátumu, nie podľa pridania) — opravený na kontrolu nezávislú od poradia. Pekná ukážka, načo testy sú.
+
+**Čo som dokázal:**
+- 11/11 PASS; commit `afe3fe2`. **Projekt 3 dokončený** — databáza, .env, architektúra, prehľady aj testy. 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 3 uzavretý. Ďalej: vybrať Projekt 4 (väčšia výzva) alebo pauza.
 
 ### Projekt 3 · Správca výdavkov — Etapa D (prehľady cez dotazy) — 2026-06-03
 **Čo sme prebrali:**
@@ -670,4 +684,5 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 - [x] **Etapa B** — `.env` (nastavenia mimo kódu: `DB_SUBOR`, `MENA`; `.env.example` + gitignore; `pip install python-dotenv`). Commit `ef12072`
 - [x] **Etapa C** — Architektúra (rozdelenie na vrstvy: `konfig.py` / `databaza.py` / `logika.py` / `vydavky.py`). Commit `d03ba67`
 - [x] **Etapa D** — Prehľady cez dotazy (súčet spolu, podľa kategórie, za mesiac; SQL `SUM`/`GROUP BY`). Commit `eddd002`
-- [ ] **Etapa E** — Automatické testy + uzavrieť projekt
+- [x] **Etapa E** — Automatické testy (`test_vydavky.py`, 11 testov, DB v pamäti). Commit `afe3fe2`
+- [x] **Projekt 3 UZAVRETÝ** 🏁 — databáza · .env · architektúra · prehľady · testy
