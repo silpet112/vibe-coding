@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🧮 Projekt 2 — Kalkulačka (4 operácie +,−,×,÷ s priebežným výsledkom; viedol som sám)
-**Posledná lekcia:** Kalkulačka — automatický test `test_kalkulacka.py` (14 testov, všetky PASS), commit `e9b6f9e` (2026-06-03) ✅
-**Ďalší krok:** Ďalšie vylepšenie kalkulačky, alebo Projekt 2 uzavrieť. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Aktuálna téma:** 💰 Projekt 3 — Správca výdavkov (učím sa architektúru, .env a databázu — postupne po etapách A–E)
+**Posledná lekcia:** Etapa A — MVP s databázou **SQLite** (`vydavky.py`: pridať/zobraziť výdavok, dáta v `vydavky.db`), commit `d2f3f97` (2026-06-03) ✅
+**Ďalší krok:** Etapa B — **.env** (nastavenia mimo kódu: názov DB, mena; `.env.example` + `.gitignore`; prvý `pip install python-dotenv`). Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -87,6 +87,9 @@
   Commit → Iteruj → uzavri. Viem ho zopakovať sám (overené na projekte Správca úloh).
 - **Automatické testy**: samostatný program (`test_todo.py`), čo sám overí logiku appky a hlási
   PASS/FAIL; chytí chyby za mňa pred zmenami. Podmienka: oddeliť čistú logiku od obsluhy (input/výpis).
+- **Databáza (SQLite)**: dáta v *tabuľke* (riadky = záznamy, stĺpce = polia), ovládaná príkazmi
+  **SQL** (`INSERT` pridaj, `SELECT` vyber). SQLite je vstavaná v Pythone (`import sqlite3`), celá
+  v jednom súbore (`vydavky.db`); lepšia než JSON pri raste dát. Dátový súbor → `.gitignore` (`*.db`).
 
 ---
 
@@ -100,6 +103,19 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 3 · Správca výdavkov — Etapa A (MVP s databázou) — 2026-06-03
+**Čo sme prebrali:**
+- Spustili sme Projekt 3 (cieľ: naučiť sa **architektúru, .env, databázu** — postupne po etapách A–E).
+- Pojem **databáza**: ako excelovská tabuľka s riadkami/stĺpcami, ktorú ovládaš príkazmi SQL (`INSERT` pridaj, `SELECT` vyber). Použili sme **SQLite** — vstavanú v Pythone, celá v jednom súbore `vydavky.db`.
+- Postavili sme MVP `vydavky.py`: pridať výdavok (suma, kategória, dátum, poznámka) a zobraziť všetky.
+
+**Čo som dokázal:**
+- Overil som kľúčovú vec: dáta **prežijú zatvorenie programu** (sú v databáze, nie v pamäti). Commit `d2f3f97`. ✅
+- Pridal som `*.db` do `.gitignore` (dáta sa neverzionujú — rovnaký návyk ako `ulohy.json`).
+
+**Kde sme skončili / ďalší krok:**
+- Etapa B — **.env**: nastavenia (názov DB, mena) mimo kódu; `.env.example` + gitignore; prvý `pip install`.
 
 ### Projekt 2 · Kalkulačka — automatické testy — 2026-06-03
 **Čo sme prebrali:**
@@ -594,4 +610,17 @@ Postav → Over → Commit → Iteruj → uzavri.)*
 - [x] Vízia → MVP (definuje používateľ) — sčítanie + odčítanie
 - [x] Plán + postaviť MVP + spustiť & overiť + commit — `kalkulacka.py`, commit `1fb7e7c`
 - [x] Iterácie — chaining výsledku + násobenie/delenie (commit `ab427b5`); testy voliteľné
+- [x] Automatické testy — `test_kalkulacka.py` (14 testov, PASS), commit `e9b6f9e`
 - [ ] Uzavrieť projekt
+
+---
+
+## Stavanie s AI — Projekt 3: Správca výdavkov 💰
+*(Deň 3+. Cieľ: väčší reálny projekt + naučiť sa **architektúru, .env, databázu** — postupne, jeden
+pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý režisérsky recept.)*
+
+- [x] **Etapa A** — Vízia → MVP s databázou (SQLite): pridať/zobraziť výdavok, dáta v `vydavky.db`. Commit `d2f3f97`
+- [ ] **Etapa B** — `.env` (nastavenia mimo kódu: názov DB, mena; `.env.example` + gitignore; `pip install python-dotenv`)
+- [ ] **Etapa C** — Architektúra (rozdelenie na vrstvy: `databaza.py` / `logika.py` / `vydavky.py` / `konfig.py`)
+- [ ] **Etapa D** — Prehľady cez dotazy (súčet spolu, podľa kategórie, za mesiac)
+- [ ] **Etapa E** — Automatické testy + uzavrieť projekt
