@@ -7,6 +7,15 @@
 <body>
     <h1>💰 Moje výdavky</h1>
 
+    <h2>Pridať výdavok</h2>
+    <form action="/pridaj" method="post">
+        <label>Suma: <input type="text" name="suma" required></label>
+        <label>Kategória: <input type="text" name="kategoria" value="ine"></label>
+        <label>Dátum: <input type="text" name="datum" placeholder="RRRR-MM-DD (prázdne = dnes)"></label>
+        <label>Poznámka: <input type="text" name="poznamka"></label>
+        <button type="submit">Pridať</button>
+    </form>
+
     {% if vydavky %}
     <table border="1" cellpadding="6">
         <tr>
