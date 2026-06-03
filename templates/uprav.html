@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <title>Upraviť výdavok</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 30px auto;
+            padding: 0 16px;
+            color: #222;
+            background: #f7f7f9;
+        }
+        h1 { color: #2e7d32; }
+        form {
+            background: #fff;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+        }
+        form label { display: block; margin-bottom: 8px; }
+        form input { padding: 4px 6px; margin-left: 6px; }
+        button {
+            margin-top: 8px;
+            padding: 8px 16px;
+            background: #2e7d32;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover { background: #256528; }
+        a { color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <h1>✏️ Upraviť výdavok #{{ v[0] }}</h1>
+
+    <form action="/uprav/{{ v[0] }}" method="post">
+        <label>Suma: <input type="text" name="suma" value="{{ v[1] }}" required></label>
+        <label>Kategória: <input type="text" name="kategoria" value="{{ v[2] }}"></label>
+        <label>Dátum: <input type="text" name="datum" value="{{ v[3] }}"></label>
+        <label>Poznámka: <input type="text" name="poznamka" value="{{ v[4] }}"></label>
+        <button type="submit">Uložiť zmeny</button>
+    </form>
+
+    <p><a href="/">← Späť na zoznam (bez zmeny)</a></p>
+</body>
+</html>

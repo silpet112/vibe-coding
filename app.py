@@ -59,5 +59,28 @@ def zmaz(id_vydavku):
     return redirect(url_for("domov"))
 
 
+@app.route("/uprav/<int:id_vydavku>", methods=["GET", "POST"])
+def uprav(id_vydavku):
+    conn = databaza.pripoj()
+    databaza.vytvor_tabulku(conn)
+    if request.method == "POST":
+        # Krok 2: ulozit zmenu (SQL UPDATE).
+        suma = logika.parsuj_sumu(request.form.get("suma", ""))
+        if suma is not None:
+            kategoria = request.form.get("kategoria", "").strip() or "ine"
+            zadany_datum = request.form.get("datum", "").strip()
+            datum = zadany_datum if zadany_datum else str(date.today())
+            poznamka = request.form.get("poznamka", "").strip()
+            databaza.uprav_vydavok(conn, id_vydavku, suma, kategoria, datum, poznamka)
+        conn.close()
+        return redirect(url_for("domov"))
+    # Krok 1 (GET): zobrazit formular s predvyplnenymi hodnotami.
+    v = databaza.vydavok_podla_id(conn, id_vydavku)
+    conn.close()
+    if v is None:  # taky vydavok neexistuje -> spat na zoznam
+        return redirect(url_for("domov"))
+    return render_template("uprav.html", v=v, mena=konfig.MENA)
+
+
 if __name__ == "__main__":
     app.run(debug=True)

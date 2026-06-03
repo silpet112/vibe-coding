@@ -52,6 +52,24 @@ def zmaz_vydavok(conn, id_vydavku):
     conn.commit()
 
 
+def vydavok_podla_id(conn, id_vydavku):
+    """Vrati jeden vydavok podla id (alebo None, ak neexistuje). SQL: SELECT ... WHERE id."""
+    kurzor = conn.execute(
+        "SELECT id, suma, kategoria, datum, poznamka FROM vydavky WHERE id = ?",
+        (id_vydavku,),
+    )
+    return kurzor.fetchone()
+
+
+def uprav_vydavok(conn, id_vydavku, suma, kategoria, datum, poznamka):
+    """Prepise existujuci vydavok novymi hodnotami. SQL prikaz: UPDATE."""
+    conn.execute(
+        "UPDATE vydavky SET suma = ?, kategoria = ?, datum = ?, poznamka = ? WHERE id = ?",
+        (suma, kategoria, datum, poznamka, id_vydavku),
+    )
+    conn.commit()
+
+
 # --- Prehlady (databaza pocita za nas: SUM, GROUP BY) ---
 
 def sucet_vsetkych(conn):
