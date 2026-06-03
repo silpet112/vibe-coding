@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌐 Projekt 4 — Výdavky na webe (Flask; znova použijem vrstvy `databaza`/`logika` z Projektu 3)
-**Posledná lekcia:** Etapa 2 — **zoznam výdavkov z DB na webe** (HTML šablóna `templates/vydavky.html`, znova použitá `databaza.py`), commit `a580c45` (2026-06-03) ✅
-**Ďalší krok:** Etapa 3 — **formulár** na pridanie výdavku priamo na webe (odoslanie dát, POST). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa 3 — **formulár** na pridanie výdavku na webe (POST + presmerovanie; znova použité `logika`/`databaza`), commit `d04a2ff` (2026-06-03) ✅
+**Ďalší krok:** Etapa 4 — **prehľady na webe** (súčty: spolu, podľa kategórie; znova použiť `databaza.py`). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -110,6 +110,9 @@
 - **HTML šablóna (Jinja2)**: HTML súbor v `templates/`, do ktorého Flask dosadí dáta cez
   `render_template("subor.html", data=...)`. Značky: `{{ hodnota }}` vloží hodnotu, `{% for %}…{% endfor %}`
   opakuje (napr. riadky tabuľky). Web aj terminál čítajú z tej istej vrstvy `databaza.py` (sila architektúry).
+- **Formulár / GET vs POST**: **GET** = vyžiadať stránku (čítanie), **POST** = poslať serveru dáta
+  (`<form method="post">` + `<input name="...">`). Route s `methods=["POST"]` číta `request.form`,
+  uloží a vráti `redirect(url_for(...))` (presmerovanie po odoslaní, aby F5 neodoslalo formulár znova).
 
 ---
 
@@ -123,6 +126,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 4 · Výdavky na webe — Etapa 3 (formulár na webe) — 2026-06-03
+**Čo sme prebrali:**
+- Pojmy **GET** (daj mi stránku) vs **POST** (pošli serveru dáta z formulára). `<form method="post">` + `<input name="...">`.
+- Nová route `/pridaj` (POST): prečíta `request.form`, sumu cez `logika.parsuj_sumu`, uloží cez `databaza.pridaj_vydavok`, potom **presmeruje** späť na `/` (aby F5 neodoslalo znova).
+
+**Čo som dokázal:**
+- Pridal som výdavok priamo z prehliadača cez formulár; neplatná suma sa bezpečne ignoruje. Commit `d04a2ff`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 4 — prehľady na webe (súčty spolu/podľa kategórie; znova použiť `databaza.py`).
 
 ### Projekt 4 · Výdavky na webe — Etapa 2 (zoznam z DB na webe) — 2026-06-03
 **Čo sme prebrali:**
@@ -724,6 +738,6 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 
 - [x] **Etapa 1** — Prvá webová stránka (Flask, route `/`, `python app.py` → `http://127.0.0.1:5000`). Commit `4b51a02`
 - [x] **Etapa 2** — Zobraziť zoznam výdavkov z databázy na stránke (HTML šablóna). Commit `a580c45`
-- [ ] **Etapa 3** — Formulár na pridanie výdavku (POST)
+- [x] **Etapa 3** — Formulár na pridanie výdavku (POST + presmerovanie). Commit `d04a2ff`
 - [ ] **Etapa 4** — Prehľady na webe (súčty; znova použiť `logika`/`databaza`)
 - [ ] **Etapa 5** — Vyladenie vzhľadu + uzavrieť projekt
