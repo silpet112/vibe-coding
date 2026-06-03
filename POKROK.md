@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 💰 Projekt 3 — Správca výdavkov (učím sa architektúru, .env a databázu — postupne po etapách A–E)
-**Posledná lekcia:** Etapa A — MVP s databázou **SQLite** (`vydavky.py`: pridať/zobraziť výdavok, dáta v `vydavky.db`), commit `d2f3f97` (2026-06-03) ✅
-**Ďalší krok:** Etapa B — **.env** (nastavenia mimo kódu: názov DB, mena; `.env.example` + `.gitignore`; prvý `pip install python-dotenv`). Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa B — **.env** (nastavenia mimo kódu cez `python-dotenv`: `DB_SUBOR`, `MENA`; `.env.example` v gite, `.env` ignorovaný), commit `ef12072` (2026-06-03) ✅
+**Ďalší krok:** Etapa C — **architektúra**: rozdeliť `vydavky.py` na vrstvy (`databaza.py` / `logika.py` / `konfig.py` / `vydavky.py`). Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -90,6 +90,11 @@
 - **Databáza (SQLite)**: dáta v *tabuľke* (riadky = záznamy, stĺpce = polia), ovládaná príkazmi
   **SQL** (`INSERT` pridaj, `SELECT` vyber). SQLite je vstavaná v Pythone (`import sqlite3`), celá
   v jednom súbore (`vydavky.db`); lepšia než JSON pri raste dát. Dátový súbor → `.gitignore` (`*.db`).
+- **.env (konfigurácia mimo kódu)**: nastavenia/tajomstvá v súbore `.env` (`KLÚČ=hodnota`), načítané
+  cez `python-dotenv` (`load_dotenv()` + `os.getenv()`). `.env` → `.gitignore` (nepatrí do gitu);
+  do gitu ide len vzor `.env.example`. Mením správanie appky bez zásahu do kódu.
+- **pip install**: doinštalovanie hotového balíčka od niekoho iného: `python -m pip install názov`
+  (napr. `python-dotenv`). Potom ho v kóde použijem cez `import`.
 
 ---
 
@@ -103,6 +108,19 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 3 · Správca výdavkov — Etapa B (.env) — 2026-06-03
+**Čo sme prebrali:**
+- Pojem **.env**: nastavenia/tajomstvá **mimo kódu** v tvare `KLÚČ=hodnota`; `.env` patrí do `.gitignore` (nesmie do gitu), do gitu ide len vzor **`.env.example`**.
+- Prvý **`pip install`** (`python-dotenv`) — doinštalovanie hotového balíčka.
+- Upravili sme `vydavky.py`: `DB_SUBOR` a `MENA` sa načítajú z `.env` cez `load_dotenv()` + `os.getenv()`.
+
+**Čo som dokázal:**
+- Overil som naživo, že zmena `MENA` v `.env` zmení výpis appky **bez zásahu do kódu**. Commit `ef12072`. ✅
+- Potvrdil som, že git `.env` ignoruje (`git check-ignore`), `.env.example` verzuje.
+
+**Kde sme skončili / ďalší krok:**
+- Etapa C — **architektúra**: rozdeliť appku na vrstvy (`databaza.py` / `logika.py` / `konfig.py` / `vydavky.py`).
 
 ### Projekt 3 · Správca výdavkov — Etapa A (MVP s databázou) — 2026-06-03
 **Čo sme prebrali:**
@@ -620,7 +638,7 @@ Postav → Over → Commit → Iteruj → uzavri.)*
 pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý režisérsky recept.)*
 
 - [x] **Etapa A** — Vízia → MVP s databázou (SQLite): pridať/zobraziť výdavok, dáta v `vydavky.db`. Commit `d2f3f97`
-- [ ] **Etapa B** — `.env` (nastavenia mimo kódu: názov DB, mena; `.env.example` + gitignore; `pip install python-dotenv`)
+- [x] **Etapa B** — `.env` (nastavenia mimo kódu: `DB_SUBOR`, `MENA`; `.env.example` + gitignore; `pip install python-dotenv`). Commit `ef12072`
 - [ ] **Etapa C** — Architektúra (rozdelenie na vrstvy: `databaza.py` / `logika.py` / `vydavky.py` / `konfig.py`)
 - [ ] **Etapa D** — Prehľady cez dotazy (súčet spolu, podľa kategórie, za mesiac)
 - [ ] **Etapa E** — Automatické testy + uzavrieť projekt
