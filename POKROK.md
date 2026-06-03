@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 💰 Projekt 3 — Správca výdavkov (učím sa architektúru, .env a databázu — postupne po etapách A–E)
-**Posledná lekcia:** Etapa C — **architektúra**: rozdelenie na vrstvy `konfig.py` / `databaza.py` / `logika.py` / `vydavky.py` (appka funguje rovnako), commit `d03ba67` (2026-06-03) ✅
-**Ďalší krok:** Etapa D — **prehľady cez dotazy**: súčet spolu, podľa kategórie, za mesiac (SQL `SUM`/`GROUP BY`). Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa D — **prehľady cez dotazy** (SQL `SUM` spolu, `GROUP BY` podľa kategórie, `WHERE ... LIKE` za mesiac), commit `eddd002` (2026-06-03) ✅
+**Ďalší krok:** Etapa E — **automatické testy** pre logiku/databázu (na dočasnej DB) + **uzavrieť Projekt 3**. Plán: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -98,6 +98,9 @@
 - **Architektúra (vrstvy)**: appku rozdelím na súbory, každý s jednou zodpovednosťou — `konfig.py`
   (nastavenia), `databaza.py` (SQL/úložisko), `logika.py` (čisté výpočty), `vydavky.py` (menu/obsluha).
   Súbory sa prepájajú cez `import`. Výhoda: prehľadnosť, ľahšie hľadanie chýb, testovateľné vrstvy.
+- **SQL prehľady (agregácia)**: databáza počíta za mňa — `SUM(stĺpec)` (súčet), `GROUP BY` (zoskup
+  a spočítaj po skupinách), `WHERE ... LIKE 'RRRR-MM%'` (filter, napr. za mesiac). Toto je hlavná
+  výhoda databázy oproti zoznamu: rýchle súčty/filtre aj nad množstvom dát.
 
 ---
 
@@ -111,6 +114,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 3 · Správca výdavkov — Etapa D (prehľady cez dotazy) — 2026-06-03
+**Čo sme prebrali:**
+- Databáza vie aj **počítať**: `SUM(suma)` = súčet, `GROUP BY kategoria` = zoskup a spočítaj po kategóriách, `WHERE datum LIKE '2026-06%'` = filter za mesiac.
+- Pridané do `databaza.py`: `sucet_vsetkych`, `sucet_podla_kategorie`, `sucet_za_mesiac`; do menu prehľady 3/4/5.
+
+**Čo som dokázal:**
+- Overil som súčty na ručnom príklade (spolu 22, jedlo 10/doprava 12, jún 10/máj 12) — sedí. Commit `eddd002`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa E — automatické testy (na dočasnej DB) + uzavrieť Projekt 3.
 
 ### Projekt 3 · Správca výdavkov — Etapa C (architektúra) — 2026-06-03
 **Čo sme prebrali:**
@@ -655,5 +669,5 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 - [x] **Etapa A** — Vízia → MVP s databázou (SQLite): pridať/zobraziť výdavok, dáta v `vydavky.db`. Commit `d2f3f97`
 - [x] **Etapa B** — `.env` (nastavenia mimo kódu: `DB_SUBOR`, `MENA`; `.env.example` + gitignore; `pip install python-dotenv`). Commit `ef12072`
 - [x] **Etapa C** — Architektúra (rozdelenie na vrstvy: `konfig.py` / `databaza.py` / `logika.py` / `vydavky.py`). Commit `d03ba67`
-- [ ] **Etapa D** — Prehľady cez dotazy (súčet spolu, podľa kategórie, za mesiac)
+- [x] **Etapa D** — Prehľady cez dotazy (súčet spolu, podľa kategórie, za mesiac; SQL `SUM`/`GROUP BY`). Commit `eddd002`
 - [ ] **Etapa E** — Automatické testy + uzavrieť projekt
