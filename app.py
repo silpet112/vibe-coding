@@ -2,6 +2,8 @@
 # Pouziva tie iste vrstvy ako terminalova appka: databaza.py, logika.py a konfig.py.
 # Spustenie:  python app.py    (potom otvor http://127.0.0.1:5000) ;  zastavenie: Ctrl+C
 
+import os
+import threading
 from datetime import date
 
 from flask import Flask, render_template, request, redirect, url_for
@@ -86,6 +88,14 @@ def uprav(id_vydavku):
     if v is None:  # taky vydavok neexistuje -> spat na zoznam
         return redirect(url_for("domov"))
     return render_template("uprav.html", v=v, mena=konfig.MENA)
+
+
+@app.route("/vypni", methods=["POST"])
+def vypni():
+    # Naplanuje vypnutie servera tesne po odoslani odpovede (aby sa stranka stihla zobrazit).
+    # os._exit ukonci proces (aj s Flask reloaderom).
+    threading.Timer(0.5, lambda: os._exit(0)).start()
+    return "<h1>Server je vypnuty 🛑</h1><p>Tuto kartu mozes zatvorit. Znova ho spustis cez /app.</p>"
 
 
 if __name__ == "__main__":
