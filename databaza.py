@@ -44,3 +44,31 @@ def vsetky_vydavky(conn):
         "SELECT id, suma, kategoria, datum, poznamka FROM vydavky ORDER BY datum"
     )
     return kurzor.fetchall()
+
+
+# --- Prehlady (databaza pocita za nas: SUM, GROUP BY) ---
+
+def sucet_vsetkych(conn):
+    """Vrati sucet vsetkych vydavkov (0, ak nic nie je). SQL: SUM."""
+    kurzor = conn.execute("SELECT SUM(suma) FROM vydavky")
+    vysledok = kurzor.fetchone()[0]
+    return vysledok if vysledok is not None else 0
+
+
+def sucet_podla_kategorie(conn):
+    """Vrati zoznam (kategoria, sucet) zoradeny od najvacsej sumy. SQL: GROUP BY."""
+    kurzor = conn.execute(
+        "SELECT kategoria, SUM(suma) FROM vydavky GROUP BY kategoria ORDER BY SUM(suma) DESC"
+    )
+    return kurzor.fetchall()
+
+
+def sucet_za_mesiac(conn, rok_mesiac):
+    """Vrati sucet vydavkov za dany mesiac (rok_mesiac vo formate 'RRRR-MM').
+    SQL: WHERE datum LIKE 'RRRR-MM%'."""
+    kurzor = conn.execute(
+        "SELECT SUM(suma) FROM vydavky WHERE datum LIKE ?",
+        (rok_mesiac + "%",),
+    )
+    vysledok = kurzor.fetchone()[0]
+    return vysledok if vysledok is not None else 0

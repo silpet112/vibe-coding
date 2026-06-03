@@ -38,6 +38,28 @@ def zobraz(conn):
         print(f"#{id_}  {datum}  {suma:>8.2f} {konfig.MENA}  [{kategoria}]{pozn}")
 
 
+def prehlad_spolu(conn):
+    spolu = databaza.sucet_vsetkych(conn)
+    print(f"Spolu si minul: {spolu:.2f} {konfig.MENA}")
+
+
+def prehlad_kategorie(conn):
+    riadky = databaza.sucet_podla_kategorie(conn)
+    if not riadky:
+        print("Zatial ziadne vydavky.")
+        return
+    print("--- Vydavky podla kategorie ---")
+    for kategoria, sucet in riadky:
+        print(f"{kategoria:<15} {sucet:>8.2f} {konfig.MENA}")
+
+
+def prehlad_mesiac(conn):
+    zadanie = input(f"Mesiac (RRRR-MM, Enter = tento {date.today():%Y-%m}): ").strip()
+    rok_mesiac = zadanie if zadanie else f"{date.today():%Y-%m}"
+    spolu = databaza.sucet_za_mesiac(conn, rok_mesiac)
+    print(f"Vydavky za {rok_mesiac}: {spolu:.2f} {konfig.MENA}")
+
+
 def main():
     conn = databaza.pripoj()
     databaza.vytvor_tabulku(conn)
@@ -45,17 +67,26 @@ def main():
         print("\n=== SPRAVCA VYDAVKOV ===")
         print("1) Pridat vydavok")
         print("2) Zobrazit vsetky")
-        print("3) Koniec")
-        volba = input("Vyber (1-3): ").strip()
+        print("3) Prehlad: spolu")
+        print("4) Prehlad: podla kategorie")
+        print("5) Prehlad: za mesiac")
+        print("6) Koniec")
+        volba = input("Vyber (1-6): ").strip()
         if volba == "1":
             pridaj(conn)
         elif volba == "2":
             zobraz(conn)
         elif volba == "3":
+            prehlad_spolu(conn)
+        elif volba == "4":
+            prehlad_kategorie(conn)
+        elif volba == "5":
+            prehlad_mesiac(conn)
+        elif volba == "6":
             print("Dovidenia!")
             break
         else:
-            print("Neplatna volba, skus 1-3.")
+            print("Neplatna volba, skus 1-6.")
     conn.close()
 
 
