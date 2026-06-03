@@ -18,8 +18,13 @@ def domov():
     # Vezmeme data z TEJ ISTEJ vrstvy databaza.py, co pouziva terminalova appka.
     conn = databaza.pripoj()
     databaza.vytvor_tabulku(conn)
-    vydavky = databaza.vsetky_vydavky(conn)
-    # Prehlady - znova pouzite funkcie z Projektu 3 (databaza.py).
+    # Filter z adresy (query string), napr. /?kategoria=jedlo. Prazdny = vsetky.
+    filter_kat = request.args.get("kategoria", "").strip()
+    if filter_kat:
+        vydavky = databaza.vydavky_v_kategorii(conn, filter_kat)
+    else:
+        vydavky = databaza.vsetky_vydavky(conn)
+    # Prehlady (vzdy za vsetko) - znova pouzite funkcie z Projektu 3 (databaza.py).
     spolu = databaza.sucet_vsetkych(conn)
     podla_kategorie = databaza.sucet_podla_kategorie(conn)
     conn.close()
@@ -30,6 +35,7 @@ def domov():
         spolu=spolu,
         podla_kategorie=podla_kategorie,
         mena=konfig.MENA,
+        filter_kat=filter_kat,
     )
 
 

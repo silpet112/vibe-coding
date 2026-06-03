@@ -60,6 +60,17 @@
         <button type="submit">Pridať</button>
     </form>
 
+    <h2>🔎 Filter podľa kategórie</h2>
+    <p>
+        <a href="/">Všetky</a>
+        {% for kategoria, sucet in podla_kategorie %}
+        | <a href="/?kategoria={{ kategoria|urlencode }}">{{ kategoria }}</a>
+        {% endfor %}
+    </p>
+    {% if filter_kat %}
+    <p><em>Zobrazujem len kategóriu: <strong>{{ filter_kat }}</strong></em></p>
+    {% endif %}
+
     {% if vydavky %}
     <table>
         <tr>

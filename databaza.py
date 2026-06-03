@@ -46,6 +46,15 @@ def vsetky_vydavky(conn):
     return kurzor.fetchall()
 
 
+def vydavky_v_kategorii(conn, kategoria):
+    """Vrati len vydavky danej kategorie. SQL: SELECT ... WHERE kategoria = ?."""
+    kurzor = conn.execute(
+        "SELECT id, suma, kategoria, datum, poznamka FROM vydavky WHERE kategoria = ? ORDER BY datum",
+        (kategoria,),
+    )
+    return kurzor.fetchall()
+
+
 def zmaz_vydavok(conn, id_vydavku):
     """Zmaze vydavok s danym id. SQL prikaz: DELETE."""
     conn.execute("DELETE FROM vydavky WHERE id = ?", (id_vydavku,))
