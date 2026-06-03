@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌐 Projekt 4 — Výdavky na webe (Flask; znova použijem vrstvy `databaza`/`logika` z Projektu 3)
-**Posledná lekcia:** Etapa 3 — **formulár** na pridanie výdavku na webe (POST + presmerovanie; znova použité `logika`/`databaza`), commit `d04a2ff` (2026-06-03) ✅
-**Ďalší krok:** Etapa 4 — **prehľady na webe** (súčty: spolu, podľa kategórie; znova použiť `databaza.py`). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa 4 — **prehľady na webe** (súčet spolu + podľa kategórie; znova použité `databaza.py`), commit `25e7930` (2026-06-03) ✅
+**Ďalší krok:** Etapa 5 — **vyladenie vzhľadu** (trocha CSS) + **uzavrieť Projekt 4**. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -126,6 +126,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 4 · Výdavky na webe — Etapa 4 (prehľady na webe) — 2026-06-03
+**Čo sme prebrali:**
+- Prehľady na stránke: route `domov` zavolá `databaza.sucet_vsetkych` a `sucet_podla_kategorie`, výsledky pošle do šablóny.
+- Žiadny nový databázový kód — len **znova použité** funkcie z Projektu 3 (odmena za upratanú architektúru).
+
+**Čo som dokázal:**
+- Na webe vidím súčet spolu aj rozpis podľa kategórie; po pridaní výdavku sa hneď prepočítajú. Commit `25e7930`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 5 — vyladenie vzhľadu (trocha CSS) + uzavrieť Projekt 4.
 
 ### Projekt 4 · Výdavky na webe — Etapa 3 (formulár na webe) — 2026-06-03
 **Čo sme prebrali:**
@@ -739,5 +750,5 @@ pojem na etapu. Téma: zapisovanie výdavkov a prehľady. Stále ten istý reži
 - [x] **Etapa 1** — Prvá webová stránka (Flask, route `/`, `python app.py` → `http://127.0.0.1:5000`). Commit `4b51a02`
 - [x] **Etapa 2** — Zobraziť zoznam výdavkov z databázy na stránke (HTML šablóna). Commit `a580c45`
 - [x] **Etapa 3** — Formulár na pridanie výdavku (POST + presmerovanie). Commit `d04a2ff`
-- [ ] **Etapa 4** — Prehľady na webe (súčty; znova použiť `logika`/`databaza`)
+- [x] **Etapa 4** — Prehľady na webe (súčet spolu + podľa kategórie; znova použité `databaza.py`). Commit `25e7930`
 - [ ] **Etapa 5** — Vyladenie vzhľadu + uzavrieť projekt
