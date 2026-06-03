@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🛠️ Projekt 5 — Rozšírenie webovej appky (mazanie, úprava, filtrovanie výdavkov)
-**Posledná lekcia:** Etapa 2 — **úprava výdavku** na webe (SQL `UPDATE`, predvyplnený edit formulár; kompletný CRUD), commit `70ce688` (2026-06-03) ✅
-**Ďalší krok:** Etapa 3 — **filtrovanie** podľa kategórie (parametre v adrese / query string). Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Posledná lekcia:** Etapa 3 — **filtrovanie podľa kategórie** na webe (query string `?kategoria=...`), commit `b502f63` (2026-06-03) ✅
+**Ďalší krok:** Etapa 4 — **testy** nových funkcií (mazať/upraviť/filter) + **uzavrieť Projekt 5**. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -121,6 +121,10 @@
 - **SQL `UPDATE` a úprava (edit)**: `UPDATE ... SET ... WHERE id = ?` prepíše záznam. Úprava má 2 kroky:
   GET ukáže formulár **predvyplnený** (`value="{{ ... }}"`), POST uloží. Tá istá route zvládne GET aj
   POST (`methods=["GET","POST"]`, vetvenie cez `request.method`). Tým mám kompletný CRUD na webe.
+- **Query string (filter)**: dodatočné info v adrese za `?` (napr. `/?kategoria=jedlo`); vo Flasku
+  cez `request.args.get("kategoria")`. Použité na filtrovanie zoznamu. V šablóne odkaz `?kategoria={{ x|urlencode }}`.
+- **Vlastný skill `/app`**: skill, ktorý spustí Flask server na pozadí a otvorí appku v prehliadači
+  (`Start-Process "http://127.0.0.1:5000"`) — jedným príkazom namiesto ručného spúšťania.
 
 ---
 
@@ -134,6 +138,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 5 · Rozšírenie webovej appky — Etapa 3 (filtrovanie) — 2026-06-03
+**Čo sme prebrali:**
+- **Query string** = dodatočné info v adrese (`/?kategoria=jedlo`); vo Flasku sa číta cez `request.args.get(...)`.
+- `databaza.vydavky_v_kategorii` (SQL `WHERE kategoria = ?`); odkazy na kategórie nad tabuľkou (`{{ kategoria|urlencode }}`), prehľad zostáva za všetko.
+- Bonus: vytvorený skill **`/app`** — spustí server na pozadí a otvorí appku v prehliadači (commit `6838cc0`).
+
+**Čo som dokázal:**
+- Cez `/app` som si otvoril appku a vyskúšal filter podľa kategórie naživo. Commit `b502f63`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 4 — testy nových funkcií (mazať/upraviť/filter) + uzavrieť Projekt 5.
 
 ### Projekt 5 · Rozšírenie webovej appky — Etapa 2 (úprava) — 2026-06-03
 **Čo sme prebrali:**
@@ -803,5 +819,5 @@ hotový projekt bez prepisovania od nuly.)*
 
 - [x] **Etapa 1** — Mazanie výdavku (SQL `DELETE`, tlačidlo s potvrdením). Commit `987dd01`
 - [x] **Etapa 2** — Úprava výdavku (predvyplnený edit formulár, SQL `UPDATE`; kompletný CRUD). Commit `70ce688`
-- [ ] **Etapa 3** — Filtrovanie podľa kategórie (parametre v adrese)
+- [x] **Etapa 3** — Filtrovanie podľa kategórie (query string `?kategoria=...`). Commit `b502f63`
 - [ ] **Etapa 4** — Testy nových funkcií + uzavrieť projekt
