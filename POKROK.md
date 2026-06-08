@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 5 — Rozšírenie webovej appky **DOKONČENÝ** (mazanie · úprava · filter · testy)
-**Posledná lekcia:** Etapa 4 — **testy** nových funkcií (`test_vydavky.py`, 19/19 PASS); Projekt 5 uzavretý, commit `82d4b23` (2026-06-03) ✅
-**Ďalší krok:** Vybrať **Projekt 6** (väčšia výzva) — alebo pauza. Recept: [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
+**Aktuálna téma:** 🌦️ Projekt 6 — Počasie cez **API** (učím sa, čo je API a ako ťahať dáta z internetu)
+**Posledná lekcia:** Štart Projektu 6 — mapa [API-MAPA.md](API-MAPA.md) + Etapa 1 (prvé volanie API)
+**Ďalší krok:** Etapa 1 — pochopiť API a spraviť prvé volanie (Open-Meteo, `requests`). Mapa: [API-MAPA.md](API-MAPA.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -115,6 +115,9 @@
   uloží a vráti `redirect(url_for(...))` (presmerovanie po odoslaní, aby F5 neodoslalo formulár znova).
 - **CSS (vzhľad)**: HTML = *čo* je na stránke (obsah), CSS = *ako* to vyzerá (písmo, farby, rámčeky,
   odsadenie). Jednoduché štýly viem dať do `<style>` v hlavičke šablóny. Oddelenie obsahu od vzhľadu.
+- **API (volanie dát z internetu)**: appka si cez **`requests.get(url, params=...)`** vypýta dáta od
+  cudzej služby (endpoint), dostane **odpoveď** (stavový kód 200/404…), `.json()` ju premení na slovník
+  a z neho vytiahnem hodnotu. JSON ≈ slovník; parametre `?a=b` ≈ filter z webu; kľúče → `.env`. Mapa: API-MAPA.md.
 - **CRUD a SQL `DELETE`**: štyri základné operácie s dátami — Create (`INSERT`), Read (`SELECT`),
   Update (`UPDATE`), Delete (`DELETE`). `DELETE FROM ... WHERE id = ?` vymaže riadok. Route môže mať
   v adrese parameter (`/zmaz/<int:id>`); mazanie istím potvrdením v prehliadači (`confirm(...)`).
@@ -138,6 +141,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 6 · Počasie cez API — Etapa 1 (prvé volanie) — 2026-06-09
+**Čo sme prebrali:**
+- Pojem **API** (čašník medzi programami), kolobeh **požiadavka → odpoveď**, a pojmy: endpoint/URL, parametre (query string), GET/POST, stavový kód (200/404), JSON, API kľúč. Mapa: [API-MAPA.md](API-MAPA.md).
+- `pip install requests`; `pocasie.py`: `requests.get(...)` na Open-Meteo, `.json()` → slovník, vytiahnutie `data["current"]["temperature_2m"]`.
+- Oddelená vrstva **`stiahni_pocasie`** (API) od **`teplota_z_dat`** (čistá logika) — testovateľné bez internetu.
+
+**Čo som dokázal:**
+- Spustil som appku a vrátila **živú teplotu z internetu**. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — zadať ľubovoľné mesto → geocoding API zistí súradnice → počasie (dve volania za sebou).
 
 ### Bonus · Skill /app + povolenia + vypínacie tlačidlo — 2026-06-03
 **Čo sme prebrali:**
@@ -845,3 +860,15 @@ hotový projekt bez prepisovania od nuly.)*
 - [x] **Etapa 3** — Filtrovanie podľa kategórie (query string `?kategoria=...`). Commit `b502f63`
 - [x] **Etapa 4** — Testy nových funkcií (`test_vydavky.py`, 19/19 PASS). Commit `82d4b23`
 - [x] **Projekt 5 UZAVRETÝ** 🏁 — kompletný CRUD na webe · filter · testy
+
+---
+
+## Stavanie s AI — Projekt 6: Počasie cez API 🌦️
+*(Cieľ: naučiť sa, čo je **API** a ako appka ťahá dáta z internetu. Téma: počasie cez Open-Meteo
+— zadarmo, bez kľúča. Mapa pojmov: [API-MAPA.md](API-MAPA.md).)*
+
+- [x] **Etapa 1** — Pochopiť API + prvé volanie (Open-Meteo, `pip install requests`, vypísať teplotu)
+- [ ] **Etapa 2** — Mesto na vstupe → súradnice (geocoding API) → počasie (dve volania za sebou)
+- [ ] **Etapa 3** — Pekný výpis + ošetrenie chýb (mesto nenájdené, žiadny internet)
+- [ ] **Etapa 4** — (voliteľné) Ukázať počasie na webe (Flask) — spojiť s Projektom 4
+- [ ] **Etapa 5** — Testy (čistá logika spracovania JSON) + uzavrieť projekt
