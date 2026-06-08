@@ -1,15 +1,26 @@
-# pocasie.py - Projekt 6, Etapa 1: prve volanie API (Open-Meteo, zadarmo, bez kluca).
-# Stiahne aktualnu teplotu pre pevne suradnice (Bratislava) a vypise ju.
+# pocasie.py - Projekt 6, Etapa 2: zadaj mesto -> appka zisti suradnice a pocasie.
+# Dve volania API za sebou:
+#   1) geocoding (nazov mesta -> suradnice)   2) forecast (suradnice -> teplota)
 # Open-Meteo: https://open-meteo.com  (netreba API kluc)
 
 import requests
 
-# Suradnice Bratislavy (sirka/dlzka). V Etape 2 ich zistime z nazvu mesta cez geocoding API.
-LATITUDE = 48.15
-LONGITUDE = 17.11
-
 
 # --- Praca s API ---
+
+def najdi_mesto(nazov):
+    """Cez geocoding API zisti udaje o meste. Vrati slovnik prveho vysledku, alebo None."""
+    odpoved = requests.get(
+        "https://geocoding-api.open-meteo.com/v1/search",
+        params={"name": nazov, "count": 1, "language": "sk", "format": "json"},
+        timeout=10,
+    )
+    odpoved.raise_for_status()
+    vysledky = odpoved.json().get("results")  # ak nic nenajde, kluc "results" chyba
+    if not vysledky:
+        return None
+    return vysledky[0]
+
 
 def stiahni_pocasie(lat, lon):
     """Posle GET poziadavku na Open-Meteo a vrati odpoved ako Python slovnik (z JSON)."""
@@ -18,8 +29,8 @@ def stiahni_pocasie(lat, lon):
         params={"latitude": lat, "longitude": lon, "current": "temperature_2m"},
         timeout=10,
     )
-    odpoved.raise_for_status()  # ak server nevrati 200 (OK), vyhodi chybu
-    return odpoved.json()       # premeni JSON odpoved na Python slovnik
+    odpoved.raise_for_status()
+    return odpoved.json()
 
 
 # --- Cista logika (da sa testovat bez internetu) ---
@@ -32,9 +43,18 @@ def teplota_z_dat(data):
 # --- Obsluha ---
 
 def main():
-    data = stiahni_pocasie(LATITUDE, LONGITUDE)
+    nazov = input("Zadaj mesto: ").strip()
+    if not nazov:
+        print("Nezadal si ziadne mesto.")
+        return
+    mesto = najdi_mesto(nazov)          # 1) nazov -> suradnice
+    if mesto is None:
+        print(f"Mesto '{nazov}' som nenasiel, skus iny nazov.")
+        return
+    data = stiahni_pocasie(mesto["latitude"], mesto["longitude"])  # 2) suradnice -> pocasie
     teplota = teplota_z_dat(data)
-    print(f"Aktualna teplota v Bratislave: {teplota} °C")
+    krajina = mesto.get("country", "")
+    print(f"Aktualna teplota v meste {mesto['name']} ({krajina}): {teplota} °C")
 
 
 if __name__ == "__main__":
