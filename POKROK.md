@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌦️ Projekt 6 — Počasie cez **API** (učím sa, čo je API a ako ťahať dáta z internetu)
-**Posledná lekcia:** Štart Projektu 6 — mapa [API-MAPA.md](API-MAPA.md) + Etapa 1 (prvé volanie API)
-**Ďalší krok:** Etapa 1 — pochopiť API a spraviť prvé volanie (Open-Meteo, `requests`). Mapa: [API-MAPA.md](API-MAPA.md)
+**Posledná lekcia:** Etapa 2 — mesto na vstupe → **geocoding API** → počasie (dve volania za sebou), commit `7ad4e55` (2026-06-09) ✅
+**Ďalší krok:** Etapa 3 — krajší výpis + **ošetrenie chýb** (žiadny internet, server zlyhá). Mapa: [API-MAPA.md](API-MAPA.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -141,6 +141,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 6 · Počasie cez API — Etapa 2 (mesto na vstupe) — 2026-06-09
+**Čo sme prebrali:**
+- **Reťazenie dvoch API volaní**: `najdi_mesto` (geocoding: názov → súradnice) → `stiahni_pocasie` (súradnice → teplota).
+- Ošetrenie „mesto nenájdené" (`results` chýba → `None`); vstup mesta cez `input`.
+
+**Čo som dokázal:**
+- Zadám ľubovoľné mesto a appka mi vypíše jeho teplotu; vymyslené mesto pekne ohlási. Commit `7ad4e55`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — krajší výpis + ošetrenie chýb (žiadny internet, zlyhanie servera).
 
 ### Projekt 6 · Počasie cez API — Etapa 1 (prvé volanie) — 2026-06-09
 **Čo sme prebrali:**
@@ -868,7 +879,7 @@ hotový projekt bez prepisovania od nuly.)*
 — zadarmo, bez kľúča. Mapa pojmov: [API-MAPA.md](API-MAPA.md).)*
 
 - [x] **Etapa 1** — Pochopiť API + prvé volanie (Open-Meteo, `pip install requests`, vypísať teplotu)
-- [ ] **Etapa 2** — Mesto na vstupe → súradnice (geocoding API) → počasie (dve volania za sebou)
+- [x] **Etapa 2** — Mesto na vstupe → súradnice (geocoding API) → počasie (dve volania za sebou). Commit `7ad4e55`
 - [ ] **Etapa 3** — Pekný výpis + ošetrenie chýb (mesto nenájdené, žiadny internet)
 - [ ] **Etapa 4** — (voliteľné) Ukázať počasie na webe (Flask) — spojiť s Projektom 4
 - [ ] **Etapa 5** — Testy (čistá logika spracovania JSON) + uzavrieť projekt
