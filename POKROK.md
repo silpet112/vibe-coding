@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌦️ Projekt 6 — Počasie cez **API** (učím sa, čo je API a ako ťahať dáta z internetu)
-**Posledná lekcia:** Etapa 2 — mesto na vstupe → **geocoding API** → počasie (dve volania za sebou), commit `7ad4e55` (2026-06-09) ✅
-**Ďalší krok:** Etapa 3 — krajší výpis + **ošetrenie chýb** (žiadny internet, server zlyhá). Mapa: [API-MAPA.md](API-MAPA.md)
+**Posledná lekcia:** Etapa 3 — krajší výpis (pocitová teplota + slovný popis) + **ošetrenie chýb**, commit `2f2ff57` (2026-06-09) ✅
+**Ďalší krok:** Etapa 4 — (voliteľné) ukázať počasie na **webe** (Flask), alebo rovno Etapa 5 (testy + uzavrieť). Mapa: [API-MAPA.md](API-MAPA.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -141,6 +141,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 6 · Počasie cez API — Etapa 3 (krajší výpis + chyby) — 2026-06-09
+**Čo sme prebrali:**
+- Krajší výpis: pocitová teplota + **slovný popis** (preklad `weather_code` cez slovník `POPISY_POCASIA`, čistá funkcia `popis_pocasia`).
+- **Ošetrenie chýb**: `try/except requests.exceptions.RequestException` → pri výpadku internetu pekná hláška namiesto pádu.
+
+**Čo som dokázal:**
+- Appka vypíše teplotu/pocit/stav a pri simulovanom výpadku nespadla. Commit `2f2ff57`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 4 (voliteľné: počasie na webe cez Flask) alebo Etapa 5 (testy + uzavrieť).
 
 ### Projekt 6 · Počasie cez API — Etapa 2 (mesto na vstupe) — 2026-06-09
 **Čo sme prebrali:**
@@ -880,6 +891,6 @@ hotový projekt bez prepisovania od nuly.)*
 
 - [x] **Etapa 1** — Pochopiť API + prvé volanie (Open-Meteo, `pip install requests`, vypísať teplotu)
 - [x] **Etapa 2** — Mesto na vstupe → súradnice (geocoding API) → počasie (dve volania za sebou). Commit `7ad4e55`
-- [ ] **Etapa 3** — Pekný výpis + ošetrenie chýb (mesto nenájdené, žiadny internet)
+- [x] **Etapa 3** — Pekný výpis (pocitová teplota + popis) + ošetrenie chýb. Commit `2f2ff57`
 - [ ] **Etapa 4** — (voliteľné) Ukázať počasie na webe (Flask) — spojiť s Projektom 4
 - [ ] **Etapa 5** — Testy (čistá logika spracovania JSON) + uzavrieť projekt
