@@ -2,3 +2,4 @@ ulohy.json
 *.db
 .env
 __pycache__/
+static/bliss.jpg

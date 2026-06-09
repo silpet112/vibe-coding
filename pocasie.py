@@ -2,7 +2,23 @@
 # Dve volania API: 1) geocoding (mesto -> suradnice)  2) forecast (suradnice -> pocasie).
 # Open-Meteo: https://open-meteo.com  (netreba API kluc)
 
+from datetime import datetime
+
 import requests
+
+# Slovenske nazvy dni (0 = pondelok, ako date.weekday()).
+DNI_V_TYZDNI = ["Pondelok", "Utorok", "Streda", "Štvrtok", "Piatok", "Sobota", "Nedeľa"]
+
+# Emoji ku kazdemu stavu pocasia (zrozumitelne aj bez slovenciny).
+EMOJI_POCASIA = {
+    0: "☀️", 1: "🌤️", 2: "⛅", 3: "☁️",
+    45: "🌫️", 48: "🌫️",
+    51: "🌦️", 53: "🌦️", 55: "🌦️",
+    61: "🌧️", 63: "🌧️", 65: "🌧️",
+    71: "❄️", 73: "❄️", 75: "❄️",
+    80: "🌦️", 81: "🌦️", 82: "🌧️",
+    95: "⛈️",
+}
 
 # Preklad "weather_code" (cislo stavu pocasia od Open-Meteo) na slovensky popis.
 POPISY_POCASIA = {
@@ -45,13 +61,17 @@ def najdi_mesto(nazov):
 
 
 def stiahni_pocasie(lat, lon):
-    """Vrati aktualne pocasie (teplota, pocitova teplota, kod stavu) ako slovnik."""
+    """Vrati aktualne pocasie + 7-dnovu predpoved ako slovnik.
+    timezone=auto -> datumy a casy su v miestnom case daneho mesta."""
     odpoved = requests.get(
         "https://api.open-meteo.com/v1/forecast",
         params={
             "latitude": lat,
             "longitude": lon,
             "current": "temperature_2m,apparent_temperature,weather_code",
+            "daily": "weather_code,temperature_2m_max,temperature_2m_min",
+            "forecast_days": 7,
+            "timezone": "auto",
         },
         timeout=10,
     )
@@ -69,6 +89,38 @@ def teplota_z_dat(data):
 def popis_pocasia(kod):
     """Prelozi cislo stavu pocasia na slovensky text (neznamy kod -> 'neznamy stav')."""
     return POPISY_POCASIA.get(kod, "neznamy stav")
+
+
+def emoji_pocasia(kod):
+    """Vrati emoji k stavu pocasia (neznamy kod -> otaznik)."""
+    return EMOJI_POCASIA.get(kod, "❓")
+
+
+def nazov_dna(index, datum_str):
+    """Pomenuje den: 0 -> 'Dnes', 1 -> 'Zajtra', inak nazov dna + datum (napr. 'Streda 11.6.').
+    datum_str je v tvare 'RRRR-MM-DD' (z predpovede)."""
+    if index == 0:
+        return "Dnes"
+    if index == 1:
+        return "Zajtra"
+    den = datetime.strptime(datum_str, "%Y-%m-%d")
+    return f"{DNI_V_TYZDNI[den.weekday()]} {den.day}.{den.month}."
+
+
+def predpoved_z_dat(data):
+    """Z odpovede zostavi zoznam dni (nazov, emoji, stav, max, min teplota)."""
+    d = data["daily"]
+    dni = []
+    for i, datum in enumerate(d["time"]):
+        kod = d["weather_code"][i]
+        dni.append({
+            "nazov": nazov_dna(i, datum),
+            "emoji": emoji_pocasia(kod),
+            "stav": popis_pocasia(kod),
+            "max": d["temperature_2m_max"][i],
+            "min": d["temperature_2m_min"][i],
+        })
+    return dni
 
 
 # --- Obsluha ---

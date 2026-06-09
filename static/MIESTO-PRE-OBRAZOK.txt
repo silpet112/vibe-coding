@@ -1,0 +1,8 @@
+Sem (do priečinka static/) môžeš uložiť obrázok pre hero na stránke počasia.
+
+Ulož ho presne pod názvom:  bliss.jpg
+
+Ak tu súbor bliss.jpg bude, stránka ho zobrazí ako pozadie hero.
+Ak tu nebude, zobrazí sa náhradná „XP lúka" nakreslená cez CSS (modré nebo + zelený kopec).
+
+(Flask servíruje súbory z tohto priečinka na adrese /static/<nazov-suboru>.)

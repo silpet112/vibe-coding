@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <title>Počasie</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            max-width: 720px;
+            margin: 24px auto;
+            padding: 0 16px;
+            color: #1d2733;
+            background: #eef3f8;
+        }
+
+        /* HERO v style Windows XP "lúka" (Bliss).
+           Ak existuje static/bliss.jpg, pouzije sa fotka; inak sa zobrazi CSS kresba:
+           modré nebo (linear-gradient) + zelený kopec (radial-gradient). */
+        .hero {
+            position: relative;
+            height: 340px;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+            background:
+                url('/static/bliss.jpg') center/cover no-repeat,
+                radial-gradient(ellipse 160% 95% at 50% 140%, #6ab43a 0 42%, rgba(106,180,58,0) 43%),
+                radial-gradient(circle at 78% 30%, rgba(255,255,255,0.9) 0 6%, rgba(255,255,255,0) 9%),
+                radial-gradient(circle at 70% 28%, rgba(255,255,255,0.8) 0 8%, rgba(255,255,255,0) 12%),
+                linear-gradient(to bottom, #2a7ed6 0%, #5ba6ec 45%, #aed8ff 100%);
+        }
+        .hero h1 {
+            margin: 0;
+            color: #fff;
+            font-size: 2.4rem;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.45);
+            letter-spacing: 1px;
+        }
+
+        .karta {
+            background: #fff;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-top: 18px;
+        }
+        form { display: flex; gap: 8px; }
+        input[type="text"] {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #c3ccd6;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 18px;
+            background: #2a7ed6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover { background: #2168b3; }
+
+        .teplota { font-size: 2.6rem; font-weight: bold; color: #2a7ed6; margin: 6px 0; }
+        .stav { font-size: 1.2rem; color: #44515f; }
+        .chyba { color: #c62828; font-weight: bold; }
+        .tip { color: #6b7785; font-size: 0.9rem; margin-top: 10px; }
+
+        /* 7-dnova predpoved - riadok kariet, ktore sa zalamu na mensej obrazovke */
+        .predpoved { display: flex; flex-wrap: wrap; gap: 10px; }
+        .den {
+            flex: 1 1 80px;
+            text-align: center;
+            background: #f3f7fc;
+            border: 1px solid #e1e9f2;
+            border-radius: 10px;
+            padding: 10px 6px;
+        }
+        .den-nazov { font-size: 0.85rem; color: #44515f; margin-bottom: 4px; }
+        .den-emoji { font-size: 1.8rem; }
+        .den-teploty { margin: 4px 0; }
+        .den-stav { font-size: 0.78rem; color: #6b7785; }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>🌤️ Počasie</h1>
+    </div>
+
+    <div class="karta">
+        <form action="/" method="get">
+            <input type="text" name="mesto" placeholder="Napíš mesto (napr. Bratislava)…"
+                   value="{{ nazov }}" autofocus>
+            <button type="submit">Zistiť počasie</button>
+        </form>
+    </div>
+
+    {% if chyba %}
+    <div class="karta"><p class="chyba">{{ chyba }}</p></div>
+    {% endif %}
+
+    {% if vysledok %}
+    <div class="karta">
+        <h2>{{ vysledok.mesto }} <small>({{ vysledok.krajina }})</small></h2>
+        <div class="teplota">{{ vysledok.emoji }} {{ vysledok.teplota }} °C</div>
+        <div class="stav">{{ vysledok.stav }} · pocitovo {{ vysledok.pocit }} °C</div>
+    </div>
+
+    <div class="karta">
+        <h3>Predpoveď na 7 dní</h3>
+        <div class="predpoved">
+            {% for den in vysledok.predpoved %}
+            <div class="den">
+                <div class="den-nazov">{{ den.nazov }}</div>
+                <div class="den-emoji">{{ den.emoji }}</div>
+                <div class="den-teploty"><strong>{{ den.max }}°</strong> / {{ den.min }}°</div>
+                <div class="den-stav">{{ den.stav }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
+    <p class="tip">💡 Tip: ak do priečinka <code>static/</code> uložíš obrázok ako <code>bliss.jpg</code>,
+       v hero sa zobrazí namiesto kresby. Inak vidíš XP-štýl lúku nakreslenú CSS-kom.</p>
+</body>
+</html>
