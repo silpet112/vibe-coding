@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🌦️ Projekt 6 — Počasie cez **API** (učím sa, čo je API a ako ťahať dáta z internetu)
-**Posledná lekcia:** Etapa 4 — počasie na **webe** (Flask, hero v štýle XP) + **7-dňová predpoveď** s názvami dní a **emoji**, commit `07331aa` (2026-06-09) ✅
-**Ďalší krok:** Etapa 5 — **testy** čistej logiky (popis/emoji/názvy dní/predpoveď) + **uzavrieť Projekt 6**. Mapa: [API-MAPA.md](API-MAPA.md)
+**Aktuálna téma:** ✅ Projekt 6 — Počasie cez **API** **DOKONČENÝ** (API · geocoding · web · predpoveď · emoji · testy)
+**Posledná lekcia:** Etapa 5 — **testy** čistej logiky `test_pocasie.py` (14/14 PASS, bez internetu); Projekt 6 uzavretý, commit `a7def26` (2026-06-09) ✅
+**Ďalší krok:** Projekt 7 — **nasadenie** (sprístupniť appku na internete: tunel/hosting + doména) — alebo iná téma, či pauza. Mapa: [API-MAPA.md](API-MAPA.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -141,6 +141,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 6 · Počasie cez API — Etapa 5 (testy) + UZAVRETÝ 🏁 — 2026-06-09
+**Čo sme prebrali:**
+- Testy **čistej logiky bez internetu** (`test_pocasie.py`, 14/14 PASS): `popis_pocasia`, `emoji_pocasia`, `nazov_dna`, `predpoved_z_dat` — poslednej sme podstrčili **vymyslené dáta** v tvare odpovede API.
+- Prečo testy nezávisia od siete: oddelili sme „získať dáta z API" od „spracovať dáta" — testujeme to druhé.
+
+**Čo som dokázal:**
+- 14/14 PASS; commit `a7def26`. **Projekt 6 dokončený** — API, geocoding, web, 7-dňová predpoveď, emoji aj testy. 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 6 uzavretý. Ďalej: Projekt 7 — **nasadenie** (sprístupniť appku na internete) alebo iná téma/pauza.
 
 ### Projekt 6 · Počasie cez API — Etapa 4 (web + predpoveď + emoji) — 2026-06-09
 **Čo sme prebrali:**
@@ -905,4 +916,5 @@ hotový projekt bez prepisovania od nuly.)*
 - [x] **Etapa 2** — Mesto na vstupe → súradnice (geocoding API) → počasie (dve volania za sebou). Commit `7ad4e55`
 - [x] **Etapa 3** — Pekný výpis (pocitová teplota + popis) + ošetrenie chýb. Commit `2f2ff57`
 - [x] **Etapa 4** — Počasie na webe (Flask, hero v štýle XP) + 7-dňová predpoveď s emoji. Commit `07331aa`
-- [ ] **Etapa 5** — Testy (čistá logika spracovania JSON) + uzavrieť projekt
+- [x] **Etapa 5** — Testy čistej logiky (`test_pocasie.py`, 14/14 PASS, bez internetu). Commit `a7def26`
+- [x] **Projekt 6 UZAVRETÝ** 🏁 — API · geocoding · web (Flask) · 7-dňová predpoveď · emoji · testy
