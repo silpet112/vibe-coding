@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌦️ Projekt 6 — Počasie cez **API** (učím sa, čo je API a ako ťahať dáta z internetu)
-**Posledná lekcia:** Etapa 3 — krajší výpis (pocitová teplota + slovný popis) + **ošetrenie chýb**, commit `2f2ff57` (2026-06-09) ✅
-**Ďalší krok:** Etapa 4 — (voliteľné) ukázať počasie na **webe** (Flask), alebo rovno Etapa 5 (testy + uzavrieť). Mapa: [API-MAPA.md](API-MAPA.md)
+**Posledná lekcia:** Etapa 4 — počasie na **webe** (Flask, hero v štýle XP) + **7-dňová predpoveď** s názvami dní a **emoji**, commit `07331aa` (2026-06-09) ✅
+**Ďalší krok:** Etapa 5 — **testy** čistej logiky (popis/emoji/názvy dní/predpoveď) + **uzavrieť Projekt 6**. Mapa: [API-MAPA.md](API-MAPA.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
@@ -141,6 +141,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 6 · Počasie cez API — Etapa 4 (web + predpoveď + emoji) — 2026-06-09
+**Čo sme prebrali:**
+- Počasie na **webe** cez Flask (`web_pocasie.py` + `templates/pocasie.html`), hero v štýle Windows XP lúky (CSS kresba; ak je `static/bliss.jpg`, zobrazí sa fotka). Web **znova použil** funkcie z `pocasie.py`.
+- Iterácia: **7-dňová predpoveď** (Open-Meteo `daily`, `timezone=auto`), pomenovanie dní (`Dnes`/`Zajtra`/názov dňa + dátum) a **emoji** ku každému stavu (zrozumiteľné aj bez slovenčiny).
+- Nové čisté funkcie: `emoji_pocasia`, `nazov_dna`, `predpoved_z_dat` (testovateľné).
+
+**Čo som dokázal:**
+- Zadám mesto na webe a vidím aktuálne počasie + 7-dňovú predpoveď s emoji; `bliss.jpg` lokálne funguje. Commit `07331aa`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 5 — testy čistej logiky (popis/emoji/názvy dní/predpoveď) + uzavrieť Projekt 6.
 
 ### Projekt 6 · Počasie cez API — Etapa 3 (krajší výpis + chyby) — 2026-06-09
 **Čo sme prebrali:**
@@ -892,5 +904,5 @@ hotový projekt bez prepisovania od nuly.)*
 - [x] **Etapa 1** — Pochopiť API + prvé volanie (Open-Meteo, `pip install requests`, vypísať teplotu)
 - [x] **Etapa 2** — Mesto na vstupe → súradnice (geocoding API) → počasie (dve volania za sebou). Commit `7ad4e55`
 - [x] **Etapa 3** — Pekný výpis (pocitová teplota + popis) + ošetrenie chýb. Commit `2f2ff57`
-- [ ] **Etapa 4** — (voliteľné) Ukázať počasie na webe (Flask) — spojiť s Projektom 4
+- [x] **Etapa 4** — Počasie na webe (Flask, hero v štýle XP) + 7-dňová predpoveď s emoji. Commit `07331aa`
 - [ ] **Etapa 5** — Testy (čistá logika spracovania JSON) + uzavrieť projekt
