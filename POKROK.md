@@ -17,7 +17,8 @@
 ## Kde som teraz
 **Aktuálna téma:** ✅ Projekt 6 — Počasie cez **API** **DOKONČENÝ** (API · geocoding · web · predpoveď · emoji · testy)
 **Posledná lekcia:** Etapa 5 — **testy** čistej logiky `test_pocasie.py` (14/14 PASS, bez internetu); Projekt 6 uzavretý, commit `a7def26` (2026-06-09) ✅
-**Ďalší krok:** Projekt 7 — **nasadenie** (sprístupniť appku na internete: tunel/hosting + doména) — alebo iná téma, či pauza. Mapa: [API-MAPA.md](API-MAPA.md)
+**Ďalší krok:** Projekt 7 — **nasadenie** (sprístupniť appku na internete: tunel/hosting + doména). Po ňom sa orientujeme podľa mapy ďalších tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
+**Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
 > stavať projekty, kde som režisér). Programovacia osnova (1–10) ostáva zaparkovaná na neskôr.
