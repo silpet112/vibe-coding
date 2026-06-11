@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 7 — Nasadenie **DOKONČENÝ** (requirements · tunel · GitHub · Render · gunicorn)
-**Posledná lekcia:** Etapa 4 — **produkčný server gunicorn** (vysvetlené, beží na Renderi); Projekt 7 uzavretý (2026-06-11) ✅
-**Ďalší krok:** Vybrať ďalšiu tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **F (GitHub/vetvy)**, **K (venv + debugging)** alebo **H (prepojené tabuľky)**. Alebo pauza.
+**Aktuálna téma:** 🔗 Projekt 8 — Prepojené tabuľky (relačná DB): kategórie ako vlastná tabuľka + `JOIN`
+**Posledná lekcia:** Etapa 1 — relácie/cudzí kľúč/`JOIN` na čistej ukážke `relacie_ukazka.py` (DB v pamäti) ✅
+**Ďalší krok:** Etapa 2 — zaviesť kategórie ako tabuľku do appky (`databaza.py`): pridať/vybrať kategórie + výpis cez `JOIN`. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul H)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 8 · Prepojené tabuľky — Etapa 1 (relácie + JOIN) — 2026-06-11
+**Čo sme prebrali:**
+- Pojmy **relácia / cudzí kľúč (foreign key) / `JOIN`**: kategórie ako vlastná tabuľka (`kategorie`), výdavky držia len `kategoria_id`, ktoré odkazuje na `kategorie.id`.
+- `JOIN ... ON vydavky.kategoria_id = kategorie.id` spojí tabuľky a dotiahne názov kategórie; `JOIN + GROUP BY` = súčet podľa kategórie.
+- Ukázané na čistom príklade `relacie_ukazka.py` (DB v pamäti, nič sa neukladá).
+
+**Čo som dokázal:**
+- Videl som naživo, ako sa dve tabuľky prepoja cez `JOIN` (výdavky s názvom kategórie + súčty). ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — zaviesť kategórie ako tabuľku priamo do `databaza.py` (pridať/vybrať + výpis cez JOIN).
 
 ### Projekt 7 · Nasadenie — Etapa 4 (produkčný server) + UZAVRETÝ 🏁 — 2026-06-11
 **Čo sme prebrali:**
@@ -979,3 +991,13 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 3** — kód na **GitHub** (`silpet112/vibe-coding`) + nasadenie na **Render** (`pocasie.onrender.com`, live). Príprava: gunicorn + Procfile
 - [x] **Etapa 4** — produkčný server (gunicorn na Renderi) + uzavrieť projekt
 - [x] **Projekt 7 UZAVRETÝ** 🏁 — requirements · tunel (cloudflared) · GitHub · Render · gunicorn
+
+---
+
+## Stavanie s AI — Projekt 8: Prepojené tabuľky (relačná DB) 🔗
+*(Cieľ: naučiť sa **relácie** — kategórie ako vlastná tabuľka, cudzí kľúč, `JOIN`. Mapa: modul H.)*
+
+- [x] **Etapa 1** — Pochopiť relácie/cudzí kľúč/`JOIN` na čistej ukážke (`relacie_ukazka.py`, DB v pamäti)
+- [ ] **Etapa 2** — Kategórie ako tabuľka v `databaza.py` (pridať/vybrať kategórie + výpis cez `JOIN`)
+- [ ] **Etapa 3** — Napojiť na appku (výber kategórie zo zoznamu)
+- [ ] **Etapa 4** — Testy + uzavrieť projekt
