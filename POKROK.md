@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 8 — Prepojené tabuľky **DOKONČENÝ** (relácie · cudzí kľúč · `JOIN` · testy)
-**Posledná lekcia:** Etapa 4 — **testy** relačnej logiky `test_databaza_rel.py` (8/8 PASS); Projekt 8 uzavretý (2026-06-11) ✅
-**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **I (vlastný API + JavaScript)**, **J (prihlasovanie)** alebo **K (venv + debugging)**. Alebo pauza.
+**Aktuálna téma:** 🌐 Projekt 9 — Vlastný API + JavaScript (modul I): Flask vracia JSON, stránka cez `fetch`
+**Posledná lekcia:** Etapa 1 — **vlastný API** `api_demo.py` (`/api/scitaj` vracia JSON, port 5002), overené ✅
+**Ďalší krok:** Etapa 2 — stránka, ktorá si cez **JavaScript `fetch`** vypýta dáta z API a ukáže výsledok **bez reloadu**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul I)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 9 · Vlastný API + JavaScript — Etapa 1 (vlastný API) — 2026-06-11
+**Čo sme prebrali:**
+- Rozdiel: Flask doteraz vracal **HTML stránky**; **API endpoint** vracia **JSON** (čisté dáta) cez `jsonify` — z toho sa stáva „tvoj vlastný API", ktorý vie použiť JavaScript/iná appka.
+- `api_demo.py`: `/api/scitaj?a=..&b=..` vráti `{"sucet": ...}`; neplatný vstup → stav 400 + JSON s chybou. Port 5002.
+
+**Čo som dokázal:**
+- Otvoril som API v prehliadači a videl surové JSON dáta (nie stránku). Commit `cc8ea87`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — JavaScript `fetch`: stránka si vypýta dáta z API a ukáže výsledok bez obnovenia.
 
 ### Projekt 8 · Prepojené tabuľky — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-11
 **Čo sme prebrali:**
@@ -1034,3 +1045,13 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 3** — Terminálové menu `vydavky_rel.py` nad relačnou DB (pridať/zobraziť/prehľad/kategórie cez `JOIN`)
 - [x] **Etapa 4** — Testy relačnej logiky (`test_databaza_rel.py`, 8/8 PASS). Commit `e3e1b06`
 - [x] **Projekt 8 UZAVRETÝ** 🏁 — relácie · cudzí kľúč · `JOIN` · testy
+
+---
+
+## Stavanie s AI — Projekt 9: Vlastný API + JavaScript 🌐
+*(Cieľ: Flask vráti **JSON** (vlastný API) a stránka si ho cez **JavaScript `fetch`** vypýta bez reloadu. Mapa: modul I. Beží na porte 5002.)*
+
+- [x] **Etapa 1** — Vlastný API `api_demo.py` (`/api/scitaj` vracia JSON, `jsonify`). Commit `cc8ea87`
+- [ ] **Etapa 2** — Stránka + **JavaScript `fetch`** → výsledok bez obnovenia
+- [ ] **Etapa 3** — Spojiť do mini-appky (živý výpočet)
+- [ ] **Etapa 4** — Testy + uzavrieť projekt
