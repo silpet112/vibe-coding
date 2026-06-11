@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ☁️ Projekt 7 — Nasadenie (deployment): sprístupniť appku na internete
-**Posledná lekcia:** Etapa 3 — appka **nasadená na Render** cez **GitHub** (`pocasie.onrender.com`, live). Počasie čaká na koniec výpadku Open-Meteo (overené: výpadok ich servera, nie kódu). ✅
-**Ďalší krok:** Etapa 4 — produkčný server (už máme gunicorn) + **uzavrieť Projekt 7**. Potom podľa mapy: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
+**Aktuálna téma:** ✅ Projekt 7 — Nasadenie **DOKONČENÝ** (requirements · tunel · GitHub · Render · gunicorn)
+**Posledná lekcia:** Etapa 4 — **produkčný server gunicorn** (vysvetlené, beží na Renderi); Projekt 7 uzavretý (2026-06-11) ✅
+**Ďalší krok:** Vybrať ďalšiu tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **F (GitHub/vetvy)**, **K (venv + debugging)** alebo **H (prepojené tabuľky)**. Alebo pauza.
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 7 · Nasadenie — Etapa 4 (produkčný server) + UZAVRETÝ 🏁 — 2026-06-11
+**Čo sme prebrali:**
+- Pojem **produkčný server**: `app.run(debug=True)` je len na vývoj; na verejnú prevádzku slúži **gunicorn** (zvláda viac požiadaviek, je rýchly a bezpečný). Na Renderi beží cez `Procfile` (máme z Etapy 3A).
+- Overené, že nasadená appka je zdravá (`pocasie.onrender.com` homepage 200). Počasie stále čaká na koniec výpadku Open-Meteo (externé).
+
+**Čo som dokázal:**
+- **Projekt 7 dokončený** — appka je verejne na internete cez profesionálny postup (GitHub → Render → gunicorn). 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 7 uzavretý. Ďalej podľa [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md): F (GitHub/vetvy) / K (venv + debugging) / H (prepojené tabuľky), alebo pauza.
 
 ### Projekt 7 · Nasadenie — Etapa 3 (GitHub + Render) + ladenie nasadenia — 2026-06-11
 **Čo sme prebrali:**
@@ -966,4 +977,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 1** — `requirements.txt` (zoznam balíčkov pre hosting), overené `pip install -r`
 - [x] **Etapa 2** — rýchle zverejnenie cez **tunel (cloudflared)** — verejná URL `trycloudflare.com`, overené zvonku
 - [x] **Etapa 3** — kód na **GitHub** (`silpet112/vibe-coding`) + nasadenie na **Render** (`pocasie.onrender.com`, live). Príprava: gunicorn + Procfile
-- [ ] **Etapa 4** — produkčný server (gunicorn/waitress) + uzavrieť projekt
+- [x] **Etapa 4** — produkčný server (gunicorn na Renderi) + uzavrieť projekt
+- [x] **Projekt 7 UZAVRETÝ** 🏁 — requirements · tunel (cloudflared) · GitHub · Render · gunicorn
