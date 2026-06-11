@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** ☁️ Projekt 7 — Nasadenie (deployment): sprístupniť appku na internete
-**Posledná lekcia:** Etapa 1 — **`requirements.txt`** (zoznam balíčkov pre hosting), overené `pip install -r` ✅
-**Ďalší krok:** Etapa 2 — rýchle zverejnenie cez **tunel (ngrok)** (vlastná verejná URL k počasovej appke). Po Projekte 7 sa orientujeme podľa mapy: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
+**Posledná lekcia:** Etapa 2 — **tunel cez cloudflared** (verejná URL `trycloudflare.com` k počasovej appke, overené stav 200 zvonku) ✅
+**Ďalší krok:** Etapa 3 — kód na **GitHub** + **trvalý hosting** (PythonAnywhere/Render). Po Projekte 7 podľa mapy: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 7 · Nasadenie — Etapa 2 (tunel) — 2026-06-11
+**Čo sme prebrali:**
+- Pojem **tunel**: nástroj vytvorí dočasnú **verejnú URL** prepojenú s lokálnym serverom.
+- Použili sme **cloudflared** (Cloudflare Tunnel) — **bez účtu** (jednoduchšie než ngrok); nainštalovaný cez winget.
+- Spustili sme počasovú appku (port 5001) + `cloudflared tunnel --url http://localhost:5001` → verejná `*.trycloudflare.com` adresa. Overené zvonku (stav 200).
+
+**Čo som dokázal:**
+- Moja appka bola **dostupná na internete** cez verejný odkaz (funguje, kým beží PC + tunel). ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — kód na **GitHub** + **trvalý hosting** (appka beží stále aj bez môjho PC). Pozn.: trycloudflare URL je dočasná a pri každom spustení nová.
 
 ### Projekt 7 · Nasadenie — Etapa 1 (requirements.txt) — 2026-06-09
 **Čo sme prebrali:**
@@ -939,6 +951,6 @@ hotový projekt bez prepisovania od nuly.)*
 tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 
 - [x] **Etapa 1** — `requirements.txt` (zoznam balíčkov pre hosting), overené `pip install -r`
-- [ ] **Etapa 2** — rýchle zverejnenie cez **tunel (ngrok)** — vlastná verejná URL
+- [x] **Etapa 2** — rýchle zverejnenie cez **tunel (cloudflared)** — verejná URL `trycloudflare.com`, overené zvonku
 - [ ] **Etapa 3** — kód na **GitHub** + nasadenie na **hosting** (PythonAnywhere/Render)
 - [ ] **Etapa 4** — produkčný server (gunicorn/waitress) + uzavrieť projekt
