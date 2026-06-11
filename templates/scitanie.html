@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <title>Sčítanie cez API</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 520px; margin: 40px auto; padding: 0 16px; color: #1d2733; }
+        h1 { color: #2a7ed6; }
+        input { padding: 8px; width: 90px; font-size: 1rem; }
+        button { padding: 8px 16px; font-size: 1rem; background: #2a7ed6; color: #fff; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #2168b3; }
+        #vysledok { margin-top: 18px; font-size: 1.6rem; font-weight: bold; color: #2a7ed6; min-height: 2rem; }
+    </style>
+</head>
+<body>
+    <h1>➕ Sčítanie cez API</h1>
+    <p>Zadaj dve čísla a stlač <b>Spočítať</b>. Výsledok sa objaví <b>bez obnovenia stránky</b>.</p>
+
+    <input type="text" id="a" placeholder="napr. 2">
+    +
+    <input type="text" id="b" placeholder="napr. 3">
+    <button onclick="spocitaj()">Spočítať</button>
+
+    <div id="vysledok"></div>
+
+    <script>
+        async function spocitaj() {
+            const a = document.getElementById("a").value;
+            const b = document.getElementById("b").value;
+            const vysledok = document.getElementById("vysledok");
+
+            // fetch zavola TVOJ API a pocka na odpoved (JSON)
+            const odpoved = await fetch(`/api/scitaj?a=${a}&b=${b}`);
+            const data = await odpoved.json();
+
+            // vysledok dopiseme na stranku - BEZ obnovenia
+            if (data.chyba) {
+                vysledok.textContent = "⚠️ " + data.chyba;
+            } else {
+                vysledok.textContent = `${data.a} + ${data.b} = ${data.sucet}`;
+            }
+        }
+    </script>
+</body>
+</html>

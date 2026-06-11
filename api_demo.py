@@ -2,9 +2,15 @@
 # Endpoint /api/scitaj?a=2&b=3 vrati JSON s vysledkom.
 # Spustenie:  python api_demo.py   (potom skus http://127.0.0.1:5002/api/scitaj?a=2&b=3)
 
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 
 app = Flask(__name__)
+
+
+@app.route("/")
+def domov():
+    """Stranka so scitanim - pouzije JavaScript (fetch) na zavolanie nasho API."""
+    return render_template("scitanie.html")
 
 
 @app.route("/api/scitaj")
