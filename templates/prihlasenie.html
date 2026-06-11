@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <title>Prihlásenie</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 460px; margin: 40px auto; padding: 0 16px; color: #1d2733; }
+        h1 { color: #2a7ed6; }
+        input { padding: 8px; width: 100%; box-sizing: border-box; margin: 4px 0 10px; font-size: 1rem; }
+        button { padding: 9px 16px; background: #2a7ed6; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; }
+        button:hover { background: #2168b3; }
+        .chyba { color: #c62828; font-weight: bold; }
+        .karta { background: #f3f7fc; border: 1px solid #e1e9f2; border-radius: 10px; padding: 16px; }
+        a { color: #2a7ed6; }
+    </style>
+</head>
+<body>
+    <h1>🔐 Prihlásenie</h1>
+
+    {% if pouzivatel %}
+        <div class="karta">
+            <p>✅ Prihlásený ako <strong>{{ pouzivatel }}</strong>.</p>
+            <p><a href="/odhlas">Odhlásiť sa</a></p>
+        </div>
+    {% else %}
+        {% if chyba %}<p class="chyba">⚠️ {{ chyba }}</p>{% endif %}
+        <form action="/prihlas" method="post" class="karta">
+            <label>Meno:</label>
+            <input type="text" name="meno" autofocus>
+            <label>Heslo:</label>
+            <input type="password" name="heslo">
+            <button type="submit">Prihlásiť sa</button>
+        </form>
+        <p style="color:#6b7785; font-size:0.9rem;">Demo prihlásenie: <code>admin</code> / <code>tajne123</code></p>
+    {% endif %}
+</body>
+</html>
