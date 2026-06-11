@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 9 — Vlastný API + JavaScript **DOKONČENÝ** (vlastný API · `fetch` · kalkulačka cez API · testy)
-**Posledná lekcia:** Etapa 4 — **testy API** `test_api_demo.py` (7/7 PASS); Projekt 9 uzavretý (2026-06-11) ✅
-**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **J (prihlasovanie)** alebo **K (venv + debugging)**. Alebo pauza.
+**Aktuálna téma:** 🔐 Projekt 10 — Prihlasovanie (modul J): heslá, sessions, chránená stránka
+**Posledná lekcia:** Etapa 1 — **hashovanie hesiel** (`hesla_ukazka.py`, werkzeug `generate/check_password_hash`), overené ✅
+**Ďalší krok:** Etapa 2 — **prihlásenie/odhlásenie** + session (appka si pamätá, kto je prihlásený). Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul J)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 10 · Prihlasovanie — Etapa 1 (hashovanie hesiel) — 2026-06-11
+**Čo sme prebrali:**
+- Pravidlo: **heslo sa nikdy neukladá ako text** — ukladá sa jeho **hash** (jednosmerný odtlačok, nedá sa vrátiť späť).
+- `werkzeug.security`: `generate_password_hash` (vytvor hash) a `check_password_hash` (over heslo). To isté heslo dá zakaždým iný hash vďaka „soli" (salt).
+
+**Čo som dokázal:**
+- Videl som, že hash je nečitateľný a heslo z neho nezískam; správne heslo sa overí, zlé nie. Commit `bdb091a`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — prihlásenie/odhlásenie + session (appka si pamätá prihláseného používateľa).
 
 ### Projekt 9 · Vlastný API + JavaScript — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-11
 **Čo sme prebrali:**
@@ -1088,3 +1099,13 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 3** — Kalkulačka cez API (`/api/vypocet` +,−,×,÷, znova použitá `kalkulacka.py`) + výber operácie a Enter. Commit `f694156`
 - [x] **Etapa 4** — Testy API (`test_api_demo.py`, 7/7 PASS). Commit `e5212cf`
 - [x] **Projekt 9 UZAVRETÝ** 🏁 — vlastný API · JavaScript `fetch` · kalkulačka cez API · testy
+
+---
+
+## Stavanie s AI — Projekt 10: Prihlasovanie 🔐
+*(Cieľ: používatelia, heslá (hash), prihlásenie/odhlásenie (session), chránená stránka. Mapa: modul J.)*
+
+- [x] **Etapa 1** — Hashovanie hesiel (`hesla_ukazka.py`, werkzeug). Commit `bdb091a`
+- [ ] **Etapa 2** — Prihlásenie/odhlásenie + session
+- [ ] **Etapa 3** — Chránená stránka (len pre prihláseného)
+- [ ] **Etapa 4** — Testy + uzavrieť projekt
