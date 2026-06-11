@@ -4,6 +4,8 @@
 
 from flask import Flask, jsonify, request, render_template
 
+import kalkulacka as k  # znova pouzite funkcie z Projektu 2
+
 app = Flask(__name__)
 
 
@@ -23,6 +25,33 @@ def api_scitaj():
         # 400 = "zla poziadavka" (Bad Request) + JSON s chybou
         return jsonify({"chyba": "Zadaj dve platne cisla v parametroch a a b."}), 400
     return jsonify({"a": a, "b": b, "sucet": a + b})
+
+
+@app.route("/api/vypocet")
+def api_vypocet():
+    """Vykona zvolenu operaciu (+,-,*,/) s dvomi cislami a vrati JSON.
+    Pouziva funkcie z kalkulacka.py (Projekt 2)."""
+    try:
+        a = float(request.args.get("a", ""))
+        b = float(request.args.get("b", ""))
+    except ValueError:
+        return jsonify({"chyba": "Zadaj dve platne cisla."}), 400
+
+    op = request.args.get("op", "scitaj")
+    if op == "scitaj":
+        vysledok = k.scitaj([a, b])
+    elif op == "odcitaj":
+        vysledok = k.odcitaj([a, b])
+    elif op == "nasob":
+        vysledok = k.nasob([a, b])
+    elif op == "delit":
+        vysledok = k.vydel([a, b])
+        if vysledok is None:
+            return jsonify({"chyba": "Delenie nulou nie je mozne."}), 400
+    else:
+        return jsonify({"chyba": "Nezna ma operacia."}), 400
+
+    return jsonify({"a": a, "b": b, "op": op, "vysledok": k.uprav_vystup(vysledok)})
 
 
 if __name__ == "__main__":

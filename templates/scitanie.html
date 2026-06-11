@@ -13,32 +13,48 @@
     </style>
 </head>
 <body>
-    <h1>➕ Sčítanie cez API</h1>
-    <p>Zadaj dve čísla a stlač <b>Spočítať</b>. Výsledok sa objaví <b>bez obnovenia stránky</b>.</p>
+    <h1>🧮 Kalkulačka cez API</h1>
+    <p>Zadaj dve čísla, vyber operáciu a stlač <b>Spočítať</b> (alebo <b>Enter</b>). Výsledok sa objaví <b>bez obnovenia stránky</b>.</p>
 
     <input type="text" id="a" placeholder="napr. 2">
-    +
+    <select id="op">
+        <option value="scitaj">+</option>
+        <option value="odcitaj">−</option>
+        <option value="nasob">×</option>
+        <option value="delit">÷</option>
+    </select>
     <input type="text" id="b" placeholder="napr. 3">
     <button onclick="spocitaj()">Spočítať</button>
 
     <div id="vysledok"></div>
 
     <script>
+        // znaky operacii pre pekny vypis
+        const ZNAKY = { scitaj: "+", odcitaj: "−", nasob: "×", delit: "÷" };
+
         async function spocitaj() {
             const a = document.getElementById("a").value;
             const b = document.getElementById("b").value;
+            const op = document.getElementById("op").value;
             const vysledok = document.getElementById("vysledok");
 
             // fetch zavola TVOJ API a pocka na odpoved (JSON)
-            const odpoved = await fetch(`/api/scitaj?a=${a}&b=${b}`);
+            const odpoved = await fetch(`/api/vypocet?a=${a}&b=${b}&op=${op}`);
             const data = await odpoved.json();
 
             // vysledok dopiseme na stranku - BEZ obnovenia
             if (data.chyba) {
                 vysledok.textContent = "⚠️ " + data.chyba;
             } else {
-                vysledok.textContent = `${data.a} + ${data.b} = ${data.sucet}`;
+                vysledok.textContent = `${data.a} ${ZNAKY[data.op]} ${data.b} = ${data.vysledok}`;
             }
+        }
+
+        // pocitat aj po stlaceni Enter v polickach
+        for (const id of ["a", "b"]) {
+            document.getElementById(id).addEventListener("keydown", (e) => {
+                if (e.key === "Enter") spocitaj();
+            });
         }
     </script>
 </body>
