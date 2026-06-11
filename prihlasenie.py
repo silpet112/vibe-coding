@@ -34,6 +34,14 @@ def prihlas():
                            chyba="Nesprávne meno alebo heslo.")
 
 
+@app.route("/tajne")
+def tajne():
+    # OCHRANA: ak nikto nie je prihlaseny, presmeruj na prihlasenie.
+    if "pouzivatel" not in session:
+        return redirect(url_for("domov"))
+    return render_template("tajne.html", pouzivatel=session["pouzivatel"])
+
+
 @app.route("/odhlas")
 def odhlas():
     session.pop("pouzivatel", None)           # zabudni prihlasenie

@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="sk">
+<head>
+    <meta charset="utf-8">
+    <title>Tajná stránka</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 460px; margin: 40px auto; padding: 0 16px; color: #1d2733; }
+        h1 { color: #2a7ed6; }
+        .karta { background: #f3f7fc; border: 1px solid #e1e9f2; border-radius: 10px; padding: 16px; }
+        a { color: #2a7ed6; }
+    </style>
+</head>
+<body>
+    <h1>🔒 Tajná stránka</h1>
+    <div class="karta">
+        <p>Ahoj <strong>{{ pouzivatel }}</strong>! Túto stránku vidí <strong>len prihlásený</strong> používateľ. 🎉</p>
+        <p>(Keby si nebol prihlásený, appka by ťa presmerovala na prihlásenie.)</p>
+    </div>
+    <p><a href="/">← Späť</a> · <a href="/odhlas">Odhlásiť sa</a></p>
+</body>
+</html>
