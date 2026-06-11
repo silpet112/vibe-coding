@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌐 Projekt 9 — Vlastný API + JavaScript (modul I): Flask vracia JSON, stránka cez `fetch`
-**Posledná lekcia:** Etapa 1 — **vlastný API** `api_demo.py` (`/api/scitaj` vracia JSON, port 5002), overené ✅
-**Ďalší krok:** Etapa 2 — stránka, ktorá si cez **JavaScript `fetch`** vypýta dáta z API a ukáže výsledok **bez reloadu**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul I)
+**Posledná lekcia:** Etapa 2 — stránka + **JavaScript `fetch`** (`scitanie.html`): výsledok z API **bez reloadu**, overené ✅
+**Ďalší krok:** Etapa 3 — spojiť do mini-appky / vyladiť (živý výpočet) + prípadne testy a uzavrieť. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul I)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 9 · Vlastný API + JavaScript — Etapa 2 (fetch bez reloadu) — 2026-06-11
+**Čo sme prebrali:**
+- **JavaScript** beží v prehliadači a mení stránku za behu; **`fetch`** zavolá náš API a dostane JSON.
+- `scitanie.html`: políčka a/b + tlačidlo → `fetch('/api/scitaj?a=..&b=..')` → výsledok sa **dopíše na stránku bez obnovenia**. Pridaná route `/` v `api_demo.py`.
+
+**Čo som dokázal:**
+- Zadal som čísla, klikol Spočítať a výsledok sa objavil hneď bez reloadu (chybný vstup → hláška). Commit `8a0620e`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — spojiť/vyladiť do mini-appky (živý výpočet), prípadne testy a uzavrieť.
 
 ### Projekt 9 · Vlastný API + JavaScript — Etapa 1 (vlastný API) — 2026-06-11
 **Čo sme prebrali:**
@@ -1052,6 +1063,6 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 *(Cieľ: Flask vráti **JSON** (vlastný API) a stránka si ho cez **JavaScript `fetch`** vypýta bez reloadu. Mapa: modul I. Beží na porte 5002.)*
 
 - [x] **Etapa 1** — Vlastný API `api_demo.py` (`/api/scitaj` vracia JSON, `jsonify`). Commit `cc8ea87`
-- [ ] **Etapa 2** — Stránka + **JavaScript `fetch`** → výsledok bez obnovenia
+- [x] **Etapa 2** — Stránka + **JavaScript `fetch`** → výsledok bez obnovenia (`scitanie.html`). Commit `8a0620e`
 - [ ] **Etapa 3** — Spojiť do mini-appky (živý výpočet)
 - [ ] **Etapa 4** — Testy + uzavrieť projekt
