@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🌐 Projekt 9 — Vlastný API + JavaScript (modul I): Flask vracia JSON, stránka cez `fetch`
-**Posledná lekcia:** Etapa 2 — stránka + **JavaScript `fetch`** (`scitanie.html`): výsledok z API **bez reloadu**, overené ✅
-**Ďalší krok:** Etapa 3 — spojiť do mini-appky / vyladiť (živý výpočet) + prípadne testy a uzavrieť. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul I)
+**Posledná lekcia:** Etapa 3 — **kalkulačka cez API** (`/api/vypocet` +,−,×,÷, znova použitá `kalkulacka.py`) + výber operácie a Enter, overené ✅
+**Ďalší krok:** Etapa 4 — **testy** API + **uzavrieť Projekt 9**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul I)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 9 · Vlastný API + JavaScript — Etapa 3 (kalkulačka cez API) — 2026-06-11
+**Čo sme prebrali:**
+- Rozšírený API: `/api/vypocet?a=..&b=..&op=scitaj|odcitaj|nasob|delit` → JSON; **znova použité funkcie z `kalkulacka.py`** (Projekt 2), delenie nulou → 400 + chyba.
+- Stránka: výber operácie (`<select>`) + počítanie aj cez **Enter** (`keydown`), JS volá `/api/vypocet`.
+
+**Čo som dokázal:**
+- Z ukážky vznikla **kalkulačka cez API** na webe (bez reloadu); pekné spojenie starých projektov. Commit `f694156`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 4 — testy API (`/api/vypocet`) + uzavrieť Projekt 9.
 
 ### Projekt 9 · Vlastný API + JavaScript — Etapa 2 (fetch bez reloadu) — 2026-06-11
 **Čo sme prebrali:**
@@ -1064,5 +1075,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 
 - [x] **Etapa 1** — Vlastný API `api_demo.py` (`/api/scitaj` vracia JSON, `jsonify`). Commit `cc8ea87`
 - [x] **Etapa 2** — Stránka + **JavaScript `fetch`** → výsledok bez obnovenia (`scitanie.html`). Commit `8a0620e`
-- [ ] **Etapa 3** — Spojiť do mini-appky (živý výpočet)
+- [x] **Etapa 3** — Kalkulačka cez API (`/api/vypocet` +,−,×,÷, znova použitá `kalkulacka.py`) + výber operácie a Enter. Commit `f694156`
 - [ ] **Etapa 4** — Testy + uzavrieť projekt
