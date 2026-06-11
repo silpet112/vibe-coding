@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🔗 Projekt 8 — Prepojené tabuľky (relačná DB): kategórie ako vlastná tabuľka + `JOIN`
-**Posledná lekcia:** Etapa 2 — **relačná dátová vrstva** `databaza_rel.py` (tabuľky kategorie+vydavky, cudzí kľúč, výpis/súčty cez `JOIN`), overené ✅
-**Ďalší krok:** Etapa 3 — malé rozhranie (menu) nad `databaza_rel.py` (pridať výdavok, výpis, súčty). Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul H)
+**Posledná lekcia:** Etapa 3 — **terminálové menu** `vydavky_rel.py` nad relačnou DB (pridať/zobraziť/prehľad/kategórie, cez `JOIN`), overené ✅
+**Ďalší krok:** Etapa 4 — **testy** relačnej logiky + **uzavrieť Projekt 8**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul H)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 8 · Prepojené tabuľky — Etapa 3 (menu nad relačnou DB) — 2026-06-11
+**Čo sme prebrali:**
+- Terminálové menu `vydavky_rel.py` nad `databaza_rel.py`: pridať výdavok, zobraziť všetky (s názvom kategórie cez `JOIN`), prehľad podľa kategórie, zoznam kategórií.
+- Znova použitá `logika.parsuj_sumu` z Projektu 3. Overené end-to-end (simulované vstupy).
+
+**Čo som dokázal:**
+- Celá relačná appka funguje od vstupu po výpis; tá istá kategória ostáva v tabuľke len raz (výhoda relácií). Commit `b2ad27b`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 4 — testy relačnej logiky + uzavrieť Projekt 8.
 
 ### Projekt 8 · Prepojené tabuľky — Etapa 2 (relačná dátová vrstva) — 2026-06-11
 **Čo sme prebrali:**
@@ -1010,5 +1021,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 
 - [x] **Etapa 1** — Pochopiť relácie/cudzí kľúč/`JOIN` na čistej ukážke (`relacie_ukazka.py`, DB v pamäti)
 - [x] **Etapa 2** — Relačná dátová vrstva `databaza_rel.py` (kategorie+vydavky, cudzí kľúč, výpis/súčty cez `JOIN`)
-- [ ] **Etapa 3** — Napojiť na appku (výber kategórie zo zoznamu)
+- [x] **Etapa 3** — Terminálové menu `vydavky_rel.py` nad relačnou DB (pridať/zobraziť/prehľad/kategórie cez `JOIN`)
 - [ ] **Etapa 4** — Testy + uzavrieť projekt
