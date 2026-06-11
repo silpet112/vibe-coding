@@ -33,8 +33,10 @@ def domov():
                     "emoji": pocasie.emoji_pocasia(c["weather_code"]),
                     "predpoved": pocasie.predpoved_z_dat(data),
                 }
-        except requests.exceptions.RequestException:
-            chyba = "Nepodarilo sa spojiť so službou počasia. Skús to neskôr."
+        except requests.exceptions.RequestException as e:
+            # DOCASNE: ukazeme aj detail chyby, aby sme vedeli diagnostikovat nasadenu appku.
+            print("CHYBA API:", type(e).__name__, "-", e, flush=True)  # pojde do Render logov
+            chyba = f"Nepodarilo sa spojiť so službou počasia. [detail: {type(e).__name__}: {e}]"
     return render_template("pocasie.html", nazov=nazov, vysledok=vysledok, chyba=chyba)
 
 
