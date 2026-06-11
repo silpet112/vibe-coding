@@ -1,0 +1,5 @@
+# Baliky, ktore tieto appky potrebuju. Hosting (alebo iny pocitac) si ich podla
+# tohto suboru sam doinstaluje prikazom:  pip install -r requirements.txt
+Flask
+requests
+python-dotenv

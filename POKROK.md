@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 6 — Počasie cez **API** **DOKONČENÝ** (API · geocoding · web · predpoveď · emoji · testy)
-**Posledná lekcia:** Etapa 5 — **testy** čistej logiky `test_pocasie.py` (14/14 PASS, bez internetu); Projekt 6 uzavretý, commit `a7def26` (2026-06-09) ✅
-**Ďalší krok:** Projekt 7 — **nasadenie** (sprístupniť appku na internete: tunel/hosting + doména). Po ňom sa orientujeme podľa mapy ďalších tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
+**Aktuálna téma:** ☁️ Projekt 7 — Nasadenie (deployment): sprístupniť appku na internete
+**Posledná lekcia:** Etapa 1 — **`requirements.txt`** (zoznam balíčkov pre hosting), overené `pip install -r` ✅
+**Ďalší krok:** Etapa 2 — rýchle zverejnenie cez **tunel (ngrok)** (vlastná verejná URL k počasovej appke). Po Projekte 7 sa orientujeme podľa mapy: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 7 · Nasadenie — Etapa 1 (requirements.txt) — 2026-06-09
+**Čo sme prebrali:**
+- Štart Projektu 7 (deployment); nasadzujeme počasovú appku `web_pocasie.py`.
+- Pojem **`requirements.txt`** = zoznam balíčkov, ktoré si server podľa neho doinštaluje (`pip install -r requirements.txt`). Súvis s **venv** (izolovaný „batoh" balíčkov).
+- Vytvorený `requirements.txt` (Flask, requests, python-dotenv), overený cez `pip install -r`.
+
+**Čo som dokázal:**
+- Appka má teraz „zoznam do batoha" pre akýkoľvek server. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — tunel (ngrok): vlastná verejná URL k appke (budem si robiť účet na ngrok).
 
 ### Projekt 6 · Počasie cez API — Etapa 5 (testy) + UZAVRETÝ 🏁 — 2026-06-09
 **Čo sme prebrali:**
@@ -919,3 +931,14 @@ hotový projekt bez prepisovania od nuly.)*
 - [x] **Etapa 4** — Počasie na webe (Flask, hero v štýle XP) + 7-dňová predpoveď s emoji. Commit `07331aa`
 - [x] **Etapa 5** — Testy čistej logiky (`test_pocasie.py`, 14/14 PASS, bez internetu). Commit `a7def26`
 - [x] **Projekt 6 UZAVRETÝ** 🏁 — API · geocoding · web (Flask) · 7-dňová predpoveď · emoji · testy
+
+---
+
+## Stavanie s AI — Projekt 7: Nasadenie (deployment) ☁️
+*(Cieľ: sprístupniť appku na internete. Nasadzujeme počasovú appku `web_pocasie.py`. Mapa ďalších
+tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
+
+- [x] **Etapa 1** — `requirements.txt` (zoznam balíčkov pre hosting), overené `pip install -r`
+- [ ] **Etapa 2** — rýchle zverejnenie cez **tunel (ngrok)** — vlastná verejná URL
+- [ ] **Etapa 3** — kód na **GitHub** + nasadenie na **hosting** (PythonAnywhere/Render)
+- [ ] **Etapa 4** — produkčný server (gunicorn/waitress) + uzavrieť projekt
