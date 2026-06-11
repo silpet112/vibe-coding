@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** ☁️ Projekt 7 — Nasadenie (deployment): sprístupniť appku na internete
-**Posledná lekcia:** Etapa 2 — **tunel cez cloudflared** (verejná URL `trycloudflare.com` k počasovej appke, overené stav 200 zvonku) ✅
-**Ďalší krok:** Etapa 3 — kód na **GitHub** + **trvalý hosting** (PythonAnywhere/Render). Po Projekte 7 podľa mapy: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
+**Posledná lekcia:** Etapa 3 — appka **nasadená na Render** cez **GitHub** (`pocasie.onrender.com`, live). Počasie čaká na koniec výpadku Open-Meteo (overené: výpadok ich servera, nie kódu). ✅
+**Ďalší krok:** Etapa 4 — produkčný server (už máme gunicorn) + **uzavrieť Projekt 7**. Potom podľa mapy: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md).
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,19 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 7 · Nasadenie — Etapa 3 (GitHub + Render) + ladenie nasadenia — 2026-06-11
+**Čo sme prebrali:**
+- Príprava na produkciu: **gunicorn** + **`Procfile`** (`web: gunicorn web_pocasie:app --bind 0.0.0.0:$PORT`).
+- **GitHub**: vytvorený účet `silpet112` + repo `vibe-coding` (private), `git remote add` + `git push` (kód v cloude; `.env`/`*.db`/`bliss.jpg` ostali mimo vďaka `.gitignore`).
+- **Render**: nasadenie z GitHubu (build `pip install -r requirements.txt`, start gunicorn). Appka **live**: `pocasie.onrender.com`.
+- **Ladenie nasadenej appky**: keďže lokálne to nevidno, dočasne sme dali zobraziť detail chyby → zistili sme, že volanie počasia padá na **502 / SSL**. Overené z **3 sietí**: chyba je **výpadok servera Open-Meteo** (`api.open-meteo.com`), nie kód/sieť/Render (hľadanie miest funguje, ráno počasie šlo).
+
+**Čo som dokázal:**
+- Mám appku **verejne nasadenú na internete** (Etapa 3 cieľ splnený). Naučil som sa GitHub push aj ako sa ladí nasadená appka (logy/diagnostika). Commity `d09971c`, `b10a095` (+ GitHub `silpet112/vibe-coding`).
+
+**Kde sme skončili / ďalší krok:**
+- Počasie nabehne, keď sa Open-Meteo zotaví (kód aj nasadenie sú správne). Ďalej: Etapa 4 — uzavrieť Projekt 7.
 
 ### Projekt 7 · Nasadenie — Etapa 2 (tunel) — 2026-06-11
 **Čo sme prebrali:**
@@ -952,5 +965,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 
 - [x] **Etapa 1** — `requirements.txt` (zoznam balíčkov pre hosting), overené `pip install -r`
 - [x] **Etapa 2** — rýchle zverejnenie cez **tunel (cloudflared)** — verejná URL `trycloudflare.com`, overené zvonku
-- [ ] **Etapa 3** — kód na **GitHub** + nasadenie na **hosting** (PythonAnywhere/Render)
+- [x] **Etapa 3** — kód na **GitHub** (`silpet112/vibe-coding`) + nasadenie na **Render** (`pocasie.onrender.com`, live). Príprava: gunicorn + Procfile
 - [ ] **Etapa 4** — produkčný server (gunicorn/waitress) + uzavrieť projekt
