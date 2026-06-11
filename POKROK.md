@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🌐 Projekt 9 — Vlastný API + JavaScript (modul I): Flask vracia JSON, stránka cez `fetch`
-**Posledná lekcia:** Etapa 3 — **kalkulačka cez API** (`/api/vypocet` +,−,×,÷, znova použitá `kalkulacka.py`) + výber operácie a Enter, overené ✅
-**Ďalší krok:** Etapa 4 — **testy** API + **uzavrieť Projekt 9**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul I)
+**Aktuálna téma:** ✅ Projekt 9 — Vlastný API + JavaScript **DOKONČENÝ** (vlastný API · `fetch` · kalkulačka cez API · testy)
+**Posledná lekcia:** Etapa 4 — **testy API** `test_api_demo.py` (7/7 PASS); Projekt 9 uzavretý (2026-06-11) ✅
+**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **J (prihlasovanie)** alebo **K (venv + debugging)**. Alebo pauza.
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,16 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 9 · Vlastný API + JavaScript — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-11
+**Čo sme prebrali:**
+- Testy API `test_api_demo.py` (7/7 PASS) cez Flask test client: všetky operácie (+,−,×,÷) + ošetrenie chýb (delenie nulou, neplatné číslo, neznáma operácia) → stav 400 + chyba.
+
+**Čo som dokázal:**
+- **Projekt 9 dokončený** — vlastný API (Flask vracia JSON), JavaScript `fetch` (bez reloadu), kalkulačka cez API a testy. Commit `e5212cf`. 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 9 uzavretý. Ďalej podľa [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md): J (prihlasovanie) / K (venv + debugging), alebo pauza.
 
 ### Projekt 9 · Vlastný API + JavaScript — Etapa 3 (kalkulačka cez API) — 2026-06-11
 **Čo sme prebrali:**
@@ -1076,4 +1086,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 1** — Vlastný API `api_demo.py` (`/api/scitaj` vracia JSON, `jsonify`). Commit `cc8ea87`
 - [x] **Etapa 2** — Stránka + **JavaScript `fetch`** → výsledok bez obnovenia (`scitanie.html`). Commit `8a0620e`
 - [x] **Etapa 3** — Kalkulačka cez API (`/api/vypocet` +,−,×,÷, znova použitá `kalkulacka.py`) + výber operácie a Enter. Commit `f694156`
-- [ ] **Etapa 4** — Testy + uzavrieť projekt
+- [x] **Etapa 4** — Testy API (`test_api_demo.py`, 7/7 PASS). Commit `e5212cf`
+- [x] **Projekt 9 UZAVRETÝ** 🏁 — vlastný API · JavaScript `fetch` · kalkulačka cez API · testy
