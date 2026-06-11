@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🔗 Projekt 8 — Prepojené tabuľky (relačná DB): kategórie ako vlastná tabuľka + `JOIN`
-**Posledná lekcia:** Etapa 3 — **terminálové menu** `vydavky_rel.py` nad relačnou DB (pridať/zobraziť/prehľad/kategórie, cez `JOIN`), overené ✅
-**Ďalší krok:** Etapa 4 — **testy** relačnej logiky + **uzavrieť Projekt 8**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul H)
+**Aktuálna téma:** ✅ Projekt 8 — Prepojené tabuľky **DOKONČENÝ** (relácie · cudzí kľúč · `JOIN` · testy)
+**Posledná lekcia:** Etapa 4 — **testy** relačnej logiky `test_databaza_rel.py` (8/8 PASS); Projekt 8 uzavretý (2026-06-11) ✅
+**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **I (vlastný API + JavaScript)**, **J (prihlasovanie)** alebo **K (venv + debugging)**. Alebo pauza.
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,16 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 8 · Prepojené tabuľky — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-11
+**Čo sme prebrali:**
+- Testy relačnej logiky `test_databaza_rel.py` (8/8 PASS, DB v pamäti): kategória sa **nezduplikuje** (rovnaké meno → rovnaké id), `JOIN` vráti **názov** kategórie, súčty podľa kategórie sedia.
+
+**Čo som dokázal:**
+- **Projekt 8 dokončený** — relačná DB (kategórie ako vlastná tabuľka, cudzí kľúč, `JOIN`) + menu + testy. Commit `e3e1b06`. 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 8 uzavretý. Ďalej podľa [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md): I (vlastný API + JS) / J (prihlasovanie) / K (venv + debugging), alebo pauza.
 
 ### Projekt 8 · Prepojené tabuľky — Etapa 3 (menu nad relačnou DB) — 2026-06-11
 **Čo sme prebrali:**
@@ -1022,4 +1032,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 1** — Pochopiť relácie/cudzí kľúč/`JOIN` na čistej ukážke (`relacie_ukazka.py`, DB v pamäti)
 - [x] **Etapa 2** — Relačná dátová vrstva `databaza_rel.py` (kategorie+vydavky, cudzí kľúč, výpis/súčty cez `JOIN`)
 - [x] **Etapa 3** — Terminálové menu `vydavky_rel.py` nad relačnou DB (pridať/zobraziť/prehľad/kategórie cez `JOIN`)
-- [ ] **Etapa 4** — Testy + uzavrieť projekt
+- [x] **Etapa 4** — Testy relačnej logiky (`test_databaza_rel.py`, 8/8 PASS). Commit `e3e1b06`
+- [x] **Projekt 8 UZAVRETÝ** 🏁 — relácie · cudzí kľúč · `JOIN` · testy
