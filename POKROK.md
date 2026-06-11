@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🔐 Projekt 10 — Prihlasovanie (modul J): heslá, sessions, chránená stránka
-**Posledná lekcia:** Etapa 1 — **hashovanie hesiel** (`hesla_ukazka.py`, werkzeug `generate/check_password_hash`), overené ✅
-**Ďalší krok:** Etapa 2 — **prihlásenie/odhlásenie** + session (appka si pamätá, kto je prihlásený). Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul J)
+**Posledná lekcia:** Etapa 2 — **prihlásenie/odhlásenie + session** (`prihlasenie.py`, overenie hesla cez hash, port 5003), overené ✅
+**Ďalší krok:** Etapa 3 — **chránená stránka** (uvidí ju len prihlásený používateľ). Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul J)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 10 · Prihlasovanie — Etapa 2 (prihlásenie + session) — 2026-06-11
+**Čo sme prebrali:**
+- **Session**: appka si pamätá prihláseného používateľa (cez „pečiatku" v prehliadači); vyžaduje `app.secret_key` (v reálnej appke do `.env`).
+- `prihlasenie.py`: `/prihlas` overí meno + heslo cez `check_password_hash`, uloží `session["pouzivatel"]`; `/odhlas` ho vymaže. Demo `admin`/`tajne123`.
+
+**Čo som dokázal:**
+- Prihlásil/odhlásil som sa, po F5 ostávam prihlásený; zlé heslo ohlási chybu. Commit `954ac89`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — chránená stránka (uvidí ju len prihlásený).
 
 ### Projekt 10 · Prihlasovanie — Etapa 1 (hashovanie hesiel) — 2026-06-11
 **Čo sme prebrali:**
@@ -1106,6 +1117,6 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 *(Cieľ: používatelia, heslá (hash), prihlásenie/odhlásenie (session), chránená stránka. Mapa: modul J.)*
 
 - [x] **Etapa 1** — Hashovanie hesiel (`hesla_ukazka.py`, werkzeug). Commit `bdb091a`
-- [ ] **Etapa 2** — Prihlásenie/odhlásenie + session
+- [x] **Etapa 2** — Prihlásenie/odhlásenie + session (`prihlasenie.py`). Commit `954ac89`
 - [ ] **Etapa 3** — Chránená stránka (len pre prihláseného)
 - [ ] **Etapa 4** — Testy + uzavrieť projekt
