@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🔗 Projekt 8 — Prepojené tabuľky (relačná DB): kategórie ako vlastná tabuľka + `JOIN`
-**Posledná lekcia:** Etapa 1 — relácie/cudzí kľúč/`JOIN` na čistej ukážke `relacie_ukazka.py` (DB v pamäti) ✅
-**Ďalší krok:** Etapa 2 — zaviesť kategórie ako tabuľku do appky (`databaza.py`): pridať/vybrať kategórie + výpis cez `JOIN`. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul H)
+**Posledná lekcia:** Etapa 2 — **relačná dátová vrstva** `databaza_rel.py` (tabuľky kategorie+vydavky, cudzí kľúč, výpis/súčty cez `JOIN`), overené ✅
+**Ďalší krok:** Etapa 3 — malé rozhranie (menu) nad `databaza_rel.py` (pridať výdavok, výpis, súčty). Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul H)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 8 · Prepojené tabuľky — Etapa 2 (relačná dátová vrstva) — 2026-06-11
+**Čo sme prebrali:**
+- Relačná verzia dátovej vrstvy `databaza_rel.py` (vlastný `vydavky_rel.db`, nech sa nepokazí pôvodná `databaza.py`).
+- Tabuľky `kategorie` + `vydavky` (s `kategoria_id` = cudzí kľúč, `PRAGMA foreign_keys = ON`); `id_kategorie` nájde/vytvorí kategóriu, `pridaj_vydavok` berie názov kategórie a uloží jej id; `vsetky_vydavky` a `sucet_podla_kategorie` čítajú cez **`JOIN`**.
+
+**Čo som dokázal:**
+- Overené: výdavky sa ukladajú relačne (kategória ako id) a vypisujú aj s názvom cez JOIN; súčty sedia. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 — malé menu (rozhranie) nad `databaza_rel.py`.
 
 ### Projekt 8 · Prepojené tabuľky — Etapa 1 (relácie + JOIN) — 2026-06-11
 **Čo sme prebrali:**
@@ -998,6 +1009,6 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 *(Cieľ: naučiť sa **relácie** — kategórie ako vlastná tabuľka, cudzí kľúč, `JOIN`. Mapa: modul H.)*
 
 - [x] **Etapa 1** — Pochopiť relácie/cudzí kľúč/`JOIN` na čistej ukážke (`relacie_ukazka.py`, DB v pamäti)
-- [ ] **Etapa 2** — Kategórie ako tabuľka v `databaza.py` (pridať/vybrať kategórie + výpis cez `JOIN`)
+- [x] **Etapa 2** — Relačná dátová vrstva `databaza_rel.py` (kategorie+vydavky, cudzí kľúč, výpis/súčty cez `JOIN`)
 - [ ] **Etapa 3** — Napojiť na appku (výber kategórie zo zoznamu)
 - [ ] **Etapa 4** — Testy + uzavrieť projekt
