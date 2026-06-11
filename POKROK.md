@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🔐 Projekt 10 — Prihlasovanie (modul J): heslá, sessions, chránená stránka
-**Posledná lekcia:** Etapa 2 — **prihlásenie/odhlásenie + session** (`prihlasenie.py`, overenie hesla cez hash, port 5003), overené ✅
-**Ďalší krok:** Etapa 3 — **chránená stránka** (uvidí ju len prihlásený používateľ). Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul J)
+**Posledná lekcia:** Etapa 3 — **chránená stránka** `/tajne` (len pre prihláseného, inak presmerovanie), overené ✅
+**Ďalší krok:** Etapa 4 — **testy** prihlásenia/ochrany + **uzavrieť Projekt 10**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul J)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 10 · Prihlasovanie — Etapa 3 (chránená stránka) — 2026-06-11
+**Čo sme prebrali:**
+- **Ochrana route**: na začiatku `/tajne` skontrolujeme `if "pouzivatel" not in session` → ak nie, `redirect` na prihlásenie; inak zobraz obsah. Tak fungujú „súkromné" stránky (profil, nastavenia).
+- Pridaný odkaz na tajnú stránku po prihlásení (`templates/tajne.html`).
+
+**Čo som dokázal:**
+- Neprihlásený sa na `/tajne` nedostane (presmeruje ho), prihlásený áno. Commit `609d251`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 4 — testy prihlásenia/ochrany + uzavrieť Projekt 10.
 
 ### Projekt 10 · Prihlasovanie — Etapa 2 (prihlásenie + session) — 2026-06-11
 **Čo sme prebrali:**
@@ -1118,5 +1129,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 
 - [x] **Etapa 1** — Hashovanie hesiel (`hesla_ukazka.py`, werkzeug). Commit `bdb091a`
 - [x] **Etapa 2** — Prihlásenie/odhlásenie + session (`prihlasenie.py`). Commit `954ac89`
-- [ ] **Etapa 3** — Chránená stránka (len pre prihláseného)
+- [x] **Etapa 3** — Chránená stránka `/tajne` (len pre prihláseného, inak presmerovanie). Commit `609d251`
 - [ ] **Etapa 4** — Testy + uzavrieť projekt
