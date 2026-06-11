@@ -2,6 +2,7 @@
 # Dve volania API: 1) geocoding (mesto -> suradnice)  2) forecast (suradnice -> pocasie).
 # Open-Meteo: https://open-meteo.com  (netreba API kluc)
 
+import time
 from datetime import datetime
 
 import requests
@@ -46,14 +47,27 @@ POPISY_POCASIA = {
 
 # --- Praca s API ---
 
+def _get_s_opakovanim(url, params, pokusy=3, timeout=10):
+    """Posle GET poziadavku; pri docasnej chybe spojenia (siet/server byva nestabilny)
+    to skusi este raz, az 'pokusy'-krat. Az ked zlyhaju vsetky pokusy, vyhodi poslednu chybu."""
+    posledna_chyba = None
+    for _ in range(pokusy):
+        try:
+            odpoved = requests.get(url, params=params, timeout=timeout)
+            odpoved.raise_for_status()
+            return odpoved
+        except requests.exceptions.RequestException as e:
+            posledna_chyba = e
+            time.sleep(1)  # kratka pauza pred dalsim pokusom
+    raise posledna_chyba
+
+
 def najdi_mesto(nazov):
     """Cez geocoding API zisti udaje o meste. Vrati slovnik prveho vysledku, alebo None."""
-    odpoved = requests.get(
+    odpoved = _get_s_opakovanim(
         "https://geocoding-api.open-meteo.com/v1/search",
-        params={"name": nazov, "count": 1, "language": "sk", "format": "json"},
-        timeout=10,
+        {"name": nazov, "count": 1, "language": "sk", "format": "json"},
     )
-    odpoved.raise_for_status()
     vysledky = odpoved.json().get("results")
     if not vysledky:
         return None
@@ -63,9 +77,9 @@ def najdi_mesto(nazov):
 def stiahni_pocasie(lat, lon):
     """Vrati aktualne pocasie + 7-dnovu predpoved ako slovnik.
     timezone=auto -> datumy a casy su v miestnom case daneho mesta."""
-    odpoved = requests.get(
+    odpoved = _get_s_opakovanim(
         "https://api.open-meteo.com/v1/forecast",
-        params={
+        {
             "latitude": lat,
             "longitude": lon,
             "current": "temperature_2m,apparent_temperature,weather_code",
@@ -73,9 +87,7 @@ def stiahni_pocasie(lat, lon):
             "forecast_days": 7,
             "timezone": "auto",
         },
-        timeout=10,
     )
-    odpoved.raise_for_status()
     return odpoved.json()
 
 
