@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🔐 Projekt 10 — Prihlasovanie (modul J): heslá, sessions, chránená stránka
-**Posledná lekcia:** Etapa 3 — **chránená stránka** `/tajne` (len pre prihláseného, inak presmerovanie), overené ✅
-**Ďalší krok:** Etapa 4 — **testy** prihlásenia/ochrany + **uzavrieť Projekt 10**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul J)
+**Aktuálna téma:** ✅ Projekt 10 — Prihlasovanie **DOKONČENÝ** (hash hesiel · session · chránená stránka · testy)
+**Posledná lekcia:** Etapa 4 — **testy** `test_prihlasenie.py` (7/7 PASS); Projekt 10 uzavretý (2026-06-11) ✅
+**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **K (venv + debugging)** alebo **L (AI vo vlastnej appke)**. Alebo pauza.
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,16 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 10 · Prihlasovanie — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-11
+**Čo sme prebrali:**
+- Testy `test_prihlasenie.py` (7/7 PASS) cez Flask test client: neprihlásený/zlé heslo/neznámy → `/tajne` presmeruje (302); správne heslo → 200 + meno; po odhlásení zase chránené.
+
+**Čo som dokázal:**
+- **Projekt 10 dokončený** — hashovanie hesiel, prihlásenie/odhlásenie (session), chránená stránka aj testy. Commit `5974644`. 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 10 uzavretý. Ďalej podľa [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md): K (venv + debugging) / L (AI vo vlastnej appke), alebo pauza.
 
 ### Projekt 10 · Prihlasovanie — Etapa 3 (chránená stránka) — 2026-06-11
 **Čo sme prebrali:**
@@ -1130,4 +1140,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 1** — Hashovanie hesiel (`hesla_ukazka.py`, werkzeug). Commit `bdb091a`
 - [x] **Etapa 2** — Prihlásenie/odhlásenie + session (`prihlasenie.py`). Commit `954ac89`
 - [x] **Etapa 3** — Chránená stránka `/tajne` (len pre prihláseného, inak presmerovanie). Commit `609d251`
-- [ ] **Etapa 4** — Testy + uzavrieť projekt
+- [x] **Etapa 4** — Testy prihlásenia/ochrany (`test_prihlasenie.py`, 7/7 PASS). Commit `5974644`
+- [x] **Projekt 10 UZAVRETÝ** 🏁 — hash hesiel · session · chránená stránka · testy
