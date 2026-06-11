@@ -34,9 +34,10 @@ def domov():
                     "predpoved": pocasie.predpoved_z_dat(data),
                 }
         except requests.exceptions.RequestException as e:
-            # DOCASNE: ukazeme aj detail chyby, aby sme vedeli diagnostikovat nasadenu appku.
-            print("CHYBA API:", type(e).__name__, "-", e, flush=True)  # pojde do Render logov
-            chyba = f"Nepodarilo sa spojiť so službou počasia. [detail: {type(e).__name__}: {e}]"
+            # Zapiseme skutocnu chybu do logov (uzitocne pri ladeni nasadenej appky),
+            # pouzivatelovi ukazeme zrozumitelnu hlasku.
+            print("CHYBA API:", type(e).__name__, "-", e, flush=True)
+            chyba = "Služba počasia má práve dočasný výpadok. Skús to o chvíľu znova."
     return render_template("pocasie.html", nazov=nazov, vysledok=vysledok, chyba=chyba)
 
 
