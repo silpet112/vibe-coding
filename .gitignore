@@ -3,3 +3,4 @@ ulohy.json
 .env
 __pycache__/
 static/bliss.jpg
+.venv/
