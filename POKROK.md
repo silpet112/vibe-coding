@@ -16,8 +16,8 @@
 
 ## Kde som teraz
 **Aktuálna téma:** 🛠️ Projekt 11 — Profi základy (modul K): virtuálne prostredie (venv) + debugging
-**Posledná lekcia:** Etapa 1 — **virtuálne prostredie (venv)** vytvorené (`.venv`, izolované, v `.gitignore`), overené ✅
-**Ďalší krok:** Etapa 2 — **debugging**: čítať chybové hlášky (tracebacky) a nájsť/opraviť príčinu. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul K)
+**Posledná lekcia:** Etapa 2 — **debugging**: čítanie tracebackov (`chyba_ukazka.py`, KeyError + SyntaxError naživo), overené ✅
+**Ďalší krok:** Etapa 3 (voliteľne logovanie/pytest) alebo rovno **uzavrieť Projekt 11**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul K)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 11 · Profi základy — Etapa 2 (debugging) — 2026-06-11
+**Čo sme prebrali:**
+- **Čítanie tracebacku zdola nahor**: posledný riadok = typ chyby + správa; `File ... line X` = kde a cez ktoré funkcie. Postup: spusti → prečítaj → pochop → oprav → over.
+- Naživo: `KeyError: 'hodnoty'` (chýbajúci kľúč) a potom **`SyntaxError`** (zlá čiarka v slovníku, ktorú spravil používateľ pri úprave) — obe sme prečítali a opravili.
+
+**Čo som dokázal:**
+- Prečítal som traceback, našiel príčinu (chýbajúci kľúč / preklep) a opravil. Commit `7609283`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 3 (voliteľne logovanie/pytest) alebo uzavrieť Projekt 11.
 
 ### Projekt 11 · Profi základy — Etapa 1 (venv) — 2026-06-11
 **Čo sme prebrali:**
@@ -1160,6 +1171,6 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 *(Cieľ: zdravé návyky — virtuálne prostredie a čítanie chýb. Mapa: modul K.)*
 
 - [x] **Etapa 1** — Virtuálne prostredie `.venv` (izolovaný „batoh" balíčkov, v `.gitignore`). Commit `361333d`
-- [ ] **Etapa 2** — Debugging: čítať tracebacky + opraviť chybu
+- [x] **Etapa 2** — Debugging: čítať tracebacky + opraviť chybu (`chyba_ukazka.py`). Commit `7609283`
 - [ ] **Etapa 3** — (voliteľne) logovanie / pytest
 - [ ] **Etapa 4** — uzavrieť projekt
