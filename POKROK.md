@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 10 — Prihlasovanie **DOKONČENÝ** (hash hesiel · session · chránená stránka · testy)
-**Posledná lekcia:** Etapa 4 — **testy** `test_prihlasenie.py` (7/7 PASS); Projekt 10 uzavretý (2026-06-11) ✅
-**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **K (venv + debugging)** alebo **L (AI vo vlastnej appke)**. Alebo pauza.
+**Aktuálna téma:** 🛠️ Projekt 11 — Profi základy (modul K): virtuálne prostredie (venv) + debugging
+**Posledná lekcia:** Etapa 1 — **virtuálne prostredie (venv)** vytvorené (`.venv`, izolované, v `.gitignore`), overené ✅
+**Ďalší krok:** Etapa 2 — **debugging**: čítať chybové hlášky (tracebacky) a nájsť/opraviť príčinu. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul K)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 11 · Profi základy — Etapa 1 (venv) — 2026-06-11
+**Čo sme prebrali:**
+- **Virtuálne prostredie (venv)** = izolovaný „batoh" balíčkov pre jeden projekt (`.venv`). Vytvorenie: `python -m venv .venv`. Aktivácia (Windows): `.venv\Scripts\Activate.ps1`, vypnutie: `deactivate`.
+- Ukázaná **izolácia**: `.venv` má len `pip`, kým globálny Python má Flask/requests. `.venv/` patrí do `.gitignore` (vyrobí sa z `requirements.txt`).
+
+**Čo som dokázal:**
+- Vytvoril som venv a videl, že je oddelený od globálnych balíčkov. Commit `361333d`. ✅
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — debugging: čítať tracebacky a opraviť chybu.
 
 ### Projekt 10 · Prihlasovanie — Etapa 4 (testy) + UZAVRETÝ 🏁 — 2026-06-11
 **Čo sme prebrali:**
@@ -1142,3 +1153,13 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 3** — Chránená stránka `/tajne` (len pre prihláseného, inak presmerovanie). Commit `609d251`
 - [x] **Etapa 4** — Testy prihlásenia/ochrany (`test_prihlasenie.py`, 7/7 PASS). Commit `5974644`
 - [x] **Projekt 10 UZAVRETÝ** 🏁 — hash hesiel · session · chránená stránka · testy
+
+---
+
+## Stavanie s AI — Projekt 11: Profi základy (venv + debugging) 🛠️
+*(Cieľ: zdravé návyky — virtuálne prostredie a čítanie chýb. Mapa: modul K.)*
+
+- [x] **Etapa 1** — Virtuálne prostredie `.venv` (izolovaný „batoh" balíčkov, v `.gitignore`). Commit `361333d`
+- [ ] **Etapa 2** — Debugging: čítať tracebacky + opraviť chybu
+- [ ] **Etapa 3** — (voliteľne) logovanie / pytest
+- [ ] **Etapa 4** — uzavrieť projekt
