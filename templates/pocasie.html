@@ -85,6 +85,51 @@
         .den-emoji { font-size: 1.8rem; }
         .den-teploty { margin: 4px 0; }
         .den-stav { font-size: 0.78rem; color: #6b7785; }
+
+        /* Dni su klikatelne - po kliknuti ukazu hodinovu predpoved. */
+        .den { cursor: pointer; transition: background 0.15s; }
+        .den:hover { background: #e7eff8; }
+        .den-viac { font-size: 0.7rem; color: #2a7ed6; margin-top: 4px; }
+
+        /* Našepkávač miest - rozbalovaci zoznam pod inputom. */
+        .naseptavac { position: relative; flex: 1; }
+        .naseptavac input { width: 100%; box-sizing: border-box; }
+        .navrhy {
+            position: absolute; left: 0; right: 0; top: 100%;
+            background: #fff;
+            border: 1px solid #c3ccd6;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+            z-index: 10;
+            overflow: hidden;
+            display: none;  /* skryté, kym nie su navrhy */
+        }
+        .navrh { padding: 8px 12px; cursor: pointer; }
+        .navrh:hover { background: #eef3f8; }
+        .navrh small { color: #6b7785; }
+
+        /* Hodinova predpoved - panel, ktory sa zobrazi po kliknuti na den. */
+        .hodiny-panel {
+            display: none;  /* skryté, kym uzivatel neklikne na den */
+            margin-top: 14px;
+            border-top: 1px dashed #d4deea;
+            padding-top: 12px;
+        }
+        .hodiny-panel h4 { margin: 0 0 10px; color: #2a7ed6; }
+        .hodiny-mriezka { display: flex; flex-wrap: wrap; gap: 6px; }
+        .hodina {
+            flex: 1 1 70px;
+            text-align: center;
+            background: #f7fafd;
+            border: 1px solid #e1e9f2;
+            border-radius: 8px;
+            padding: 6px 4px;
+        }
+        .hodina-cas { display: block; font-weight: bold; color: #44515f; font-size: 0.8rem; }
+        .hodina-emoji { font-size: 1.2rem; }
+        .hodina-teplota { display: block; font-weight: bold; color: #2a7ed6; }
+        .hodina-stav { display: block; color: #6b7785; font-size: 0.68rem; }
     </style>
 </head>
 <body>
@@ -93,9 +138,13 @@
     </div>
 
     <div class="karta">
-        <form action="/" method="get">
-            <input type="text" name="mesto" placeholder="Napíš mesto (napr. Bratislava)…"
-                   value="{{ nazov }}" autofocus>
+        <form action="/" method="get" autocomplete="off">
+            <div class="naseptavac">
+                <input type="text" id="mesto-input" name="mesto"
+                       placeholder="Napíš mesto (napr. Bratislava)…"
+                       value="{{ nazov }}" autofocus>
+                <div id="navrhy" class="navrhy"></div>
+            </div>
             <button type="submit">Zistiť počasie</button>
         </form>
     </div>
@@ -112,21 +161,102 @@
     </div>
 
     <div class="karta">
-        <h3>Predpoveď na 7 dní</h3>
+        <h3>Predpoveď na 7 dní <small style="color:#6b7785; font-weight:normal;">(klikni na deň pre hodiny)</small></h3>
         <div class="predpoved">
             {% for den in vysledok.predpoved %}
-            <div class="den">
+            <div class="den" onclick="prepniHodiny({{ loop.index }})">
                 <div class="den-nazov">{{ den.nazov }}</div>
                 <div class="den-emoji">{{ den.emoji }}</div>
                 <div class="den-teploty"><strong>{{ den.max }}°</strong> / {{ den.min }}°</div>
                 <div class="den-stav">{{ den.stav }}</div>
+                <div class="den-viac">hodiny ▾</div>
             </div>
             {% endfor %}
         </div>
+
+        {# Hodinove panely - jeden na kazdy den, skryte; JavaScript ich prepína. #}
+        {% for den in vysledok.predpoved %}
+        <div class="hodiny-panel" id="hodiny-{{ loop.index }}">
+            <h4>{{ den.nazov }} — hodinová predpoveď</h4>
+            <div class="hodiny-mriezka">
+                {% for h in vysledok.hodiny[den.datum] %}
+                <div class="hodina">
+                    <span class="hodina-cas">{{ h.cas }}</span>
+                    <span class="hodina-emoji">{{ h.emoji }}</span>
+                    <span class="hodina-teplota">{{ h.teplota }}°</span>
+                    <span class="hodina-stav">{{ h.stav }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
     </div>
     {% endif %}
 
     <p class="tip">💡 Tip: ak do priečinka <code>static/</code> uložíš obrázok ako <code>bliss.jpg</code>,
        v hero sa zobrazí namiesto kresby. Inak vidíš XP-štýl lúku nakreslenú CSS-kom.</p>
+
+    <script>
+        // === 1) Našepkávač miest ===
+        // Ked uzivatel pise, posleme po kratkej pauze otázku serveru (/api/mesta)
+        // a ukazeme zoznam navrhov. Po kliknuti na navrh rovno zistime pocasie.
+        const vstup = document.getElementById("mesto-input");
+        const navrhyBox = document.getElementById("navrhy");
+        let timer = null;
+
+        if (vstup) {
+            vstup.addEventListener("input", function () {
+                const q = vstup.value.trim();
+                clearTimeout(timer);
+                if (q.length < 2) { navrhyBox.style.display = "none"; return; }
+                // 250 ms pauza, aby sme neposielali poziadavku po kazdom jednom pismene
+                timer = setTimeout(() => nacitajNavrhy(q), 250);
+            });
+
+            // klik mimo zoznamu navrhov ho schova
+            document.addEventListener("click", function (e) {
+                if (!navrhyBox.contains(e.target) && e.target !== vstup) {
+                    navrhyBox.style.display = "none";
+                }
+            });
+        }
+
+        function nacitajNavrhy(q) {
+            fetch("/api/mesta?q=" + encodeURIComponent(q))
+                .then(odpoved => odpoved.json())
+                .then(mesta => zobrazNavrhy(mesta))
+                .catch(() => { navrhyBox.style.display = "none"; });
+        }
+
+        function zobrazNavrhy(mesta) {
+            navrhyBox.innerHTML = "";
+            if (!mesta.length) { navrhyBox.style.display = "none"; return; }
+            mesta.forEach(function (m) {
+                const polozka = document.createElement("div");
+                polozka.className = "navrh";
+                polozka.innerHTML = m.name + " <small>" + (m.country || "") + "</small>";
+                polozka.addEventListener("click", function () {
+                    vstup.value = m.name;
+                    navrhyBox.style.display = "none";
+                    vstup.form.submit();  // rovno zisti pocasie pre vybrane mesto
+                });
+                navrhyBox.appendChild(polozka);
+            });
+            navrhyBox.style.display = "block";
+        }
+
+        // === 2) Rozklik dna -> hodinova predpoved ===
+        // Klik na den otvori jeho panel s hodinami; opatovny klik ho zavrie.
+        function prepniHodiny(index) {
+            const panel = document.getElementById("hodiny-" + index);
+            if (!panel) return;
+            const uzOtvoreny = panel.style.display === "block";
+            // najprv zatvor vsetky panely (nech je otvoreny vzdy len jeden)
+            document.querySelectorAll(".hodiny-panel").forEach(function (p) {
+                p.style.display = "none";
+            });
+            if (!uzOtvoreny) panel.style.display = "block";
+        }
+    </script>
 </body>
 </html>

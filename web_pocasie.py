@@ -3,7 +3,7 @@
 # - rovnaka logika pre terminal aj web (sila oddelenych vrstiev).
 # Spustenie:  python web_pocasie.py   (potom otvor http://127.0.0.1:5001)
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import requests
 
 import pocasie  # znova pouzite funkcie z terminalovej verzie
@@ -32,6 +32,7 @@ def domov():
                     "stav": pocasie.popis_pocasia(c["weather_code"]),
                     "emoji": pocasie.emoji_pocasia(c["weather_code"]),
                     "predpoved": pocasie.predpoved_z_dat(data),
+                    "hodiny": pocasie.hodiny_z_dat(data),  # hodinove pocasie po dnoch
                 }
         except requests.exceptions.RequestException as e:
             # Zapiseme skutocnu chybu do logov (uzitocne pri ladeni nasadenej appky),
@@ -39,6 +40,20 @@ def domov():
             print("CHYBA API:", type(e).__name__, "-", e, flush=True)
             chyba = "Služba počasia má práve dočasný výpadok. Skús to o chvíľu znova."
     return render_template("pocasie.html", nazov=nazov, vysledok=vysledok, chyba=chyba)
+
+
+@app.route("/api/mesta")
+def api_mesta():
+    """Maly JSON "našepkávač": prehliadac sem posiela, co uzivatel pise (?q=Bra),
+    a my vratime zoznam pasujucich miest. Vola sa to z JavaScriptu na stranke."""
+    q = request.args.get("q", "").strip()
+    if len(q) < 2:
+        return jsonify([])  # pri 1 pismene nemá zmysel hľadať
+    try:
+        mesta = pocasie.najdi_mesta(q, pocet=5)
+    except requests.exceptions.RequestException:
+        return jsonify([])  # ak API zlyha, len neukazeme navrhy (stranka funguje dalej)
+    return jsonify(mesta)
 
 
 if __name__ == "__main__":

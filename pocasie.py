@@ -74,6 +74,25 @@ def najdi_mesto(nazov):
     return vysledky[0]
 
 
+def najdi_mesta(nazov, pocet=5):
+    """Pre naseptavac: vrati zoznam az 'pocet' miest, ktore zacinaju na 'nazov'.
+    Kazde mesto je slovnik s klucmi name, country, latitude, longitude."""
+    odpoved = _get_s_opakovanim(
+        "https://geocoding-api.open-meteo.com/v1/search",
+        {"name": nazov, "count": pocet, "language": "sk", "format": "json"},
+    )
+    vysledky = odpoved.json().get("results") or []
+    return [
+        {
+            "name": m["name"],
+            "country": m.get("country", ""),
+            "latitude": m["latitude"],
+            "longitude": m["longitude"],
+        }
+        for m in vysledky
+    ]
+
+
 def stiahni_pocasie(lat, lon):
     """Vrati aktualne pocasie + 7-dnovu predpoved ako slovnik.
     timezone=auto -> datumy a casy su v miestnom case daneho mesta."""
@@ -83,6 +102,7 @@ def stiahni_pocasie(lat, lon):
             "latitude": lat,
             "longitude": lon,
             "current": "temperature_2m,apparent_temperature,weather_code",
+            "hourly": "temperature_2m,weather_code",
             "daily": "weather_code,temperature_2m_max,temperature_2m_min",
             "forecast_days": 7,
             "timezone": "auto",
@@ -127,12 +147,33 @@ def predpoved_z_dat(data):
         kod = d["weather_code"][i]
         dni.append({
             "nazov": nazov_dna(i, datum),
+            "datum": datum,  # 'RRRR-MM-DD' - sluzi na napárovanie hodinovej predpovede
             "emoji": emoji_pocasia(kod),
             "stav": popis_pocasia(kod),
             "max": d["temperature_2m_max"][i],
             "min": d["temperature_2m_min"][i],
         })
     return dni
+
+
+def hodiny_z_dat(data):
+    """Z odpovede vytiahne hodinove pocasie a zoskupi ho podla dna.
+    Vrati slovnik: {'2026-06-16': [{'cas': '14:00', 'emoji':..., 'stav':..., 'teplota':...}, ...]}.
+    Cas z API ma tvar '2026-06-16T14:00' - rozdelime ho na datum a hodinu."""
+    h = data.get("hourly")
+    if not h:
+        return {}
+    podla_dna = {}
+    for i, casovy_udaj in enumerate(h["time"]):
+        datum, cas = casovy_udaj.split("T")  # napr. '2026-06-16', '14:00'
+        kod = h["weather_code"][i]
+        podla_dna.setdefault(datum, []).append({
+            "cas": cas,
+            "emoji": emoji_pocasia(kod),
+            "stav": popis_pocasia(kod),
+            "teplota": h["temperature_2m"][i],
+        })
+    return podla_dna
 
 
 # --- Obsluha ---
