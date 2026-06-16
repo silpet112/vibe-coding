@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** 🛠️ Projekt 11 — Profi základy (modul K): virtuálne prostredie (venv) + debugging
-**Posledná lekcia:** Etapa 2 — **debugging**: čítanie tracebackov (`chyba_ukazka.py`, KeyError + SyntaxError naživo), overené ✅
-**Ďalší krok:** Etapa 3 (voliteľne logovanie/pytest) alebo rovno **uzavrieť Projekt 11**. Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul K)
+**Aktuálna téma:** ✅ Projekt 11 — Profi základy **DOKONČENÝ** (venv · debugging · pytest)
+**Posledná lekcia:** Etapa 3 — **pytest** (`test_kalkulacka_pytest.py`, 5 passed); Projekt 11 uzavretý (2026-06-11) ✅
+**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **L (AI vo vlastnej appke)**. Alebo pauza.
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,17 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 11 · Profi základy — Etapa 3 (pytest) + UZAVRETÝ 🏁 — 2026-06-11
+**Čo sme prebrali:**
+- **pytest** — štandardný testovací nástroj: testy = funkcie `test_...()` s obyčajným `assert`; pytest si ich sám nájde a spustí (`python -m pytest -v`), pekný prehľad a detail pri zlyhaní.
+- `test_kalkulacka_pytest.py` (5 testov, všetky PASSED). Porovnanie: domáci `skontroluj` vs pytest. `.pytest_cache/` do `.gitignore`.
+
+**Čo som dokázal:**
+- Napísal a spustil som testy cez pytest. Commit `d75438c`. **Projekt 11 dokončený** (venv · debugging · pytest). 🎉
+
+**Kde sme skončili / ďalší krok:**
+- Projekt 11 uzavretý. Ďalej podľa [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md): L (AI vo vlastnej appke), alebo pauza.
 
 ### Projekt 11 · Profi základy — Etapa 2 (debugging) — 2026-06-11
 **Čo sme prebrali:**
@@ -1172,5 +1183,5 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 
 - [x] **Etapa 1** — Virtuálne prostredie `.venv` (izolovaný „batoh" balíčkov, v `.gitignore`). Commit `361333d`
 - [x] **Etapa 2** — Debugging: čítať tracebacky + opraviť chybu (`chyba_ukazka.py`). Commit `7609283`
-- [ ] **Etapa 3** — (voliteľne) logovanie / pytest
-- [ ] **Etapa 4** — uzavrieť projekt
+- [x] **Etapa 3** — pytest (`test_kalkulacka_pytest.py`, 5 passed). Commit `d75438c`
+- [x] **Projekt 11 UZAVRETÝ** 🏁 — venv · debugging (tracebacky) · pytest
