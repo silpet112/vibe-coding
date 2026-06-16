@@ -15,9 +15,9 @@
 ---
 
 ## Kde som teraz
-**Aktuálna téma:** ✅ Projekt 11 — Profi základy **DOKONČENÝ** (venv · debugging · pytest)
-**Posledná lekcia:** Etapa 3 — **pytest** (`test_kalkulacka_pytest.py`, 5 passed); Projekt 11 uzavretý (2026-06-11) ✅
-**Ďalší krok:** Vybrať tému z mapy [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) — napr. **L (AI vo vlastnej appke)**. Alebo pauza.
+**Aktuálna téma:** 🤖 Projekt 12 — AI vo vlastnej appke (modul L): volať Claude API z appky
+**Posledná lekcia:** Etapa 1 — appka volá **Claude API** (`ai_ukazka.py`, `anthropic` SDK, kľúč z `.env`), overené bez-kľúčové ošetrenie ✅
+**Ďalší krok:** Etapa 2 — zmysluplné využitie AI v appke (napr. k počasiu pridať „čo si obliecť"). Mapa: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (modul L)
 **Mapy/referencie:** [API-MAPA.md](API-MAPA.md) · [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md) (zostávajúce lekcie F–L) · [STAVANIE-S-AI.md](STAVANIE-S-AI.md)
 
 > Pozn.: Kurz Claude Code (A1–E20) je **hotový**. Teraz sme na ceste **„Stavanie s AI"** (cieľ:
@@ -142,6 +142,18 @@
 
 ## Denník lekcií
 *(Najnovší záznam navrch. Formát nižšie.)*
+
+### Projekt 12 · AI vo vlastnej appke — Etapa 1 (volanie Claude API) — 2026-06-11
+**Čo sme prebrali:**
+- Appka môže zavolať **AI (Claude API)** rovnako ako iné API: pošle prompt → dostane odpoveď. Balíček **`anthropic`**, model `claude-opus-4-8`, `klient.messages.create(...)`, odpoveď v `odpoved.content` (textové bloky).
+- **API kľúč** je tajný → do `.env` (`ANTHROPIC_API_KEY`); Claude API je platená služba (kľúč z console.anthropic.com).
+- `ai_ukazka.py` ošetrí chýbajúci kľúč (pekná hláška, nespadne).
+
+**Čo som dokázal:**
+- Mám hotovú appku na volanie AI; overené bez-kľúčové ošetrenie. Commit `e6e5010`. ✅ (Spustenie naživo po doplnení vlastného kľúča.)
+
+**Kde sme skončili / ďalší krok:**
+- Etapa 2 — využiť AI zmysluplne (napr. k počasiu pridať odporúčanie „čo si obliecť").
 
 ### Projekt 11 · Profi základy — Etapa 3 (pytest) + UZAVRETÝ 🏁 — 2026-06-11
 **Čo sme prebrali:**
@@ -1185,3 +1197,13 @@ tém: [VIBE-CODING-MAPA.md](VIBE-CODING-MAPA.md), modul G.)*
 - [x] **Etapa 2** — Debugging: čítať tracebacky + opraviť chybu (`chyba_ukazka.py`). Commit `7609283`
 - [x] **Etapa 3** — pytest (`test_kalkulacka_pytest.py`, 5 passed). Commit `d75438c`
 - [x] **Projekt 11 UZAVRETÝ** 🏁 — venv · debugging (tracebacky) · pytest
+
+---
+
+## Stavanie s AI — Projekt 12: AI vo vlastnej appke 🤖
+*(Cieľ: appka, ktorá zavolá Claude API a použije jeho odpoveď. Kľúč v `.env`. Mapa: modul L.
+Pozn.: Claude API je platená služba — kľúč z console.anthropic.com.)*
+
+- [x] **Etapa 1** — Appka volá Claude API (`ai_ukazka.py`, `anthropic` SDK, kľúč z `.env`). Commit `e6e5010`
+- [ ] **Etapa 2** — Zmysluplné využitie AI (napr. k počasiu „čo si obliecť")
+- [ ] **Etapa 3** — uzavrieť projekt + zhrnutie celej cesty
