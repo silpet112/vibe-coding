@@ -4,3 +4,4 @@ ulohy.json
 __pycache__/
 static/bliss.jpg
 .venv/
+.pytest_cache/
