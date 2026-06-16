@@ -130,6 +130,17 @@
         .hodina-emoji { font-size: 1.2rem; }
         .hodina-teplota { display: block; font-weight: bold; color: #2a7ed6; }
         .hodina-stav { display: block; color: #6b7785; font-size: 0.68rem; }
+
+        /* Mapka lokality (Google Maps) pod hodinovym rozpisom. */
+        .mapa { margin-top: 14px; }
+        .mapa h5 { margin: 0 0 8px; color: #2a7ed6; }
+        .mapa iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
     </style>
 </head>
 <body>
@@ -187,6 +198,14 @@
                     <span class="hodina-stav">{{ h.stav }}</span>
                 </div>
                 {% endfor %}
+            </div>
+
+            <div class="mapa">
+                <h5>📍 {{ vysledok.mesto }} na mape</h5>
+                <iframe
+                    src="https://www.google.com/maps?q={{ vysledok.lat }},{{ vysledok.lon }}&z=11&hl=sk&output=embed"
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                    title="Mapa: {{ vysledok.mesto }}"></iframe>
             </div>
         </div>
         {% endfor %}

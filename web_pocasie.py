@@ -27,6 +27,8 @@ def domov():
                 vysledok = {
                     "mesto": mesto["name"],
                     "krajina": mesto.get("country", ""),
+                    "lat": mesto["latitude"],   # suradnice pre mapku Google Maps
+                    "lon": mesto["longitude"],
                     "teplota": c["temperature_2m"],
                     "pocit": c["apparent_temperature"],
                     "stav": pocasie.popis_pocasia(c["weather_code"]),
