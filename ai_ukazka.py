@@ -22,11 +22,16 @@ def main():
 
     otazka = input("Spytaj sa AI nieco: ").strip() or "Pozdrav ma jednou vetou po slovensky."
 
-    odpoved = klient.messages.create(
-        model="claude-opus-4-8",          # aktualny model
-        max_tokens=300,                   # max dlzka odpovede
-        messages=[{"role": "user", "content": otazka}],
-    )
+    try:
+        odpoved = klient.messages.create(
+            model="claude-opus-4-8",          # aktualny model
+            max_tokens=300,                   # max dlzka odpovede
+            messages=[{"role": "user", "content": otazka}],
+        )
+    except anthropic.APIError as e:
+        # napr. nedostatok kreditu, zly kluc, prekroceny limit - nech appka nespadne
+        print("Nepodarilo sa zavolat AI:", e)
+        return
 
     # odpoved.content je zoznam blokov; vypiseme tie textove
     print("\n--- AI odpoved ---")
