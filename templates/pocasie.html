@@ -13,9 +13,8 @@
             background: #eef3f8;
         }
 
-        /* HERO v style Windows XP "lúka" (Bliss).
-           Ak existuje static/bliss.jpg, pouzije sa fotka; inak sa zobrazi CSS kresba:
-           modré nebo (linear-gradient) + zelený kopec (radial-gradient). */
+        /* HERO s animovanym gifom (static/tanec.gif), ktory sa stale opakuje (gif loopuje sam).
+           Ak by gif chybal, ostane pod nim zaloha: CSS kresba neba a kopca. */
         .hero {
             position: relative;
             height: 340px;
@@ -26,7 +25,7 @@
             justify-content: center;
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
             background:
-                url('/static/bliss.jpg') center/cover no-repeat,
+                url('/static/tanec.gif') center/cover no-repeat,
                 radial-gradient(ellipse 160% 95% at 50% 140%, #6ab43a 0 42%, rgba(106,180,58,0) 43%),
                 radial-gradient(circle at 78% 30%, rgba(255,255,255,0.9) 0 6%, rgba(255,255,255,0) 9%),
                 radial-gradient(circle at 70% 28%, rgba(255,255,255,0.8) 0 8%, rgba(255,255,255,0) 12%),
@@ -212,8 +211,8 @@
     </div>
     {% endif %}
 
-    <p class="tip">💡 Tip: ak do priečinka <code>static/</code> uložíš obrázok ako <code>bliss.jpg</code>,
-       v hero sa zobrazí namiesto kresby. Inak vidíš XP-štýl lúku nakreslenú CSS-kom.</p>
+    <p class="tip">💡 Tip: hore sa prehráva animovaný <code>static/tanec.gif</code> (opakuje sa stále dokola).
+       Ak by súbor chýbal, namiesto neho uvidíš XP-štýl lúku nakreslenú CSS-kom.</p>
 
     <script>
         // === 1) Našepkávač miest ===
